@@ -5,7 +5,7 @@
 -- Dumped from database version 14.5 (Ubuntu 14.5-0ubuntu0.22.04.1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-0ubuntu0.22.04.1)
 
--- Started on 2022-12-22 14:27:46 -03
+-- Started on 2022-12-22 15:50:20 -03
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1567,6 +1567,10 @@ ou o que o aluno deve saber fazer:</font></font></span></p>
 -- Data for Name: notas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.notas VALUES (5531, 0, 914, 1251, 'asdas', 'aluno_122_914_1251.uml');
+INSERT INTO public.notas VALUES (5532, 0, 914, 1248, '<br>', NULL);
+INSERT INTO public.notas VALUES (5533, 0, 914, 1247, '<br>', NULL);
+INSERT INTO public.notas VALUES (5534, 0, 914, 1250, '<br>', NULL);
 
 
 --
@@ -2028,7 +2032,7 @@ SELECT pg_catalog.setval('public.nota_exame2_id_seq', 213, true);
 -- Name: notas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.notas_id_seq', 5526, true);
+SELECT pg_catalog.setval('public.notas_id_seq', 5534, true);
 
 
 --
@@ -2398,7 +2402,7 @@ ALTER TABLE ONLY public.questoes_tags
     ADD CONSTRAINT tag_fk FOREIGN KEY (tag_id) REFERENCES public.tags(id);
 
 
--- Completed on 2022-12-22 14:27:47 -03
+-- Completed on 2022-12-22 15:50:20 -03
 
 --
 -- PostgreSQL database dump complete

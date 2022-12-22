@@ -121,10 +121,7 @@
 				<td>{nome}</td>
 				<td><input type="text" onkeyup="validaNota(this, {valor_avaliacao})" name="vetNota[{id}]" value="{obtido}" size="3"></td>
 				<td style="text-align: left;">
-					<textarea style="text-align:left" cols="70%" rows="10" name="vetComentario[{id}]">{comentario}</textarea>
-					<a style="margin: 10px" class="btn btn-default" href="../../bin/avaliacoes/enviar_email_feedback_correcao_individual.php?id_avaliacao={id_avaliacao}&id_disciplina={id_disciplina}&id_aluno={id}" target="__blank">
-						<span class="glyphicon glyphicon-print"> enviar e-mail individual de feedback </span>
-					</a>
+					<textarea style="text-align:left" cols="70%" rows="10" name="vetComentario[{id}]">{comentario}</textarea>					
 				</td>
 				<td>{arquivo} <input style="display: {mostra_input_upload}" type="file" name="vetArquivo[{id}]"></td>
 				<td style="display: {mostra}"> {precisa} </td>				
