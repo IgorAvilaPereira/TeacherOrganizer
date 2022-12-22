@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Disciplinas/Recentes - Cursos</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+	<script src="../../lib/jquery.js"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />	
+	<script>
+		function enviar_dump_por_email(){
+			alert('Feito!!');
+			// Exemplo de requisição GET
+			var ajax = new XMLHttpRequest();
+			// Seta tipo de requisição e URL com os parâmetros
+			ajax.open("GET", "../../lib/enviar_dump_por_email.php", true);
+			// Envia a requisição
+			ajax.send();
+			// Cria um evento para receber o retorno.
+			ajax.onreadystatechange = function() {
+			// Caso o state seja 4 e o http.status for 200, é porque a requisiçõe deu certo.
+				if (ajax.readyState == 4 && ajax.status == 200) {
+					var data = ajax.responseText;					
+					// Retorno do Ajax
+					//console.log(data);
+				}
+			}
+		}
+		function zipar_docente(){
+			alert('Feito!!');
+			// Exemplo de requisição GET
+			var ajax = new XMLHttpRequest();
+			// Seta tipo de requisição e URL com os parâmetros
+			ajax.open("GET", '../../lib/zipar_docente.php', true);
+			// Envia a requisição
+			ajax.send();
+			// Cria um evento para receber o retorno.
+			ajax.onreadystatechange = function() {
+			// Caso o state seja 4 e o http.status for 200, é porque a requisiçõe deu certo.
+				if (ajax.readyState == 4 && ajax.status == 200) {
+					var data = ajax.responseText;	
+					// alert(data.responseText);				
+					// Retorno do Ajax
+					//console.log(data);
+				}
+			}
+		}
+
+		function zipar_docente_local(){
+			alert('Feito!!');
+			// Exemplo de requisição GET
+			var ajax = new XMLHttpRequest();
+			// Seta tipo de requisição e URL com os parâmetros
+			ajax.open("GET", '../../lib/zipar_docente_local.php', true);
+			// Envia a requisição
+			ajax.send();
+			// Cria um evento para receber o retorno.
+			ajax.onreadystatechange = function() {
+			// Caso o state seja 4 e o http.status for 200, é porque a requisiçõe deu certo.
+				if (ajax.readyState == 4 && ajax.status == 200) {
+					var data = ajax.responseText;					
+					// Retorno do Ajax
+					//console.log(data);
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<table style="width: 100%">
+		<tr>
+			<td> <img src="../../imagens/logo.jpg"></td>
+			<td>
+				<h2> <span class="glyphicon glyphicon-education"></span> Buscar Aluno </h2>
+				<form action="../../bin/alunos/buscar.php" method="post">					
+					Nome/Matrícula: <input type="text" name="nome">
+					<input class="btn btn-primary" type="submit">
+				</form>
+			</td>
+			<td>
+				<h2> <span class="glyphicon glyphicon-education"></span> Cursos </h2>
+				<table class="table table-condensed" style="text-align: center; width: 200px">
+					<tr>
+						<td style="font-weight: bold"> Disciplinas </td>
+						<td style="font-weight: bold"> Alterar </td>
+						<!--<td style="font-weight: bold"> Excluir </td>-->
+						<td style="font-weight: bold">Nome</td>
+					</tr>
+					<!-- BEGIN cursos -->
+					<tr>
+						<td><a href="../../bin/disciplinas/index.php?id={id}"> <span
+									class="glyphicon glyphicon-folder-open"> </span> </a></td>
+						<td><a href="../../bin/cursos/tela_alterar.php?id={id}"><span
+									class="glyphicon glyphicon-pencil"> </span> </a></td>
+						<!--<td><a href="../../bin/cursos/excluir.php?id={id}"> Excluir </a> </td>-->
+						<td>{nome}</td>
+					</tr>
+					<!-- END cursos -->
+				</table>
+			</td>
+		</tr>
+	</table>
+	<!--<a href="../../bin/login/logout.php"> Logout </a>-->
+	<h2><span class="glyphicon glyphicon-education"></span> Disciplinas Recentes</h2>
+	<table class="table table-condensed" style="text-align: center" style="width: 200px">
+		<tr style="font-weight: bold">
+			<td>Alunos </td>
+			<td>Detalhar</td>
+			<td>Alterar</td>
+			<td>Adicionar Alunos</td>
+			<td>Plano de Ensino </td>
+			<td>Planejamento</td>
+			<td>Qtde Alunos</td>
+			<td>Ano/Semestre</td>
+			<td>Nome</td>
+		</tr>
+		<!-- BEGIN disciplinas -->
+		<tr>
+			<td><a href="../../bin/alunos/index.php?disciplina_id={disciplina_id}"> <span
+						class="glyphicon glyphicon-folder-open"> </span> </a></td>
+			<td><a href="../../bin/disciplinas/ver.php?id_disciplina={disciplina_id}"> <span
+						class="glyphicon glyphicon-search"> </span></a></td>
+			<td><a href="../../bin/disciplinas/tela_alterar.php?id={disciplina_id}"> <span
+						class="glyphicon glyphicon-pencil"> </span> </a></td>
+			<td><a href="../../bin/disciplinas/tela_add_aluno.php?id={disciplina_id}"> <span
+						class="glyphicon glyphicon-plus"> </span></a></td>
+			<!--<td><a onclick="return confirm('Deseja excluir {disciplina_nome}?')" href="../../bin/disciplinas/excluir.php?id_disciplina={disciplina_id}&id_curso={curso_id}"> <span class="glyphicon glyphicon-remove"> </span></a></td>-->
+			<td><a href="../../bin/disciplinas/plano_ensino.php?id_disciplina={disciplina_id}"> <span
+						class="glyphicon glyphicon-save-file"> </span></a></td>
+			<td> <a style="margin: 10px;" href="../../bin/planos/index_csv_old.php?id_disciplina={disciplina_id}"><span
+						class="glyphicon glyphicon-print"> </span> </a></td>
+			<td style="color: black">{total}</td>
+			<td style="color: black">{ano}/{semestre}</td>
+			<td style="color: black"><a style="text-decoration: underline" href="../../bin/disciplinas/ver.php?id_disciplina={disciplina_id}">{disciplina_nome}</a> </td>
+		</tr>
+		<!-- END disciplinas -->
+	</table>
+	<br>
+	<a class="btn btn-primary" href="../../bin/cursos/tela_inserir.php">Adicionar Curso</a>
+	<a class="btn btn-success" href="../../bin/questoes/index.php" /> Banco de Questões/Gerar Provas </a>
+	<a class="btn btn-success" href="../../bin/latex/tela_gerar.php" /> Gerar Apresentação (Latex) </a>
+	<!--<a class="btn btn-success" href="../../bin/orientacao/index.php" /> Orientação </a>-->
+	<a class="btn btn-success" href="../../lib/dump.php"/> Backup (B.D) </a>
+	<!--<a class="btn btn-success" onclick="enviar_dump_por_email()" href="javascript:void(0)" /> enviar dump por e-mail </a>-->
+	<a class="btn btn-success" onclick="zipar_docente()" href="javascript:void(0)" /> Backup (Código) </a>
+	<!-- Funciona mas preferi tirar -->
+	<!-- <a class="btn btn-success" onclick="zipar_docente_local()" href="javascript:void(0)" /> Local (.zip) </a> -->
+	<!-- <a class="btn btn-success" href="../../lib/zipar_docente.php" /> codigo .zip </a> -->
+</body>

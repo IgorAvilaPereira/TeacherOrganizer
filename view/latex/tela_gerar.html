@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Gerador de Slides Latex (BETA) </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+	<script src="../../lib/jquery.js"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+	<script type="text/javascript">
+		function valida() {
+			if (document.getElementById("id_pasta").value == null || document.getElementById("id_pasta").value == "") {
+				alert("Preencha a pasta!!");
+				document.getElementById("id_pasta").value = "/figuras";
+				return false;
+			}
+			return true;
+		}
+	</script>
+</head>
+<body>
+	<a href="/"><img src="../../imagens/logo.jpg" /> </a>
+	<h2> Gerador de Slides Latex </h2>
+	<form onsubmit="return valida()" action="../../bin/latex/gerar.php" method="POST" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td>Professor:</td>
+				<td><input type="text" name="professor" value="Teste" /></td>
+			</tr>
+			<tr>
+				<td>Instituto:</td>
+				<td><input type="text" name="instituto" value="Teste" /></td>
+			</tr>
+			<tr>
+				<td>Nome:</td>
+				<td><input type="text" name="nome" value="aula" /></td>
+			</tr>
+			<tr>
+				<td>Arquivos:</td>
+				<td> <input type="file" name="arquivos[]" multiple/></td>
+				<!-- <td> <input id="id_pasta" type="text" name="pasta" value="/figuras" /> </td> -->
+			</tr>	
+			<tr>
+				<td>Com "section"?</td>
+				<td> <input type="checkbox" name="com_sem_section" checked/></td>
+			</tr>
+			<tr>
+				<td>Template:</td>
+				<td>
+					<input type="checkbox" name="template" value="beamer" checked/> Beamer  <input type="checkbox" name="template" value="modificado" /> Beamer Modificado	
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input value="Gerar" type="submit" class="btn btn-primary" /></td>
+			</tr>
+	</table>
+	</form>
+	<br>
+	<a href="javascript:void(0)" onclick="history.go(-1)"> Voltar </a>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> {nome_disciplina}-{ano}-{semestre} </title>
+<!-- 	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" /> -->
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 		<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css"> -->
+<!-- 		<script src="../../lib/jquery.js"></script>
+		<script src="../../lib/bootstrap/js/bootstrap.min.js"></script> -->
+		<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+		<style type="text/css">
+			body {
+				    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+			}
+		</style>
+	</head>
+	<body onload="window.print()">
+
+		<img src="../../imagens/logo.jpg" />
+		<h2> [{curso_nome}] {nome_disciplina} - {ano}/{semestre} </h2>
+		{eh_semestral}
+		<br>
+		Total de Cr&eacute;ditos por Semana: {creditos}
+		<br>
+		Cr&eacute;ditos (por dia): {creditos_por_dia}
+		<br>
+		<!-- BEGIN aulasDadas --> 
+		Aulas dadas - {bimestre}º Ciclo: {aulas}
+		<br>
+		<!-- END aulasDadas --> 
+		<br>		
+			<table id="tabela" width="70%" style='page-break-inside:auto;'>		
+				<tr style="border: 1px black solid; text-align: center; font-weight: bold; page-break-inside: avoid;">
+					<td style="border: 1px black solid;">Matr&iacute;cula</td>
+					<td style="border: 1px black solid;">Nome</td>
+					<!-- BEGIN rotulo_notas -->
+					<td style="border: 1px black solid;">{bimestre_nome}</td>
+					<!-- END rotulo_notas -->
+					<!-- BEGIN rotulo_presencas -->
+					<td style="border: 1px black solid;">{bimestre}º Presen&ccedil;as</td>
+					<td style="border: 1px black solid;">{bimestre}º Faltas </td>
+					<!-- END rotulo_presencas -->
+					<td style="border: 1px black solid;">Situa&ccedil;&atilde;o</td>
+				</tr>
+				<!-- BEGIN alunos -->
+				<tr style="background-color: {cor}; page-break-inside: avoid;">
+					<td style="border: 1px black solid; text-align: center;">{matricula}</td>
+					<td style="border: 1px black solid; text-align: center;">{nome}</td>
+					<!-- BEGIN bloco_nota -->
+					<td style="border: 1px black solid; text-align: center;"> {nota} </td>
+					<!-- END bloco_nota -->
+					<!-- BEGIN bloco_presenca -->
+					<td style="border: 1px black solid; background-color: {alerta}; color:white; text-align: center;">{presencas} {porcentagem}</td>
+					<td style="border: 1px black solid; background-color: {alerta}; color:white; text-align: center;">{faltas}</td>
+					<!-- END bloco_presenca -->
+					<td style="border: 1px black solid;">{situacao}</td>
+				</tr>
+				<!-- END alunos -->				
+			</table>		
+	</body>
+</html>

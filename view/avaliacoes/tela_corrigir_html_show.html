@@ -1,0 +1,138 @@
+<html>
+
+<head>
+	<title> Corrigir: {titulo_avaliacao} </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+	<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+	<script src="../../lib/jquery.js"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		//var vai =  true;
+		function validaNota(campo_nota_digitada, nota_avaliacao) {
+			var nota_digitada = campo_nota_digitada.value;
+			if (!isNaN(nota_digitada)) {
+				if (!(nota_digitada <= nota_avaliacao && nota_digitada >= 0)) {
+					//campo_nota_digitada.css("background-color","red");
+					campo_nota_digitada.style.backgroundColor = "red";
+					campo_nota_digitada.style.color = "white";
+					//	alert("Nota maior que o valor da avaliacao");
+					//		vai = false;
+				} else {
+					//campo_nota_digitada.style = "background-color:green;";
+					campo_nota_digitada.style.backgroundColor = "green";
+					campo_nota_digitada.style.color = "white";
+					//	vai = true;
+				}
+			} else {
+				//campo_nota_digitada.style = "background-color:red;";
+				//alert("Nota invalida");
+				campo_nota_digitada.style.backgroundColor = "red";
+				campo_nota_digitada.style.color = "white";
+				//vai = false;
+			}
+		}
+
+		function vai(nota_avaliacao) {
+			var vetor = $("input[type='text']");
+			var resultado = true;
+			for (var i = 0; i < vetor.length; i++) {
+				//if (isNaN(vetor[i].value) || vetor[i].value > nota_avaliacao || vetor[i].value < 0) {
+				if (vetor[i].style.backgroundColor == "red") {
+					//vetor[i].style.color = "white";
+					resultado = false;
+					break;
+				}
+			}
+			if (resultado == false) {
+				alert('Ha notas invalidas');
+				return false;
+			} else {
+				return true;
+			}
+		}
+	</script>
+	<script type="text/javascript" src="../../lib/nicedit/nicEdit-latest.js"></script>
+	<script type="text/javascript">
+		function showHTMLCode(id) {
+			var elemento = "textarea[name=\'vetComentario[" + id + "]\'";
+			//document.getElementById(id).innerHTML = "<pre><code>" + document.querySelector(elemento).innerHTML + "</code></pre>";			
+			document.getElementById(id).innerHTML = "<pre><code>" + document.querySelector(elemento).innerHTML + "</code></pre>";
+		}
+		function cleanHTMLCode(id) {
+			document.getElementById(id).innerHTML = "";
+		}
+		//bkLib.onDomLoaded(function () { nicEditors.allTextAreas()});
+		bkLib.onDomLoaded(function () { nicEditors.allTextAreas({ fullPanel: true }) });
+	</script>
+</head>
+
+<body>
+	<img src="../../imagens/logo.jpg" />
+	<h2>Disciplina: {nome_disciplina} - {ano}/{semestre} </h2>
+	<!-- <a href="../../bin/avaliacoes/corrigir_relatorio.php?id_avaliacao={id_avaliacao}"> em pdf </a> -->
+	<!--Creditos: {creditos_por_dia}-->
+	<table class="table table-condensed" style="width: 500px">
+		<tr style="text-align: center; font-weight: bold;">
+			<td> Ciclo </td>
+			<td> Titulo </td>
+			<td> Descri&ccedil;&atilde;o </td>
+			<td> Data </td>
+			<td> Valor </td>
+		</tr>
+		<tr style="text-align: center;">
+			<td>{bimestre} </td>
+			<td><a href="./../../bin/avaliacoes/tela_ver.php?id_avaliacao={id_avaliacao}" target="__blank">
+					{titulo_avaliacao} </a> </td>
+			<td>{descricao} </td>
+			<td>{data} </td>
+			<td>{valor_avaliacao} </td>
+		</tr>
+	</table>
+	<a class="btn btn-default" href="../../bin/disciplinas/ver.php?id_disciplina={id_disciplina}">Voltar</a>
+	<!-- 	<a style="margin: 10px" class="btn btn-default" href="../../bin/avaliacoes/tela_corrigir_relatorio.php?id_avaliacao={id_avaliacao}&id_disciplina={id_disciplina}"> <span class="glyphicon glyphicon-print">  em pdf </span> </a> -->
+	<a style="margin: 10px" class="btn btn-default"
+		href="../../bin/avaliacoes/tela_corrigir_relatorio_publicar.php?id_avaliacao={id_avaliacao}&id_disciplina={id_disciplina}">
+		<span class="glyphicon glyphicon-print"> relatório </span></a>
+	<br>
+	<br>
+	<form enctype="multipart/form-data" action="../../bin/avaliacoes/corrigir.php?id_disciplina=
+		{id_disciplina}&id_avaliacao={id_avaliacao}" method="post" onsubmit="return vai({valor_avaliacao})">
+		<table class="table table-condensed" style="width: 500px">
+			<tr style="text-align: center; font-weight: bold;">
+				<td>Matr&iacute;cula</td>
+				<td>Nome</td>
+				<td>Nota </td>
+				<td>Comentário</td>
+				<td>Comentário HTML</td>
+				<td>Arquivo</td>
+				<td style="display: {mostra}"> Quanto Precisa? </td>
+			</tr>
+			<!-- BEGIN alunos -->
+			<tr style="text-align: center;">
+				<td>{matricula}</td>
+				<td>{nome}</td>
+				<td><input type="text" onkeyup="validaNota(this, {valor_avaliacao})" name="vetNota[{id}]"
+						value="{obtido}" size="3"></td>
+				<td style="text-align: left;">
+					<textarea style="text-align:left" cols="70%" rows="10"
+						name="vetComentario[{id}]">{comentario}</textarea>
+					<a class="btn btn-primary" onclick="showHTMLCode({id})">Mostra HTMLCode</a>
+					<a class="btn btn-primary" onclick="cleanHTMLCode({id})">Limpa HTMLCode</a>
+				</td>
+				<td id="{id}" style="width: 100px;">
+				</td>
+				<td>{arquivo} <input style="display: {mostra_input_upload}" type="file" name="vetArquivo[{id}]"></td>
+				<td style="display: {mostra}"> {precisa} </td>
+			</tr>
+			<!-- END alunos -->
+		</table>
+		<br>
+		<a class="btn btn-default" href="javascript: history.go(-1)">Voltar</a>
+		<input class="btn btn-primary" type="submit" value="Corrigir" />
+	</form>
+</body>
+
+</html>

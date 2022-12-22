@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<title> Tela Gerar Prova </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+		<script src="../../lib/jquery.js"></script>
+		<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+		<script type="text/javascript">
+			function checks(opcao, name) {
+				var vetor = $("input[name='"+name+"']");
+				for (var i = 0; i < vetor.length; i++) {
+					vetor[i].checked = opcao;
+				}
+			}			
+		</script>
+	</head>
+	<body>
+	
+	<form action="gerar_prova.php" method="post">
+	
+	<img src="../../imagens/logo.jpg" /> <br> <br> <br> 	
+	
+	<table class="table table-condensed" style="width: 600px">			
+		<tr> 
+			<td> Qtde: </td>
+			<td> <input type="text" name="qtde" value="10"></td>
+		</tr>
+		<tr> 
+			<td> Bimestre: </td>
+			<td> <input type="text" name="bimestre" value="1"></td>
+		</tr>
+		<tr> 
+			<td> Valor: </td>
+			<td> <input type="text" name="valor" value="10"></td>
+		</tr>
+		<tr> 
+			<td colspan="2"> Disciplina da Prova: <br>
+				<select name="disciplina">
+				<!-- BEGIN disciplinas -->
+				<option value="{value}"> {nome} <br>
+				<!-- END disciplinas -->
+				</select>
+			</td>
+		</tr>
+		<tr> 
+			<td colspan="2"> Tags: <br>
+				<!-- BEGIN tags -->
+				<input type="checkbox" name="vetTag[]" value="{id}"> {tag} <br>
+				<!-- END tags -->
+			</td>
+			<td>
+			<a id="marcar_todos" class="btn btn-success" onclick="checks(true, 'vetTag[]')" > Marcar Tudo </a> &nbsp; <a id="desmarcar_todos" class="btn btn-danger" onclick="checks(false,'vetTag[]')"> Desmarcar Tudo </a>
+			</td>
+		</tr>
+
+		<tr> 
+			<td colspan="2"> Avalia&ccedil;&otilde;es de quais disciplinas: <br>
+				<!-- BEGIN disciplinas_checkbox -->
+				<input type="checkbox" name="vetDisciplina[]" value="{id}"> {nome} <br>
+				<!-- END disciplinas_checkbox -->				
+			</td>
+			<td>
+				<a id="marcar_todos" class="btn btn-success" onclick="checks(true, 'vetDisciplina[]')" > Marcar Tudo </a> &nbsp; <a id="desmarcar_todos" class="btn btn-danger" onclick="checks(false, 'vetDisciplina[]')"> Desmarcar Tudo </a>
+			</td>
+		</tr>
+
+		<tr> 
+			<td colspan="2">				
+			<a class="btn btn-info"  href="./../questoes/index.php" />  Voltar </a>
+				<input class="btn btn-warning" type="submit" value="Gerar" /> 
+			</td> 
+		</tr>
+	</table>	
+</form>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<head>
+	<title> Avali&ccedil;&atilde;o: Tela Ver </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+	<script src="../../lib/jquery.js"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+	<script type="text/javascript" src="../../lib/nicedit/nicEdit-latest.js"></script>
+	<script type="text/javascript">
+		//<![CDATA[
+		bkLib.onDomLoaded(function () { nicEditors.allTextAreas() });
+  //]]>
+	</script>
+</head>
+
+<body>
+	<img src="../../imagens/logo.jpg">
+	<br>
+	<br>
+	<h1>Avalia&ccedil;&atilde;o: {disciplina_nome} </h1>
+	<table class="table table-condensed" style="width: 400px">
+		<tr>
+			<td> Titulo: </td>
+			<td>
+				<!-- <input type="text" name="titulo" value=" -->{titulo}
+				<!-- " readonly="readonly"> -->
+			</td>
+		</tr>
+		<tr>
+			<td>Descri&ccedil;&atilde;o:</td>
+			<td>
+				<!-- <textarea name="descricao" rows="10" cols="50" readonly="readonly"> --> {descricao}
+				<!-- </textarea> -->
+			</td>
+		</tr>
+		<tr>
+			<td>Valor: </td>
+			<td>
+				<!--  <input type="text" name="valor" value=" -->{valor}
+				<!-- " readonly="readonly" size="1"/> -->
+			</td>
+		</tr>
+		<tr>
+			<td>Data/Hora Entrega: </td>
+			<td>
+				<!-- <input type="text" name="data_hora" value=" -->{data_hora}
+				<!-- " readonly="readonly" size="40"/>  -->
+			</td>
+		</tr>
+		<tr>
+			<td> Bimestre: </td>
+			<td>
+				<!-- <input type="text" name="bimestre" value=" -->{bimestre}
+				<!-- " readonly="readonly" size="1" maxlength="1" /> -->
+			</td>
+		</tr>
+	</table>
+	<input type="hidden" name="id_disciplina" value="{id_disciplina}" />
+	<input type="hidden" name="id" value="{id}" />
+	<a class="btn btn-default" href="../../bin/disciplinas/ver.php?id_disciplina={id_disciplina}">Voltar</a>
+</body>

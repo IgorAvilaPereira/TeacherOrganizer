@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<title> Tela Inserir - Disciplina </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+		<script src="../../lib/jquery.js"></script>
+		<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+				<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+	</head>
+<body>
+<img src="../../imagens/logo.jpg" />
+<h3>{nome_disciplina} - {ano}/{semestre}</h3>
+<table>
+<tr> <td> Alunos: {total} </td> <td> {eh_semestral}</td></tr>
+<tr> <td> Cr&eacute;ditos: {creditos} </td> </tr>
+<tr> <td> Cr&eacute;ditos (por dia): {creditos_por_dia} </td> </tr>
+<!-- BEGIN aulasDadas -->
+<tr> <td> Aulas dadas - {bimestre} Bimestre: {aulas} </td> </tr>
+<!-- END aulasDadas -->
+</table>
+<br>
+<br>
+<table class="table table-condensed" border="1">
+<tr style="text-align: center; font-weight: bold;">
+	<td colspan="7"> Avalia&ccedil;&otilde;es </td>
+</tr>
+<tr style="text-align: center; font-weight: bold;">
+	<td> Bimestre </td>
+	<td> Titulo </td>
+	<td> Valor </td>
+	<td> Data/Hora </td>						
+</tr>
+<!-- BEGIN avaliacoes -->
+<tr>
+	<td style="background-color: {bimestre_cor}; text-align: center;">{bimestre}</td>
+	<td style="background-color: {bimestre_cor}; text-align: center;">{titulo_avaliacao}</td>
+	<td style="background-color: {bimestre_cor}; text-align: center;">{valor_avaliacao}</td>
+	<td style="background-color: {bimestre_cor}; text-align: center;">{data_hora}</td>				
+</tr>
+<!-- END avaliacoes -->
+</table>
+</body>

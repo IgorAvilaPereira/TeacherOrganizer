@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title> {nome_disciplina} - {titulo_avaliacao} </title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+  			td {
+  				padding: 5px;
+  			}
+  			@media print {
+			  table { page-break-after:auto }
+			  tr    { page-break-inside:avoid; page-break-after:auto }
+			  td    { page-break-inside:avoid; page-break-after:auto }
+			  thead { display:table-header-group }
+			  tfoot { display:table-footer-group }
+			}
+  		</style>
+	</head>
+	<body>	
+		<h2> [{curso}] {nome_disciplina} - {ano}/{semestre}</h2>
+		<br>
+		<table>
+			<tr style="font-weight: bold;">
+				<td style="border: 1px solid black"> Ciclo </td>
+				<td style="width: 40%; border: 1px solid black"> T&iacute;tulo </td>
+				<td style="border: 1px solid black"> Valor </td>
+			
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">{bimestre} </td>
+				<td style="border: 1px solid black">{titulo_avaliacao} </td>
+				<td style="border: 1px solid black">{valor_avaliacao} </td>
+				
+			</tr>
+		</table>
+		<br>
+			<table>
+				<tr style="font-weight: bold;">
+				<td style="border: 1px solid black">Matr&iacute;cula</td>					
+                <td style="border: 1px solid black">Nome</td>	
+				<td style="border: 1px solid black">Nota </td>			
+				<td style="width: 150px; border: 1px solid black">Coment&aacute;rio </td>
+				</tr>
+				<!-- BEGIN alunos -->
+				<tr>
+					<td style="border: 1px solid black">{matricula}</td>
+                    <td style="border: 1px solid black">{nome}</td>
+					<td style="text-align: center;border: 1px solid black">{obtido}</td>	
+					<td style="width: 200px; border: 1px solid black"> {comentario} </td>
+				</tr>
+				<!-- END alunos -->				
+			</table>
+	</body>
+</html>

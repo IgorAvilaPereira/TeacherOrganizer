@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title> Ver </title>
+				<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+	</head>
+	<body>			
+		<img src="../../imagens/logo.jpg" />		
+		<h1> {nome_disciplina} - {ano}/{semestre}</h1>
+		<!-- <a href="../../bin/avaliacoes/corrigir_relatorio.php?id_avaliacao={id_avaliacao}"> em pdf </a> -->
+		<table style="width: 500px" border="1">
+			<tr style="font-weight: bold;">
+				<td> Ciclo </td>
+				<td> Titulo </td>
+				<td> Descri&ccedil;&atilde;o </td>
+				<td> Valor </td>
+			</tr>
+			<tr>
+				<td>{bimestre} </td>
+				<td>{titulo_avaliacao} </td>
+				<td>{descricao_avaliacao} </td>
+				<td>{valor_avaliacao} </td>
+			</tr>
+		</table>
+		<br>
+			<table style="width: 500px" border="1">
+				<tr style="font-weight: bold;">
+				<td>Matr&iacute;cula</td>
+				<td>Nome</td>
+				<td>Nota </td>
+				<td>Comentario</td>
+				<td style="display: {mostra}"> Quanto Precisa? </td>
+				</tr>
+				<!-- BEGIN alunos -->
+				<tr>
+					<td>{matricula}</td>
+					<td>{nome}</td>
+					<td>{obtido}</td>
+					<td width="100px">{comentario}</td>
+					<td style="display: {mostra}" > {precisa} </td>
+				</tr>
+				<!-- END alunos -->				
+			</table>
+	</body>
+</html>

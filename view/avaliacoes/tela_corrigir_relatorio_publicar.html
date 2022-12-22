@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<title> {nome_disciplina} - {titulo_avaliacao} </title>
+<!-- 				<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+<!--  -->		
+
+<!-- <link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" /> -->
+ 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 		<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">		
+ --><!-- 		<script src="../../lib/jquery.js"></script>
+ -->		
+<!--  <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>		
+ -->		<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+<!-- 		<script type="text/javascript" src="../../lib/nicedit/nicEdit-latest.js"></script>  -->
+
+		<style type="text/css">
+  			td {
+  				padding: 5px;
+  			}
+
+  			@media print {
+			  table { page-break-after:auto }
+			  tr    { page-break-inside:avoid; page-break-after:auto }
+			  td    { page-break-inside:avoid; page-break-after:auto }
+			  thead { display:table-header-group }
+			  tfoot { display:table-footer-group }
+			}
+
+		/*	body {
+				font-family: Arial;
+				font-size: 24pt;
+			}
+*/
+  		</style>
+	</head>
+	<body>			
+		<img src="../../imagens/logo.jpg" />		
+		<h2> [{curso}] {nome_disciplina} - {ano}/{semestre}</h2>
+		<!-- <a href="../../bin/avaliacoes/corrigir_relatorio.php?id_avaliacao={id_avaliacao}"> em pdf </a> -->
+		<br>
+		<table>
+			<tr style="font-weight: bold;">
+				<td style="border: 1px solid black"> Ciclo </td>
+				<td style="width: 40%; border: 1px solid black"> T&iacute;tulo </td>
+				<td style="border: 1px solid black"> Valor </td>
+			
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">{bimestre} </td>
+				<td style="border: 1px solid black">{titulo_avaliacao} </td>
+				<td style="border: 1px solid black">{valor_avaliacao} </td>
+				
+			</tr>
+		</table>
+		<br>
+			<table>
+				<tr style="font-weight: bold;">
+				<td style="border: 1px solid black">Matr&iacute;cula</td>					
+				<td style="border: 1px solid black">Nota </td>			
+				<td style="width: 150px; border: 1px solid black">Coment&aacute;rio </td>
+				<td style="border: 1px solid black">Assinatura </td>
+				</tr>
+				<!-- BEGIN alunos -->
+				<tr>
+					<td style="border: 1px solid black">{matricula}</td>
+					<td style="text-align: center;border: 1px solid black">{obtido}</td>	
+					<td style="width: 200px; border: 1px solid black"> {comentario} </td>
+					<td style="width: 200px; border: 1px solid black">  </td>
+				</tr>
+				<!-- END alunos -->				
+			</table>
+	</body>
+</html>

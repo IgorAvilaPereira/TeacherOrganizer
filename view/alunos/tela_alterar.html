@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<title> Tela Alterar - Aluno </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+		<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+		<script src="../../lib/jquery.js"></script>
+		<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+		<script>
+			/*function marcaTodosAnteriores(){
+				alert($("input[name*='vetPresenca']"));
+			}*/			
+		</script>
+	</head>
+	<body>
+		<!-- <button onclick="marcaTodosAnteriores()">Teste</button>-->
+		<img src="../../imagens/logo.jpg" /> <br /> 
+				<h1>Tela Alterar - Aluno </h1> 
+				<h2>Disciplina: {disciplina}</h2>				
+		<form action="../../bin/alunos/alterar.php?tela={tela}" method="post">
+			<table class="table table-condensed" style="width: 60%">			
+				<tr>
+					<td> Nome: </td> 
+					<td><input type="text" name="nome" value="{nome}" size="60">
+					</td>
+				</tr>
+				<tr>
+					<td> Matricula: </td>
+					<td>
+					<input type="text" name ="matricula" value="{matricula}" size="20">
+					</td>
+				</tr>				
+					<tr>
+					<td> Observa&ccedil;&atilde;o: </td>
+					<td>
+					<textarea name ="observacao" rows="10" cols="50">{observacao}</textarea>
+					</td>
+				</tr>
+				<tr>	
+					<td>Presen&ccedil;as</td>
+					<td> 
+						<!-- BEGIN presenca -->
+						<input type="checkbox" name="vetPresenca[{presenca_id}]" {resultado}/> {data} ({creditos} cr&eacute;ditos) - {texto}
+						<br>
+						<!-- END presenca -->
+					</td>					
+				</tr>				
+				<tr>
+					<td colspan="2">
+					<input type="hidden" name="id" value="{id}" >
+					<input type="hidden" name="disciplina_id" value="{disciplina_id}">
+					<!-- <a class="btn btn-default"  href="../../bin/alunos/index.php?disciplina_id={disciplina_id}">Voltar</a> -->
+					<a class="btn btn-default" onclick="history.go(-1)" href="javascript:void(0)">Voltar</a>
+					<input class="btn btn-primary"  type="submit" value="Alterar" /></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

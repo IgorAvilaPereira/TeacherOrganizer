@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title> Disciplina - Adicionar Alunos </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+		<script src="../../lib/jquery.js"></script>
+		<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+			<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+	</head>
+	<body>
+		<img src="../../imagens/logo.jpg" />
+		<br>
+		<h1>Disciplina: {nome} </h1>
+		<br>
+		<form action="../../bin/disciplinas/add_aluno.php?id={id}" method="post">
+			Listagem de alunos (separados por ponto-e-v&iacute;rgula):
+			<br>
+			<br>
+			<b>Exemplo: </b>
+			<br>
+			11230002;JAILTON;
+			<br>
+			11230022;PABLO;
+			<br>
+			....
+			<br>
+			<textarea name="alunos" rows="15" cols="100"> </textarea>
+			<br>
+			<a class="btn btn-default" href="javascript:history.go(-1)">Voltar</a>
+			<input class="btn btn-primary" type="submit" value="Adicionar" />
+		</form>
+	</body>
+</html>

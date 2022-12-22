@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tags</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+		<script src="../../lib/jquery.js"></script>
+		<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+	</head>
+	<body>
+		<img src="../../imagens/logo.jpg">
+		<br>
+		<br>
+		<br>		
+		<h2> <span class="glyphicon glyphicon-education"></span> Tags </h2>
+		<table class="table table-condensed" style="text-align: center; width: 200px">
+			<tr>
+				<td style="font-weight: bold"> Alterar </td>
+				<td style="font-weight: bold"> Excluir </td>
+				<td style="font-weight: bold"> Tag </td>			
+			</tr>
+			<!-- BEGIN tags -->
+			<tr>
+				<td><a href="../../bin/tags/tela_alterar.php?id={id}"> <span class="glyphicon glyphicon-edit"> </span> </a></td>
+				<td><a href="../../bin/tags/excluir.php?id={id}"><span class="glyphicon glyphicon-remove"> </span> </a></td>
+				<td>{tag}</td>
+			</tr>
+			<!-- END tags -->
+		</table>
+		<a class="btn btn-default" href="./../../view/questoes/pagination.html">Voltar</a>
+		<a class="btn btn-primary" href="../../bin/tags/tela_inserir.php">Adicionar</a>
+		<a class="btn btn-primary" href="../../view/questoes/pagination.html">Questões</a>
+	</body>
+</html>

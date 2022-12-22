@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Provas</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+	<script src="../../lib/jquery.js"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+
+	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+	<script type="text/javascript" src="../../lib/nicedit/nicEdit-latest.js"></script>
+	<script type="text/javascript">
+		bkLib.onDomLoaded(function () { nicEditors.allTextAreas({ fullPanel: true }) });
+	</script>
+</head>
+
+<body>
+	<img style="margin-left: 10px" src="../../imagens/logo.jpg">
+
+
+	<table class="table-condensed">
+		<tr>
+			<td colspan="2">
+				<h1> Tela Alterar - Provas </h1>
+			</td>
+		</tr>
+	</table>
+	<form action="alterar.php" method="post">
+		Nome: <input type="text" name="nome" value="{nome}"> <br> <br> <br>
+		<textarea name="prova" rows="100" cols="150">
+			{exercicios}
+		</textarea>
+		<input type="hidden" name="id" value="{id}">
+		<input name="botao3" type="submit" class="btn btn-warning" value="Alterar">
+	</form>
+	<br>
+	<!-- <a class="btn btn-info"  href="../../bin/questoes/tela_gerar_prova.php" />  Voltar </a>-->
+</body>
+
+</html>

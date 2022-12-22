@@ -1,0 +1,35 @@
+<html>
+
+<head>
+	<title> Tela Alterar - Disciplinas </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+	<script src="../../lib/jquery.js"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+</head>
+
+<body>
+	<img src="../../imagens/logo.jpg" /> <br>
+	<form action="alterar.php" method="post">
+		<h1>Tela Alterar: Anota&ccedil;&atilde;o:</h1>
+		<table class="table table-condensed" style="width: 1000px">
+			<tr>
+				<td> Anota&ccedil;&atilde;o: </td>
+				<td> <textarea name="anotacao" rows="10" cols="50">{anotacao}</textarea> </td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="hidden" name="id_disciplina" value="{id_disciplina}" />
+					<input type="hidden" name="id" value="{id}" />
+					<a class="btn btn-default"
+						href="../../bin/disciplinas/ver.php?id_disciplina={id_disciplina}">Voltar</a>
+					<input class="btn btn-primary" type="submit" value="Alterar" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+
+</html>

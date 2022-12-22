@@ -1,0 +1,57 @@
+<head>
+    <title> {curso} - Disciplinas </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+    <script src="../../lib/jquery.js"></script>
+    <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+</head>
+
+<body>
+    <a href="/"> <img src="../../imagens/logo.jpg" /></a>
+    <br>
+    <br>
+    <h1>[{curso}] Disciplinas </h1>
+    {mensagem}
+    <br>
+    <br>
+    <table class="table table-condensed" style="text-align: center" style="width: 200px">
+        <tr style="font-weight: bold">
+            <td><span class="glyphicon glyphicon-plus-sign"> </span> Alunos</td>
+            <td> <span class="glyphicon glyphicon-book"> </span> Alunos </td>
+            <td><span class="glyphicon glyphicon-eye-open"> </span> Detalhar</td>
+            <td><span class="glyphicon glyphicon-edit "> </span> Alterar</td>
+            <td><span class="glyphicon glyphicon-trash "> </span> Excluir</td>
+            <td>Plano de Ensino </td>
+            <td><span class="glyphicon glyphicon-calendar"> </span> Ano/Semestre</td>
+            <td><span class="glyphicon glyphicon-paperclip"> </span> Nome</td>
+        </tr>
+        <!-- BEGIN disciplinas -->
+        <tr>
+            <td>
+                <a href="../../bin/disciplinas/tela_add_aluno.php?id={id_disciplina}"> <span class="glyphicon glyphicon-plus"> </span></a>
+            </td>
+            <td>
+                <a href="../../bin/alunos/index.php?disciplina_id={id_disciplina}"> <span class="glyphicon glyphicon-folder-open"> </span> </a>
+            </td>
+            <td>
+                <a href="../../bin/disciplinas/ver.php?id_disciplina={id_disciplina}"> <span class="glyphicon glyphicon-search"> </span></a>
+            </td>
+            <td>
+                <a href="../../bin/disciplinas/tela_alterar.php?id={id_disciplina}"> <span class="glyphicon glyphicon-pencil"> </span> </a>
+            </td>
+            <td>
+                <a onclick="return confirm('Deseja excluir?\n * {ano}/{semestre} - {nome}') && confirm('Tem certeza?')" href="../../bin/disciplinas/excluir.php?id_disciplina={id_disciplina}&id_curso={id_curso}"> <span class="glyphicon glyphicon-remove"> </span></a>
+            </td>
+            <td><a href="../../bin/disciplinas/plano_ensino.php?id_disciplina={id_disciplina}"> <span class="glyphicon glyphicon-save-file"> </span></a></td>
+            <td style="color: {cor}">{ano}/{semestre}</td>
+            <td style="color: {cor}">{nome}</td>
+        </tr>
+        <!-- END disciplinas -->
+    </table>
+    <a class="btn btn-default" href="../../bin/cursos/index.php">Voltar</a>
+    <a class="btn btn-primary" href="./../../bin/disciplinas/tela_inserir.php?id={id_curso}">Adicionar</a>
+        <a class="btn btn-primary" href="./../../bin/disciplinas/tela_copiar.php?id={id_curso}">Clonar</a>
+
+</body>

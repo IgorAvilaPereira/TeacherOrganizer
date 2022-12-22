@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title> Tela Alterar - Disciplinas </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+		<script src="../../lib/jquery.js"></script>
+		<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+				<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+		<script type="text/javascript" src="../../lib/nicedit/nicEdit-latest.js"></script>
+		<script type="text/javascript">			
+			bkLib.onDomLoaded(function () { nicEditors.allTextAreas({fullPanel : true})});
+		</script>
+	</head>
+	<body>
+<form action="inserir.php" method="post">
+	<img src="../../imagens/logo.jpg" /> <br> 
+	<h1>Tela Inserir: Avalia&ccedil;&atilde;o: {disciplina_nome} </h1>
+	<table class="table table-condensed" style="width: 600px">
+		<tr> 
+			<td> Titulo: </td> <td> <input type="text" name="titulo" size="50"> </td> 
+		</tr>	
+		<tr> 
+			<td> Descri&ccedil;&atilde;o: </td>  
+			<td> <textarea name="descricao" rows="10" cols="50"></textarea> </td>		
+		</tr> 
+		<tr>
+			<td> Valor: </td> 
+			<td> <input type="text" name="valor" size="1" /> </td> 	
+		</tr>		
+		<tr>
+			<td> Data Entrega: </td> 
+			<td> <input type="date" name="data" /> (mm/dd/yyyy) </td> 	
+		</tr>
+		<tr>
+			<td> Hora Entrega: </td> 
+			<td> <input type="time" name="hora" /> </td> 	
+		</tr>	
+		<tr>
+			<td colspan="2">
+		<!-- BEGIN bimestres -->
+			<input type="radio" name="bimestre" value="{bimestre}" {checked} /> {bimestre_nome}		
+		<!-- END bimestres -->	
+			</td>	
+		</tr>		 
+		<tr> 
+			<td colspan="2">
+				<input type="hidden" name="id_disciplina" value="{id_disciplina}" />
+				<a class="btn btn-default" href="../../bin/disciplinas/ver.php?id_disciplina={id_disciplina}">Voltar</a>
+				<input class="btn btn-primary" type="submit" value="Adicionar" />
+			</td>
+		</tr>
+</table>	
+</form>
+</body>
+</html>

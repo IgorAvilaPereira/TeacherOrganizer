@@ -1,0 +1,164 @@
+<html>
+
+<head>
+	<title> {nome_disciplina} - Plano de Ensino </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+	<script src="../../lib/jquery.js"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+	<script type="text/javascript" src="../../lib/nicedit/nicEdit-latest.js"></script>
+	<script type="text/javascript">
+		bkLib.onDomLoaded(function () { nicEditors.allTextAreas({ fullPanel: true }) });
+	</script>
+	<style type="text/css">
+		td {
+			padding: 10px;
+		}
+
+		@media print {
+			table {
+				page-break-after: auto
+			}
+
+			tr {
+				page-break-inside: avoid;
+				page-break-after: auto
+			}
+
+			td {
+				page-break-inside: avoid;
+				page-break-after: auto
+			}
+
+			thead {
+				display: table-header-group
+			}
+
+			tfoot {
+				display: table-footer-group
+			}
+		}
+
+		/*	body {
+				font-family: Arial;
+				font-size: 24pt;
+			}
+*/
+	</style>
+	<script type="text/javascript">
+		function funcAvaliacao() {
+			if ("{turma}" != "TADS") {
+				document.getElementById("avaliacao").innerHTML += "						<ul> <li>  A avaliação da aprendizagem deverá ocorrer ao longo da 	disciplina e no decorrer dos trabalhos. Haverá, durante a disciplina questionamentos, possibilitando aos alunos, quando for o caso, o retorno dos temas propostos anteriormente. Ao final de cada aula, materiais de apoio serão encaminhados para turma. 								</li>							<li> 										Ponto qualitativo baseado no comportamento, assiduidade, participação e desafios extras;					</li> <li> 	Pesos aproximados: 50% atividade presencial, 40% atividades extra-classe  (trabalhos) e 10% qualitativo.  </li>	</ul> ";
+			} else {
+				document.getElementById("avaliacao").innerHTML += "						<ul> <li>  A avaliação da aprendizagem deverá ocorrer ao longo da 	disciplina e no decorrer dos trabalhos. Haverá, durante a disciplina questionamentos, possibilitando aos alunos, quando for o caso, o retorno dos temas propostos anteriormente. Ao final de cada aula, materiais de apoio serão encaminhados para turma; 								</li>		<li> 	Pesos aproximados: 60% atividade presencial, 40% atividades extra-classe (trabalhos). </li>						</ul>";
+			}
+		}
+
+	</script>
+</head>
+
+<body onload="funcAvaliacao()">
+	<form target="__blank"
+		action="../../bin/disciplinas/impressao_plano_ensino.php?id_disciplina={id_disciplina}&id_curso={id_curso}"
+		method="post">
+		<input type="hidden" name="nome_disciplina" value="{nome_disciplina}">
+		<textarea name="tudo" style="width: 97%">
+			<!-- <img src="../../imagens/logo.jpg" width="400px">	 -->	
+			<h1 style="text-align: center;"> <b> Plano de Ensino {ano}/{semestre} </b> </h1>
+			<br>
+			<table border="1">
+				<tr> 
+					<td colspan="3">  
+						<b> Modalidade de Ensino:  </b>  {curso}
+					</td>				
+				<tr> 
+					<td colspan="3"> 
+						<b> Nome do Componente Curricular (Disciplina): </b>
+						{nome_disciplina}
+					</td>
+				<tr> 
+					
+					<td> <div style="width: 110px"> <b>Código:</b> {codigo_ifrs} </div> </td> 
+					<td> <div style="width: 150px"> <b>Série/Semestre:</b> {serie_semestre_curso} </div> </td>			
+					<td> <b>Turma(s):</b> {turma} </td> 
+				</tr>
+				<tr> 
+					<td colspan="2"> 
+						<b> Nome do professor responsável: </b> 
+					</td> 
+					<td colspan="1"> 
+						<b> Carga horária: </b>  {carga_horaria} 
+					</td>   
+				</tr>
+				<tr> 
+					<td colspan="3"> 
+						<b style="text-decoration: underline;"> Horário de atendimento:</b> {horario_atendimento} 			
+		 			</td>  
+				</tr>
+					<tr>
+						<td colspan="3">
+							<b style="text-decoration: underline;"> Horário das aulas síncronas:</b> {horario_aulas_sincronas}
+						</td>
+					</tr>
+				<tr> 
+					<td colspan="3"> 
+						<b style="text-decoration: underline;"> Ementa: </b>  <br> <br>
+							{ementa}												
+				 	</td> 
+				</tr>
+
+	<tr>
+		<td colspan="3">
+			<b style="text-decoration: underline;"> Metodologia: </b> <br> <br>
+			{metodologia}
+		</td>
+	</tr>
+
+		<!-- <tr>
+			<td colspan="3" id="avaliacao">
+				<b style="text-decoration: underline;"> Avaliação: </b>
+				<br> <br>
+
+			</td>
+		</tr> -->
+		<tr>
+			<td colspan="3">
+				<b style="text-decoration: underline;"> Objetivos </b>
+				{objetivos}
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<b style="text-decoration: underline;"> Programa: </b> <br> <br>
+				{programa}
+			</td>
+		</tr>
+
+			<tr>
+				<td colspan="3">
+					<b style="text-decoration: underline;"> Avaliação: </b> <br> <br>
+					{avaliacao}
+				</td>
+			</tr>
+		<tr>
+			<td colspan="3">
+				<b style="text-decoration: underline;"> Recuperação Paralela: </b> <br> <br>
+				{recuperacao_paralela}
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<b style="text-decoration: underline;"> Bibliografia: </b>
+				{bibliografia}
+			</td>
+		</tr>
+		</table>
+		</textarea>
+		<input class="btn btn-primary" type="submit" value="Gerar" />
+	</form>
+	<a class="btn btn-default" href="javascript: void(0)" onclick="history.go(-1)">Voltar</a>
+</body>
+
+</html>

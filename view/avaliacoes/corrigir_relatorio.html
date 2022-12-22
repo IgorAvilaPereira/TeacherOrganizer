@@ -1,0 +1,52 @@
+<html>
+
+<head>
+	<title> Ver </title>
+	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+</head>
+
+<body>
+	<br>
+	Disciplina: {nome_disciplina}
+	<br>
+	Ano/Semestre: {ano}/{semestre}
+	<br>
+	<table border="1">
+		<tr>
+			<td> Bimestre </td>
+			<td> Titulo </td>
+			<td> Descri </td>
+			<td> Valor </td>
+		</tr>
+		<tr>
+			<td>{bimestre} </td>
+			<td>{titulo_avaliacao} </td>
+			<td>{descricao_avaliacao} </td>
+			<td>{valor_avaliacao} </td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<table border="1">
+		<tr style="text-align: center">
+			<td colspan="4"> Lista de Alunos </td>
+		</tr>
+		<tr>
+			<td>Matr&Iacute;cula</td>
+			<td>Nome</td>
+			<td>Nota </td>
+			<td style="display: {mostra}"> Quanto Precisa? </td>
+		</tr>
+		<!-- BEGIN alunos -->
+		<tr>
+			<td>{matricula}</td>
+			<td>{nome}</td>
+			<td> {obtido} </td>
+			<td style="display: {mostra}"> {precisa} </td>
+		</tr>
+		<!-- END alunos -->
+	</table>
+</body>
+
+</html>

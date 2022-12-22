@@ -1,0 +1,232 @@
+<html>
+
+<head>
+    <title> Tela Inserir - Disciplina </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+    <script src="../../lib/jquery.js"></script>
+    <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../lib/nicedit/nicEdit-latest.js"></script>
+    <script type="text/javascript">
+        bkLib.onDomLoaded(function () { nicEditors.allTextAreas({ fullPanel: true }) });
+    </script>
+    <script>
+
+
+        function adicionarAnoSemestre() {
+            var TADS = 2;
+            var Integrado = 1;
+            var id_curso = document.getElementById('idCurso').value;
+            var data = new Date();
+            document.getElementById("ano").value = data.getFullYear();
+            var semestre = (data.getMonth() + 1);
+            if (semestre > 6) {
+                document.getElementById("semestre").value = 2;
+            } else {
+                document.getElementById("semestre").value = 1;
+            }
+            if (id_curso == TADS) {
+                document.getElementById("semestral").checked = true;
+                document.getElementById("anual").checked = false;
+            } else if (id_curso == Integrado) {
+                document.getElementById("anual").checked = true;
+                document.getElementById("semestral").checked = false;
+            }
+        }
+
+        // function copiaCreditosPorDia(valor) {
+        //     if (!isNaN(valor)) {
+        //         //document.getElementById('creditosPorDia').value = valor/2;
+        //     }
+        // }
+
+
+
+
+        // function testarCreditosPorDia() {
+        //     alert(document.getElementById("creditos").value);
+        // }
+
+        function enviaFormulario() {
+            var creditos = document.getElementById('creditos').value;
+            var somatorio = 0;
+            var combo;
+            if (creditos.length > 0) {
+                if (!isNaN(creditos)) {
+                    // nao pode haver todos os dias com creditos igual a zero.
+
+                    // deve-se redistribuir os creditos pela semana
+
+                    // os creditos por dia nao podem ultrapassar o total de creditos.
+
+                    for (var i = 0; i <= 6; i++) {
+                        combo = document.querySelector("[name='vetDiaSemana[" + i + "]']");
+
+                        // alert(i+":"+combo.options[combo.selectedIndex].text);
+                        somatorio = somatorio + parseInt(combo.options[combo.selectedIndex].text);
+                    }
+                    // alert("Creditos:"+creditos);
+                    // alert("Soma:"+somatorio);
+                    if (creditos == somatorio) {
+                        return true;
+                    } else {
+                        alert("Distribua o total de creditos pelos dias da semana..");
+                    }
+                } else {
+                    alert('Digite um valor inteiro no campo creditos.');
+                }
+            } else {
+                alert('Digite um valor para campo creditos.');
+            }
+            return false;
+        }
+    </script>
+</head>
+
+<body onload="adicionarAnoSemestre()">
+    <img src="../../imagens/logo.jpg" />
+    <h1> [{curso}] Adicionar Disciplina </h1>
+    <form action="../../bin/disciplinas/inserir.php" method="post" onsubmit="return enviaFormulario()">
+        <table class="table table-condensed" style="width: 900px;">
+            <tr>
+                <td> Disciplina: </td>
+                <td>
+                    <input type="text" name="nome" size="50" required="required">
+                </td>
+            </tr>           
+            <tr>
+                <td> Carga Horária: </td>
+                <td>
+                    <input type="text" name="carga_horaria" size="50">
+                </td>
+            </tr>
+            <tr>
+                <td> Série/Semestre do Curso: </td>
+                <td>
+                    <select name="serie_semestre_curso">
+                        <option value="NULL"> -- </option>
+
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="0">OPTATIVA</option>
+                    </select>
+                    <!-- <input type="text" name="serie_semestre_curso" size="50"> -->
+                </td>
+            </tr>
+            <tr>
+                <td> Ano/Semestre: </td>
+                <td colspan="2">
+                    <input type="text" name="ano" id="ano" size="4" required="required"> /
+                    <input type="text" id="semestre" name="semestre" size="1" required="required">
+                </td>
+            </tr>
+
+
+            <tr>
+                <td> Cr&eacute;ditos (total): </td>
+                <td>
+                    <!--    <input type="text" id="creditos" name="creditos" size="1" onblur="copiaCreditosPorDia(this.value)"> -->
+                    <input type="text" id="creditos" name="creditos" size="1" maxlength="1" size="1">
+                </td>
+            </tr>
+            <!--
+				<tr>
+					<td> Cr&eacute;ditos por dia: </td>
+					<td>
+					<input type="text" name ="creditos_por_dia" id="creditosPorDia" size="1">
+					</td>
+				</tr>
+				-->
+            <tr>
+                <td> Cr&eacute;ditos por dia: </td>
+                <td>
+                    <!-- BEGIN diaSemana -->
+                    {valor}:<select name="vetDiaSemana[{chave}]">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+
+                    </select>
+                    <!-- END diaSemana -->
+                </td>
+            </tr>
+            <tr>
+                <td> Horário de Atendimento: </td>
+                <td> <textarea name="horario_atendimento" rows="15" cols="50"> </textarea></td>
+            </tr>
+            <tr>
+                <td> Horário das aulas síncronas: </td>
+                <td> <textarea name="horario_aulas_sincronas" rows="15" cols="50"> </textarea></td>
+            </tr>
+            <tr>
+                <td> Ementa: </td>
+                <td> <textarea name="ementa" rows="15" cols="50"> </textarea></td>
+            </tr>
+            <tr>
+                <td> Objetivos: </td>
+                <td><textarea name="objetivos" rows="15" cols="60"> </textarea></td>
+            </tr>
+            <tr>
+                <td> Programa: </td>
+                <td> <textarea name="programa" rows="15" cols="50"> </textarea></td>
+            </tr>
+            <tr>
+                <td> Metodologia: </td>
+                <td> <textarea name="metodologia" rows="15" cols="50"> </textarea></td>
+            </tr>
+            <tr>
+                <td> Avaliação: </td>
+                <td> <textarea name="avaliacao" rows="15" cols="50"> </textarea></td>
+            </tr>
+            <tr>
+                <td> Recuperação Paralela: </td>
+                <td> <textarea name="recuperacao_paralela" rows="15" cols="50"> </textarea></td>
+            </tr>
+            <tr>
+                <td> Bibliografia: </td>
+                <td> <textarea name="bibliografia" rows="15" cols="50"> </textarea></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" name="eh_semestral" value="true" id="semestral"> Semestral
+                </td>
+                <td>
+                    <input type="radio" name="eh_semestral" value="false" id="anual"> Anual
+                </td>
+            </tr>
+            <!-- <tr>
+                <td colspan="2"><b>Extras:</b></td>
+            </tr>
+            <tr>
+                <td> Endereço SSH da Wiki no Github: </td>
+                <td><input type="text" name="ssh_wiki" size="50"></td>
+            </tr> -->
+            <tr>
+                <td> Email da Turma: </td>
+                <td>
+                    <input type="text" name="email" size="50">
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2'>
+                    <input type="hidden" name="id_curso" value="{id_curso}" id="idCurso">
+                    <a class="btn btn-default" href="javascript: void(0)" onclick="history.go(-1)">Voltar</a>
+                    <input class="btn btn-primary" type="submit" value="Adicionar" />
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

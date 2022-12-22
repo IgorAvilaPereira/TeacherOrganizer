@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Questões</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+	<script src="../../lib/jquery.js"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+
+	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+	<script type="text/javascript" src="../../lib/nicedit/nicEdit-latest.js"></script>
+	<script type="text/javascript">
+		bkLib.onDomLoaded(function () { nicEditors.allTextAreas({ fullPanel: true }) });
+	</script>
+</head>
+
+<body>
+	<form action="../../bin/questoes/gerar_prova_pdf.php" method="post" target="_blank">
+		<textarea name="prova" rows="100" cols="150">
+			<img style="margin-left: 10px" src="../../imagens/logo.jpg">
+			<table style="margin-left: 15px">
+				<tr>
+					<td style="width: 50%">  <b> Disciplina: </b> </td>
+					<td style="text-align: left;"> <b> Nome: </b> </td> 
+					<td style="border-bottom: 1px black solid; width: 200px;" > </td>
+				</tr>
+				<tr>
+					<td> <b> 1º Bimestre </b> </td>
+					<td style="text-align: left;"> <b> Matr&iacute;cula: </b> </td> 
+					<td style="border-bottom: 1px black solid; width: 200px;" > </td>
+				</tr>
+				<tr> 
+					<td> <b> Valor: 10 pontos </b> </td> 
+				</tr>
+			</table>
+			<hr style="border-color: black;">
+			<ol style="width: 90%">
+				<li><br></li>				
+			</ol>	
+		</textarea>
+		<!--<input name="botao1" type="submit" class="btn btn-warning" value="Gerar PDF">-->
+		<input name="botao2" type="submit" class="btn btn-warning" value="Gerar PDF">
+		<input type="hidden" name="disciplina" value="{disciplina}">
+		<input name="botao3" type="submit" class="btn btn-warning" value="Salvar">
+	</form>
+	<br>
+	<a class="btn btn-info" href="../../bin/questoes/tela_gerar_prova.php" /> Voltar </a>
+</body>
+
+</html>

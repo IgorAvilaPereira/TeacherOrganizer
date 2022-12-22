@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<title> Presen&ccedil;as </title>				
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+		<script src="../../lib/jquery.js"></script>
+		<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+		<style type="text/css">
+			body {
+				    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="../../bin/cursos/index.php"><img src="../../imagens/logo.jpg"></a>	
+		<h3> [{curso}] {disciplina} - {ano}/{semestre}</h3>		
+		<!-- <h3> Atividades </h3> -->
+
+
+				<a class="btn btn-info" style="margin: 5px"
+					href="../../bin/planos/tela_presenca_total.php?disciplina_id={id_disciplina}">
+					Presen&ccedil;as 
+								</a>
+
+ 		<a class="btn btn-default" style="margin: 10px;" href="../../bin/planos/index_relatorio.php?id_disciplina={id_disciplina}"><span class="glyphicon glyphicon-print"> imprimir </span> </a>
+
+ 			 <a class="btn btn-info" style="margin: 10px;" href="../../bin/planos/index_csv_old.php?id_disciplina={id_disciplina}"><span class="glyphicon glyphicon-print"> csv (SIAmes 2.0)  </span> </a>
+
+			 <a class="btn btn-default" style="margin: 10px;" href="../../bin/planos/index_distinct_csv.php?id_disciplina={id_disciplina}"><span class="glyphicon glyphicon-print"> csv (distinct) </span> </a>
+
+
+			 <a class="btn btn-info" style="margin: 10px;" href="../../bin/planos/falta_por_semana.php?id_disciplina={id_disciplina}"><span class="glyphicon glyphicon-print"> Falta por semana (SIA)  </span> </a>
+
+ 			<a class="btn btn-default" style="margin: 10px;" href="../../bin/planos/index_markdown.php?id_disciplina={id_disciplina}"><span class="glyphicon glyphicon-print"> markdown </span> </a>
+
+			 <a class="btn btn-default" style="margin: 10px;" href="../../bin/planos/index_distinct_markdown.php?id_disciplina={id_disciplina}"><span class="glyphicon glyphicon-print"> markdown (distinct) </span> </a>
+
+			 <a class="btn btn-danger" style="margin: 10px;" href="../../bin/planos/tela_importar_csv.php?disciplina_id={id_disciplina}"><span class="glyphicon glyphicon-print"> importar de csv  </span> </a>
+
+
+		
+		<br>
+		<a class="btn btn-default" style="margin: 10px;" href="javascript:history.go(-1)">Voltar</a>
+
+		<table class="table table-condensed" style="width: 600px" id="tabela">
+			<!--
+			<tr>
+			<td colspan="2">
+			{curso}
+			{disciplina}
+			{ano}/{semestre}
+			</td>
+			</tr> -->
+			<tr style="font-weight: bold; text-align: center">
+				<td>Excluir</td>
+				<td>Data</td>
+				<td>Ciclo</td>
+				<td>Cred. </td>
+				<td>Atividade</td>
+			</tr>
+			<!-- BEGIN planos -->
+			<tr>
+				<td style="text-align: center"> <a onclick="return confirm('Deseja excluir?')" href="../../bin/planos/excluir.php?id={id}"> <span class="glyphicon glyphicon-remove"> </span> </a></td>
+				<td><a href="../../bin/planos/tela_alterar.php?id={id}"> {data} </a></td>
+				<td style="text-align: center">{bimestre}</td>
+				<td style="text-align: center">{creditos}</td>
+				<td> {texto} </td>
+			</tr>
+			<!-- END planos -->
+		</table>
+		<a class="btn btn-default"  href="javascript:history.go(-1)">Voltar</a>
+	</body>
+</html>

@@ -1,0 +1,28 @@
+<img src='../../imagens/logo.jpg'> <br><br>
+{disciplina}/{curso} - {ano}/{semestre} <br> <br>
+<table border="1">
+	<tr style="text-align: center; font-weight: bold;">
+		<td>Matricula</td>
+		<td>Nome</td>
+		<!-- BEGIN rotulo_notas -->
+		<td>{bimestre} - Nota</td>
+		<!-- END rotulo_notas -->
+		<!-- BEGIN rotulo_presencas -->
+		<td>{bimestre} - Presencas</td>
+		<td>{bimestre} - Faltas</td>
+		<!-- END rotulo_presencas -->
+	</tr>
+	<!-- BEGIN alunos -->
+	<tr style="background-color: {cor}">
+		<td style="text-align: center;">{matricula}</td>
+		<td style="text-align: center;">{nome}</td>
+		<!-- BEGIN bloco_nota -->
+		<td style="text-align: center;"> {nota} </td>
+		<!-- END bloco_nota -->
+		<!-- BEGIN bloco_presenca -->
+		<td style="background-color: {alerta}; color:white; text-align: center;">{presencas} ({porcentagem})%</td>
+		<td style="text-align: center;">{faltas}</td>
+		<!-- END bloco_presenca -->
+	</tr>
+	<!-- END alunos -->
+</table>

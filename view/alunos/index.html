@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title> Alunos </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+		<script src="../../lib/jquery.js"></script>
+		<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+	</head>
+	<body>
+		<img src="../../imagens/logo.jpg" />
+		<br>
+		<br>
+		<h1>Disciplina: {disciplina} {total} </h1>
+		<a class="btn btn-default"  href="../../bin/cursos/index.php">Voltar</a>
+		<a class="btn btn-primary" href="../../bin/disciplinas/tela_add_aluno.php?id={id_disciplina}">Adicionar</a>
+		<br>
+		<br>
+		<table class="table table-condensed" style="width: 1000px">
+			<tr style="text-align: center; font-weight: bold;">
+				<td>Alterar</td>
+				<td>Excluir</td>
+				<td>Matricula</td>
+				<td>Nome</td>
+				<td>Observa&ccedil;&atilde;o</td>
+			</tr>
+			<!-- BEGIN alunos -->
+			<tr>
+				<td style="text-align: center;"><a href="../../bin/alunos/tela_alterar.php?id={id}"> <span class="glyphicon glyphicon-pencil"></span> </a></td>
+				<td style="text-align: center;"><a onclick="return confirm('Deseja excluir {nome}?')" href="../../bin/alunos/excluir.php?id={id}&disciplina_id={id_disciplina}"> <span class="glyphicon glyphicon-remove"></span> </a></td>
+				<td style="text-align: center;">{matricula}</td>
+				<td>{nome}</td>
+				<td><textarea readonly="readonly" cols="30" rows="5"> {observacao} </textarea></td>
+			</tr>
+			<!-- END alunos -->
+		</table>
+		<a class="btn btn-default"  href="../../bin/cursos/index.php">Voltar</a>
+		<a class="btn btn-primary" href="../../bin/disciplinas/tela_add_aluno.php?id={id_disciplina}">Adicionar</a>
+	</body>
+</html>

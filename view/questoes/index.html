@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Questões</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+	<script src="../../lib/jquery.js"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+</head>
+
+<body>
+	<a href="../../bin/cursos/index.php"><img src="../../imagens/logo.jpg"></a>
+	<br>
+
+	<form action="../../bin/questoes/index.php" method="post">
+		Buscar: <input type="text" name="busca"> <input type="submit">
+	</form>
+
+	<h2> <span class="glyphicon glyphicon-education"></span> Questões </h2>
+
+	<table class="table table-condensed" style="text-align: center; width: 900px">
+		<tr>
+			<td> id </td>
+			<td style="font-weight: bold"> Ver </td>
+			<td style="font-weight: bold"> Alterar </td>
+			<td style="font-weight: bold"> Excluir </td>
+			<td style="font-weight: bold"> Questão </td>
+			<td style="font-weight: bold"> Resposta </td>
+		</tr>
+		<!-- BEGIN questoes -->
+		<tr>
+			<td> {id} </td>
+			<td><a href="../../bin/questoes/tela_ver.php?id={id}"> <span class="glyphicon glyphicon-search"> </span>
+				</a></td>
+			<td><a href="../../bin/questoes/tela_alterar.php?id={id}"> <span class="glyphicon glyphicon-pencil"> </span>
+				</a></td>
+			<td><a href="../../bin/questoes/excluir.php?id={id}"><span class="glyphicon glyphicon-remove"> </span> </a>
+			</td>
+			<td style="text-align: left;">{questao}</td>
+			<td style="text-align: left;">{resposta}</td>
+		</tr>
+		<!-- END questoes -->
+	</table>
+	{html_paginacao}
+	<br>
+	<hr>
+	<a class="btn btn-info" href="../../bin/cursos/index.php" /> Voltar </a>
+	<a class="btn btn-warning" href="../../bin/questoes/tela_inserir.php">Adicionar</a>
+	<a class="btn btn-success" href="../../bin/provas/index.php">Provas</a>
+	<a class="btn btn-success" href="../../bin/tags/index.php">Tags</a>
+	<a class="btn btn-danger" href="../../bin/questoes/tela_gerar_prova.php">Gerar Prova</a>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<html>
+
+<head>
+    <title> Tela Copiar - Disciplina </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+    <script src="../../lib/jquery.js"></script>
+    <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../lib/nicedit/nicEdit-latest.js"></script>
+    <script type="text/javascript">
+        bkLib.onDomLoaded(function () { nicEditors.allTextAreas({ fullPanel: true }) });
+
+        function adicionarAnoSemestre() {
+            var TADS = 2;
+            var Integrado = 1;
+            var id_curso = document.getElementById('idCurso').value;
+            var data = new Date();
+            document.getElementById("ano").value = data.getFullYear();
+            var semestre = (data.getMonth() + 1);
+            if (semestre > 6) {
+                document.getElementById("semestre").value = 2;
+            } else {
+                document.getElementById("semestre").value = 1;
+            }
+            if (id_curso == TADS) {
+                document.getElementById("semestral").checked = true;
+                document.getElementById("anual").checked = false;
+            } else if (id_curso == Integrado) {
+                document.getElementById("anual").checked = true;
+                document.getElementById("semestral").checked = false;
+            }
+        }
+
+        // function copiaCreditosPorDia(valor) {
+        //     if (!isNaN(valor)) {
+        //         //document.getElementById('creditosPorDia').value = valor/2;
+        //     }
+        // }
+
+
+
+
+        // function testarCreditosPorDia() {
+        //     alert(document.getElementById("creditos").value);
+        // }
+
+//         function enviaFormulario() {
+//             var creditos = document.getElementById('creditos').value;
+//             var somatorio = 0;
+//             var combo;
+//             if (creditos.length > 0) {
+//                 if (!isNaN(creditos)) {
+//                     // nao pode haver todos os dias com creditos igual a zero.
+
+//                     // deve-se redistribuir os creditos pela semana
+
+//                     // os creditos por dia nao podem ultrapassar o total de creditos.
+
+//                     for (var i = 0; i <= 6; i++){
+// combo = document.querySelector("[name='vetDiaSemana["+i+"]']");
+
+//                     // alert(i+":"+combo.options[combo.selectedIndex].text);
+//                         somatorio = somatorio + parseInt(combo.options[combo.selectedIndex].text);
+//                     }
+//                     // alert("Creditos:"+creditos);
+//                     // alert("Soma:"+somatorio);
+//                     if (creditos == somatorio){
+//                         return true;
+//                     } else {
+//                         alert("Distribua o total de creditos pelos dias da semana..");
+//                     }
+//                 } else {
+//                     alert('Digite um valor inteiro no campo creditos.');
+//                 }
+//             } else {
+//                 alert('Digite um valor para campo creditos.');
+//             }
+//             return false;
+//         }
+    </script>
+</head>
+
+<!-- <body onload="adicionarAnoSemestre()"> -->
+
+<body>
+    <img src="../../imagens/logo.jpg" />
+    <h1> Clonar Disciplina </h1>
+    <form action="../../bin/disciplinas/copiar.php" method="post">
+        <table class="table table-condensed" style="width: 900px;">
+            <tr>
+                <td> Disciplina: </td>
+                <td>
+                    <select name="id">
+                        <!-- BEGIN disciplinas -->
+                        <option value="{id}">{ano}/{semestre} - {nome}</option>
+                        <!-- END disciplinas -->
+                    </select>
+                </td>
+            </tr>        
+
+            <td colspan='2'>
+                <a class="btn btn-default" href="javascript: void(0)" onclick="history.go(-1)">Voltar</a>
+                <input class="btn btn-primary" type="submit" value="Clonar" />
+                </tr>
+        </table>
+    </form>
+</body>
+
+</html>

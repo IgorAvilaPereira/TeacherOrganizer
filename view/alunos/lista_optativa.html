@@ -1,0 +1,49 @@
+<html>
+
+<head>
+	<title>Ata - Recuperação Paralela</title>
+	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+</head>
+
+<body onload="window.print()">
+
+	<div>
+		<div>
+			<!-- <img src="../../imagens/logo.jpg"> -->
+			<h2> Recuperação Paralela </h2>
+			<h3> {disciplina} </h3>
+			<ul>
+				<li> Marque o período de interesse e assine; </li>
+				<!--<li> Somente um bimestre pode ser escolhido; </li>-->
+			</ul>
+		</div>
+		<table style="border: 3px solid black; font-size: 15px;">
+			<tr>
+				<td style="border: 3px solid black;"><b>Matr&iacute;cula</b></td>
+				<td style="border: 3px solid black;"><b>Nome</b></td>
+				<td style="border: 3px solid black; vertical-align: center;"><b>{bim1}<br>({valor1})</b></td>
+				<td style="border: 3px solid black; vertical-align: center;"><b>{bim2}<br>({valor2})</b></td>
+				<td style="border: 3px solid black;"><b>Ass. Interesse</b></td>
+				<td style="border: 3px solid black;"><b>Ass. Presença</b></td>
+
+			</tr>
+			<!-- BEGIN alunos -->
+			<tr>
+				<td style="border: 3px solid black;">{matricula}</td>
+				<td style="border: 3px solid black;">{nome}</td>
+				<td style="width: 30px; border: 3px solid black;"></td>
+				<td style="width: 30px; border: 3px solid black;"></td>
+				<!--
+	<td style="width: 20px"></td>
+	<td style="width: 20px"></td>
+	-->
+				<td style="width: 100px; border: 3px solid black;"></td>
+				<td style="width: 100px; border: 3px solid black;"></td>
+			</tr>
+			<!-- END alunos -->
+		</table>
+	</div>
+</body>
+
+</html>

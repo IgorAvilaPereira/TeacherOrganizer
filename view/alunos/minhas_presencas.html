@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title> {matricula} - {aluno} </title>
+	<!-- 	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" /> -->
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 		<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css"> -->
+<!-- 		<script src="../../lib/jquery.js"></script>
+		<script src="../../lib/bootstrap/js/bootstrap.min.js"></script> -->
+		<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+		<style type="text/css">
+			body {
+				    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="../../imagens/logo.jpg" style="text-align: center;" /> 
+		<h3> [{curso}] {disciplina} - {ano}/{semestre}  </h3>
+		<!-- Ano/Semestre: {ano}/{semestre}  <br>	 -->
+		{html_creditos} 
+		Total de aulas: {aulas_dadas} <br> <br>
+		<b> Aluno: {matricula} - {aluno} <br>
+		Observa&ccedil;&atilde;o: <b style="color:red">{observacao}</b> <br> 		
+		<br>	
+		<table style="width: 50%; page-break-inside:auto;">
+			<tr style="font-weight: bold; background-color:aliceblue;">
+				<td> Ciclo </td>
+				<td> Descrição </td>
+				<td> Valor </td>
+				<td> Obtido </td>
+			</tr>			
+			<!-- BEGIN avaliacoes -->
+			<tr style="background-color: {cor}; page-break-inside: avoid;">
+				<td> {bimestre} </td>
+				<td> {titulo} </td>
+				<td> {valor} </td>
+				<td> {obtido} </td>
+			</tr>
+			<!-- END avaliacoes -->		
+			<!-- BEGIN bimestres -->			
+			<tr>
+				<td colspan="2" style="text-align: right"> Nota - {bimestre}: </td> 
+				<td colspan="1" style="background-color: yellow; text-align: center;" > {nota} </td>
+			</tr>
+			<!-- END bimestres -->
+		</table> 
+		<br>
+		<hr>
+		{html}
+	</body>
+</html>

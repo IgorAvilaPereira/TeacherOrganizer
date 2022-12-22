@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>{nome_disciplina} - {ano}/{semestre}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+	<link rel="icon" type="image/png" href="../../imagens/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../imagens/favicon-16x16.png" sizes="16x16" />
+	<script src="../../lib/jquery.js"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		function diaSemanaPorExtenso(data) {
+			var dia = data.getDay();
+			var semana = new Array(6);
+			semana[0] = 'Domingo';
+			semana[1] = 'Segunda-Feira';
+			semana[2] = 'Terça-Feira';
+			semana[3] = 'Quarta-Feia';
+			semana[4] = 'Quinta-Feira';
+			semana[5] = 'Sexta-Feira';
+			semana[6] = 'Sábado';
+			return semana[dia];
+			//return dia;
+		}
+
+		function diaSemana(data) {
+			var dia = data.getDay();
+			return dia;
+		}
+
+		function adicionarData() {
+			var data = new Date();
+			var mes = ((data.getMonth() + 1 < 10) ? "0" + (data.getMonth() + 1) : (data.getMonth() + 1));
+			var dia = ((data.getDate() < 10) ? "0" + data.getDate() : data.getDate());
+			var ano = data.getFullYear();
+			// alert(ano + "-" + mes + "-" + dia);
+			$("#data").val(ano + "-" + mes + "-" + dia);
+		}
+
+		function checks(opcao) {
+			var vetor = $("input[name='vetPresenca[]']");
+			for (var i = 0; i < vetor.length; i++) {
+				vetor[i].checked = opcao;
+			}
+		}
+
+		function imprimir(id) {
+			var conteudo = document.getElementById(id).innerHTML;
+			tela_impressao = window.open('about:blank');
+			tela_impressao.document.write(conteudo);
+			tela_impressao.window.print();
+			tela_impressao.window.close();
+		}
+		function enviaFormulario() {
+			var e = document.getElementById("creditos");
+			if (e !== null) {
+				var valor = e.options[e.selectedIndex].text;
+				if (parseInt(valor) == 0) {
+					alert('!!!Selecione o credito vigente!!!!');
+				} else {
+					var ciclo = document.getElementById("bimestre").value;
+					if ("{eh_semestral}" == "Semestral") {
+						if (!isNaN(ciclo)) {
+							if (!(ciclo >= 1 && ciclo <= 2)) {
+								alert('Valor de ciclo invalido. Valores validos: 1 ou 2');
+							} else {
+								return confirm('Registrar presencas. OK?');
+							}
+						} else {
+							alert('Valor de ciclo invalido.Valores validos: 1 ou 2');
+						}
+					} else {
+						if (!isNaN(ciclo)) {
+							if (!(ciclo >= 1 && ciclo <= 4)) {
+								alert('Valor de ciclo invalido. Valores validos: 1,2,3 ou 4');
+							} else {
+								return confirm('Registrar presencas. OK?');
+							}
+						} else {
+							alert('Valor de ciclo invalido. Valores validos: 1,2,3 ou 4');
+						}
+					}
+				}
+			} else {
+				return confirm('Registrar presencas. OK?');
+			}
+			return false;
+		}
+	</script>
+</head>
+
+<body onload="adicionarData()">
+	<div class="jumbotron text-center" style="margin-bottom:0">
+		<!-- <img src="../../imagens/logo.jpg"> -->
+		<h2 style="font-weight: bold;"> <a href="/"> [{curso}] {nome_disciplina} - {ano}/{semestre} ({eh_semestral})</a>
+			<a class="btn btn-success" href="../../lib/dump.php" /> dump </a>
+		</h2>
+	</div>
+	<div class="container" style="margin-top:30px">
+		<div class="row">
+			<div class="col-sm-4">
+				<h5> Alunos: {totalAlunos} </h5>
+				<!-- <h5>Email: {email}</h5> -->
+				<h5>Total de Cr&eacute;ditos: {creditos}</h5>
+				<h5>Cr&eacute;ditos (por dia): {creditos_por_dia}</h5><!-- BEGIN aulasDadas -->
+				<h5><span class="glyphicon glyphicon-calendar"> </span> Aulas dadas - {bimestre}º Ciclo: {aulas}</h5>
+				<!-- END aulasDadas --> Total Aulas Dadas: {totalAulas} <br>
+				<a class="btn btn-info" style="margin: 5px"
+					href="../../bin/planos/index.php?id_disciplina={id_disciplina}">
+					Di&aacute;rios de Classe
+				</a>
+				<a class="btn btn-info" href="../../bin/disciplinas/plano_ensino.php?id_disciplina={id_disciplina}">
+					Plano de Ensino
+				</a>
+				<a class="btn btn-info" href="../../bin/alunos/gerar_emails.php?id_disciplina={id_disciplina}">
+					Emails
+				</a>
+
+				<hr class="d-sm-none">
+			</div>
+			<div class="col-sm-8">
+				<table class="table table-condensed">
+					<tr style="text-align: center; font-weight: bold;">
+						<td colspan="7"> <span class=" 	glyphicon glyphicon-book"> </span> Avalia&ccedil;&otilde;es
+						</td>
+					<tr>
+					<tr style="text-align: center; font-weight: bold;">
+						<td> Ciclo </td>
+						<td> Titulo </td>
+						<td> Valor </td>
+						<td> Data/Hora </td>
+						<td> Excluir </td>
+						<td> Ver </td>
+						<td> Alterar </td>
+						<td> Subs. bim. </td>
+						<td> Corrigir </td>
+					</tr>
+					<!-- BEGIN avaliacoes -->
+					<tr>
+						<td style="background-color: {bimestre_cor}; text-align: center;">{bimestre}</td>
+						<td style="background-color: {bimestre_cor}; text-align: center;">{titulo_avaliacao} </td>
+						<td style="background-color: {bimestre_cor}; text-align: center;">{valor_avaliacao} </td>
+						<td style="background-color: {bimestre_cor}; text-align: center;">{data_hora} </td>
+						<td style="background-color: {bimestre_cor}; text-align: center;"><a
+								onclick="return confirm('Deseja excluir {titulo_avaliacao}?')"
+								href="../../bin/avaliacoes/excluir.php?id_avaliacao={id_avaliacao}&id_disciplina={id_disciplina}">
+								<span class="glyphicon glyphicon-remove"></span> </a></td>
+						<td style="background-color: {bimestre_cor}; text-align: center;"><a
+								href="../../bin/avaliacoes/tela_ver.php?id_avaliacao={id_avaliacao}"> <span
+									class="glyphicon glyphicon-search"></span> </a></td>
+						<td style="background-color: {bimestre_cor}; text-align: center;"><a
+								href="../../bin/avaliacoes/tela_alterar.php?id_avaliacao={id_avaliacao}"> <span
+									class="glyphicon glyphicon-pencil"></span> </a></td>
+						<td style="{da_substitutiva_css} background-color: {bimestre_cor}; text-align: center;"><a
+								href="../../bin/avaliacoes/da_substitutiva.php?id_avaliacao={id_avaliacao}&id_disciplina={id_disciplina}">
+								{da_substitutiva} </a></td>
+						<td style="background-color: {corrigir}; text-align: center;"><a style="color:white;"
+								href="../../bin/avaliacoes/tela_corrigir.php?id_avaliacao={id_avaliacao}&id_disciplina={id_disciplina}">
+								Corrigir - {pendente}</a></td>
+					</tr>
+					<!-- END avaliacoes -->
+				</table>
+				<button class="btn btn-primary"
+					onclick="location.href ='../../bin/avaliacoes/tela_inserir.php?id_disciplina={id_disciplina}';">
+					Adicionar
+					<!--Avalia&ccedil;&atilde;o-->
+				</button>
+				<button class="btn btn-primary"
+					onclick="window.open('../../bin/avaliacoes/relatorio.php?id_disciplina={id_disciplina}');">
+					Avalia&ccedil;&atilde;o (pdf)
+				</button>
+				<button class="btn btn-primary"
+					onclick="window.open('../../bin/alunos/lista_optativa.php?id_disciplina={id_disciplina}');">
+					Lista Recuperação Paralela (pdf)
+				</button>
+				<button class="btn btn-warning"
+					onclick="location.href ='../../bin/avaliacoes/cancelar_substitutiva.php?id_disciplina={id_disciplina}';">
+					Cancelar Recuperação Paralela
+				</button>
+				<hr class="d-sm-none">
+				<table class="table table-condensed" style="width: 400px;">
+					<tr style="text-align: center; font-weight: bold;">
+						<td colspan="7"> <span class="glyphicon glyphicon-list-alt"></span> Anota&ccedil;&atilde;o </td>
+					<tr>
+					<tr style="text-align: center; font-weight: bold;">
+						<td> Anota&ccedil;&atilde;o </td>
+						<td> Excluir </td>
+						<td> Ver </td>
+						<td> Alterar </td>
+					</tr>
+					<!-- BEGIN anotacoes -->
+					<tr>
+						<td style="text-align: center;">{anotacao}</td>
+						<td style="text-align: center;"><a
+								href="../../bin/anotacoes/excluir.php?id_anotacao={id_anotacao}&id_disciplina={id_disciplina}">
+								<span class="glyphicon glyphicon-remove"> </span> </a></td>
+						<td style="text-align: center;"><a
+								href="../../bin/anotacoes/tela_ver.php?id_anotacao={id_anotacao}"> <span
+									class="glyphicon glyphicon-search"> </span> </a></td>
+						<td style="text-align: center;"><a
+								href="../../bin/anotacoes/tela_alterar.php?id_anotacao={id_anotacao}"> <span
+									class="glyphicon glyphicon-pencil"> </span> </a></td>
+					</tr>
+					<!-- END anotacoes -->
+				</table>
+				<button class="btn btn-primary"
+					onclick="location.href ='../../bin/anotacoes/tela_inserir.php?id_disciplina={id_disciplina}';">
+					Adicionar Anota&ccedil;&atilde;o
+				</button>
+			</div>
+		</div>
+	</div>
+	<!-- 
+	<div class="jumbotron text-center" style="margin-bottom:0">
+  		<p>Footer</p>
+	</div>
+ 	-->
+
+	<form class="form-inline" action="../../bin/alunos/presenca.php?id_disciplina={id_disciplina}" method="post"
+		onsubmit="return enviaFormulario();">
+		<fieldset>
+			<legend>
+				<span class="glyphicon glyphicon-calendar"> </span> Registrar Presen&ccedil;as
+			</legend>
+			Data:
+			<input class="form-control" type="date" id="data" value="" name="data">
+			(mm/dd/yyyy)
+			&nbsp;
+			Ciclo:
+			<input type="text" class="form-control" id="bimestre" name="bimestre" value="{max_bimestre}" size="1" />
+			&nbsp;
+			<!-- BEGIN blococreditos_vazio -->
+			Créditos:
+			<select name="creditos" id="creditos">
+				<!-- BEGIN blococreditos -->
+				<option value="{nr}">{nr}</option>
+				<!-- END blococreditos-->
+				<!-- END blococreditos_vazio -->
+			</select>
+			&nbsp;
+			<a id="marcar_todos" class="btn btn-success" onclick="checks(true)" title="Marcar Todos"> P </a> &nbsp;
+			<a id="desmarcar_todos" class="btn btn-danger" onclick="checks(false)" title="Desmarcar Todos"> F </a>
+			<!--
+				<br>
+				<input type="hidden" name="dia_semana" id="dia_semana"/>
+				-->
+
+			<a style="margin: 10px" class="btn btn-default"
+				href="../../bin/disciplinas/ver_relatorio.php?id_disciplina={id_disciplina}" target="__blank"> <span
+					class="glyphicon glyphicon-print"> Notas Completo</span> </a>
+
+			<a style="margin: 10px" class="btn btn-default"
+				href="../../bin/disciplinas/ver_relatorio_alunos.php?id_disciplina={id_disciplina}" target="__blank">
+				<span class="glyphicon glyphicon-print"> Notas </span></a>
+
+			<a style="margin: 10px" class="btn btn-default"
+				href="../../bin/disciplinas/ver_relatorio_alunos_markdown.php?id_disciplina={id_disciplina}"
+				target="__blank"> <span class="glyphicon glyphicon-print"> Notas (markdown) </span></a>
+
+				<!-- Funcionando, mas n valeu muito a pena pois demora um pouco mais -->
+				<!-- <a onclick="alert('Demora alguns segundos!');" style="margin: 10px" class="btn btn-danger"
+				href="../../bin/disciplinas/ver_relatorio_alunos_markdown_github.php?id_disciplina={id_disciplina}"> 
+				<span class="glyphicon glyphicon-print"> Notas (wiki) </span></a> -->
+
+			<a style="margin: 10px" class="btn btn-default"
+				href="../../bin/alunos/tabela_frequencia.php?id_disciplina={id_disciplina}" target="__blank"> <span
+					class="glyphicon glyphicon-print"> Frequ&ecirc;ncias </span></a>
+			<a style="margin: 10px" class="btn btn-default"
+				href="../../bin/alunos/tabela_frequencia_markdown.php?id_disciplina={id_disciplina}" target="__blank">
+				<span class="glyphicon glyphicon-print"> Frequ&ecirc;ncias (markdown) </span></a>
+		</fieldset>
+		<br>
+		<br>
+		<table id="tabela" class="table table-condensed">
+			<!-- <tr style="font-weight: bold; font-family:  Arial, Helvetica, sans-serif;">
+				<td colspan="11"> -
+				Data <input size="8px" type="text" id="data" value="" name="data"> (yyyy-mm-dd) <br> <br>
+				Bimestre <input type="text" name="bimestre" value="{max_bimestre}" size="1"/> <br> <br>
+				<a href="../../bin/disciplinas/ver_relatorio.php?id_disciplina={id_disciplina}"> Notas (pdf) </a> <br> <br>
+				<a href="../../bin/alunos/tabela_frequencia.php?id_disciplina={id_disciplina}"> Frequencias (pdf)</a>
+				<br> <br>
+				</td>
+
+				</tr>-->
+			<tr style="text-align: center; font-weight: bold;">
+				<td>Presente?</td>
+				<td>Alterar</td>
+				<td>Matr&iacute;cula</td>
+				<td>Nome</td>
+
+				<!-- BEGIN rotulo_notas -->
+				<td>{bimestre_nome}</td>
+				<!-- END rotulo_notas -->
+
+				<!-- BEGIN rotulo_presencas -->
+				<td>{bimestre} Presen&ccedil;as</td>
+				<td>{bimestre} Faltas </td>
+				<!-- END rotulo_presencas -->
+
+				<td style="text-align: center">Porcentagem</td>
+				<td><span class="glyphicon glyphicon-bullhorn"> </span> Situa&ccedil;&atilde;o</td>
+
+			</tr>
+			<!-- BEGIN alunos -->
+			<tr style="background-color: {cor}">
+				<td style="text-align: center;">
+					<input type="checkbox" value="{id}" name="vetPresenca[]" onchange="dataBimestre()" />
+				</td>
+				<td style="text-align: center"><a href="../../bin/alunos/tela_alterar.php?id={id}&tela=1"><span
+							class="glyphicon glyphicon-pencil"> </span></td>
+				<td style="text-align: center;">{matricula}</td>
+				<td style="text-align: center;"><a
+						href="../../bin/alunos/minhas_presencas.php?id_disciplina={id_disciplina}&id_aluno={id}"
+						target="__blank">{nome}</a></td>
+				<!-- BEGIN bloco_nota -->
+				<td style="text-align: center;"> {nota} </td>
+				<!-- END bloco_nota -->
+				<!-- BEGIN bloco_presenca -->
+				<td style="background-color: {alerta}; text-align: center;">{presencas} ({porcentagem})%</td>
+				<td style="background-color: {alerta}; text-align: center;">{faltas}</td>
+				<!-- END bloco_presenca -->
+				<td style="text-align: center; color: white; background-color: {alert};">{porc}</td>
+				<td style="text-align: center">{situacao} {soma}</td>
+			</tr>
+			<!-- END alunos -->
+			<!--
+				<tr>
+				<td colspan="11">
+				<input type="submit" style="width: 100%" />
+				</td>
+				</tr> -->
+		</table>
+		<br>
+		<a class="btn btn-default" href="../../bin/disciplinas/index.php?id={curso_id}">Voltar</a>
+		<input class="btn btn-primary" type="submit" value="Registrar Presen&ccedil;as" />
+	</form>
+</body>
+
+</html>

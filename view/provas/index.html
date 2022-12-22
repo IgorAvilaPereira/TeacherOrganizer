@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Questões</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../../lib/bootstrap/css/bootstrap.min.css">
+		<script src="../../../lib/jquery.js"></script>
+		<script src="../../../lib/bootstrap/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/png" href="../../../imagens/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="../../../imagens/favicon-16x16.png" sizes="16x16" />
+	</head>
+	<body>
+		<img src="../../../imagens/logo.jpg">
+		<br>
+
+		<h2> <span class="glyphicon glyphicon-education"></span> Provas </h2>
+
+		<table class="table table-condensed" style="text-align: center; width: 900px">
+			<tr>
+				<td style="font-weight: bold"> Ver </td>
+				<td style="font-weight: bold"> Alterar </td>
+				<td style="font-weight: bold"> Excluir </td>
+				<td style="font-weight: bold"> Prova </td>
+			</tr>
+			<!-- BEGIN provas -->
+			<tr>
+				<td><a href="../provas/tela_ver.php?id={id}"> <span class="glyphicon glyphicon-search"> </span> </a></td>
+				<td><a href="../provas/tela_alterar.php?id={id}"> <span class="glyphicon glyphicon-pencil"> </span> </a></td>
+				<td><a href="../provas/excluir.php?id={id}"><span class="glyphicon glyphicon-remove"> </span> </a></td>
+				<td>{nome}/{data_hora}</td>
+			</tr>
+			<!-- END provas -->
+		</table>
+
+		<br>
+
+		<br>
+
+		<hr>
+
+
+		<!--
+
+		<table border="1" style="width: 50%">
+			<tr>
+				<td style="text-align: center"><a href="../../bin/questoes/index.php?operacao=0"> << </a></td>
+				-->
+				<!-- BEGIN paginacao -->
+				<!--
+				<td style="text-align: center"><a href="../../bin/questoes/index.php?pagina={pagina}">{pagina} </a></td>
+				-->
+				<!-- END paginacao -->
+				<!--<td style="text-align: center"><a href="../../bin/questoes/index.php?operacao=1"> >> </a></td>
+			</tr>
+		</table>	-->
+
+		<br>
+
+		<a  class="btn btn-primary" href="tela_criar.php">Criar</a>
+
+
+		<a  class="btn btn-primary" href="./../../bin/questoes/index.php">Questões</a>
+
+	</body>
+</html>
