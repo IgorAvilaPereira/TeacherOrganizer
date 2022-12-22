@@ -6,7 +6,7 @@ Gerenciamento de Disciplinas para Professores
 
 * PHP 8
 * PostgreSQL
-* php-pgsql
+* php-pgsql 
 * BootStrap
 
 ## Instalação:
