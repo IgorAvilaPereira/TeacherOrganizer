@@ -13,12 +13,14 @@ Gerenciamento de Disciplinas para Professores
 
 1) Restaurar ***dump*** no PostgreSQL:
 
+No terminal:
 ```sh
 psql -h localhost -U postgres
 \i docente22122022.sql
 ```
-2) Startar o sistema:
+2) Iniciar o Teacher Organizer:
 
+No terminal:
 ```sh
 ./start.sh
 ```
