@@ -16,7 +16,7 @@ session_start();
 // upload_max_filesize
 // ==================================================================
 define("URL", "http://localhost:8081/");
-define("DIR", "/home/iapereira/Dropbox/ifrs/docente-projeto-pessoal/docente/");
+define("DIR", "/home/iapereira/git/TeacherOrganizer/");
 // ==================================================================
 // Permitir somente Minha Placa de Rede
 // $resultado = shell_exec("ip -brief link");
