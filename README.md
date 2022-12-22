@@ -33,5 +33,5 @@ No terminal:
 * Desenvolvido no Linux Mint 21 x86_64 
 * PHP 8.1.2
 * PostgreSQL 14.5
-* Ajudar php.ini para receber arquivos
+* Ajudar php.ini para receber arquivos via upload
 
