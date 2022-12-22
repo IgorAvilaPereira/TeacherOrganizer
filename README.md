@@ -30,6 +30,6 @@ psql -h localhost -U postgres
 
 * Desenvolvido no Linux Mint 21 x86_64 
 * PHP 8.1.2
-* psql (PostgreSQL) 14.5
+* PostgreSQL 14.5
 * Ajudar php.ini para receber arquivos
 
