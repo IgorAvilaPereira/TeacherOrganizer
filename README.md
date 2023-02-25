@@ -4,10 +4,12 @@ Sistema de Gerenciamento para Professores
 
 ## Requisitos:
 
-* PHP 8
-* PostgreSQL
+* PHP 8.1.2
+* PostgreSQL 14.5
 * php-pgsql 
+* [Templates](https://raelcunha.com/template/)
 * Bootstrap
+* Ajustar o php.ini para receber arquivos via upload
 
 ## Instalação:
 
@@ -27,12 +29,6 @@ No terminal:
 
 3) Acessar http://localhost:8081
 
-
-## Observações:
+## Setup:
 
 * Desenvolvido no Linux Mint 21 x86_64 
-* PHP 8.1.2
-* PostgreSQL 14.5
-* [Templates](https://raelcunha.com/template/)
-* Ajustar o php.ini para receber arquivos via upload
-
