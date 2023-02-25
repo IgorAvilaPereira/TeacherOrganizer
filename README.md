@@ -16,7 +16,7 @@ Sistema de Gerenciamento para Professores
 No terminal:
 ```sh
 psql -h localhost -U postgres
-\i docente22122022.sql
+\i dumps/docente22122022.sql
 ```
 2) Iniciar o Teacher Organizer:
 
