@@ -1,6 +1,6 @@
 # Teacher Organizer
 
-Sistema de Gerenciamento de Disciplinas para Professores
+Sistema de Gerenciamento para Professores
 
 ## Requisitos:
 
