@@ -1,2 +1,2 @@
 # docente
-zip locais vão para cá
+* zip files
