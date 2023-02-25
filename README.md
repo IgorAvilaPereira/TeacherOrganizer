@@ -1,6 +1,6 @@
 # Teacher Organizer
 
-Sistema de Gerenciamento para Professores
+Sistema de Gerenciamento para Professores: controle de presenças, controle de avaliações, relatórios de notas, diários de classe e etc.
 
 ## Requisitos:
 
