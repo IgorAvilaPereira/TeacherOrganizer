@@ -7,7 +7,7 @@ Gerenciamento de Disciplinas para Professores
 * PHP 8
 * PostgreSQL
 * php-pgsql 
-* BootStrap
+* Bootstrap
 
 ## Instalação:
 
@@ -33,5 +33,5 @@ No terminal:
 * Desenvolvido no Linux Mint 21 x86_64 
 * PHP 8.1.2
 * PostgreSQL 14.5
-* Ajudar php.ini para receber arquivos via upload
+* Ajustar o php.ini para receber arquivos via upload
 
