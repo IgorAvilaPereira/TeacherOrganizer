@@ -33,5 +33,6 @@ No terminal:
 * Desenvolvido no Linux Mint 21 x86_64 
 * PHP 8.1.2
 * PostgreSQL 14.5
+* [Templates](https://raelcunha.com/template/)
 * Ajustar o php.ini para receber arquivos via upload
 
