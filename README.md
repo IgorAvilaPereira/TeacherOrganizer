@@ -9,6 +9,7 @@ Sistema de Gerenciamento para Professores: controle de presenças, controle de a
 * php-pgsql 
 * [Templates](https://raelcunha.com/template/)
 * Bootstrap
+* jQuery
 * Ajustar o php.ini para receber arquivos via upload
 
 ## Instalação:
