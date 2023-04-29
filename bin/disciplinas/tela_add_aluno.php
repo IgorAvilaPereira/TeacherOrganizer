@@ -6,9 +6,9 @@
 	
 	$template = new Template("../../view/disciplinas/tela_add_aluno.html");
 	
-	$query = "select * from disciplinas where id=".$_GET['id'];	
+	$query = "select * from disciplinas where id = $1";	
 	// $result = pg_query($query);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id'])) or die ($query);
 
 	
 	$registro = pg_fetch_array($result);

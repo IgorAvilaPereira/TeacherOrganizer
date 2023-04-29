@@ -5,9 +5,9 @@
 	
 	$template = new Template("../../view/disciplinas/tela_alterar.html");
 	
-	$query = "select * from disciplinas where id = ".$_GET['id'];
+	$query = "select * from disciplinas where id = $1";
 	// $result = pg_query($query);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id'])) or die ($query);
 
 	$registro =  pg_fetch_array($result);
 	$template->id = $registro['id'];
@@ -40,7 +40,7 @@
 	$template->creditos = $registro['creditos'];
 	$template->creditos_por_dia = $registro['creditos_por_dia'];	
 	$template->ementa = $registro['ementa'];	
-	$template->ssh_wiki = $registro['ssh_wiki'];	
+	// $template->ssh_wiki = $registro['ssh_wiki'];	
 	$template->objetivos = $registro['objetivos'];	
 	$template->programa = $registro['programa'];	
 	$template->bibliografia = $registro['bibliografia'];	
