@@ -8,11 +8,11 @@
 	
 	$query = "UPDATE avaliacoes 
 			SET da_substitutiva = FALSE 
-			WHERE disciplina_id = ".$_GET['id_disciplina'];
+			WHERE disciplina_id = $1";
 
 	
 	// $result = pg_query($sql) or die($sql);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 	header("Location: ../disciplinas/ver.php?id_disciplina=".$_GET['id_disciplina']);	
 ?>
