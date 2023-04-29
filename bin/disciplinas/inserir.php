@@ -61,7 +61,7 @@
 	// provas presenciais de cada bimestre
 	for ($bimestre  = 1; $bimestre <= $total; $bimestre++){
 		$nome = "Atividade Presencial (".$bimestre." bim.)";
-		$query= "INSERT INTO avaliacoes (
+		$query = "INSERT INTO avaliacoes (
             titulo, valor, disciplina_id, bimestre)
     	VALUES ('".$nome."', 10, ".$registro['id'].", ".$bimestre.");";		
 			$result = pg_query_params($conexao, $query, array()) or die ($query);
