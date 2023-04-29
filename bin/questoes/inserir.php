@@ -1,7 +1,7 @@
 <?php
 	require_once "../../lib/conexao.php";	
 	
-	$query = "INSERT INTO questoes (questao, resposta) values ('".pg_escape_string($_POST['questao'])."','".pg_escape_string($_POST['resposta'])."') RETURNING id";
+	$query = "INSERT INTO questoes (questao, resposta) values ('".$_POST['questao']."','".$_POST['resposta']."') RETURNING id";
 	// $result = pg_query($sql) or die("ERRO NO INSERT DA QUESTAO...");	
 	$result = pg_query_params($conexao, $query, array()) or die ($query);
 

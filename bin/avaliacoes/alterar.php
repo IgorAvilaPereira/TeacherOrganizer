@@ -7,7 +7,7 @@
 	if ($data != NULL) {
 		$query = "update avaliacoes set 
 		titulo = '".$_POST['titulo']."', 
-		descricao = '".pg_escape_string($_POST['descricao'])."',
+		descricao = '".$_POST['descricao']."',
 		bimestre = ".$_POST['bimestre'].", 
 		valor = ".$_POST['valor'].",
 		data_hora = '".$data." ".$hora."' 
@@ -15,7 +15,7 @@
 	} else {
 		$query = "update avaliacoes set 
 		titulo = '".$_POST['titulo']."', 
-		descricao = '".pg_escape_string($_POST['descricao'])."',
+		descricao = '".$_POST['descricao']."',
 		bimestre = ".$_POST['bimestre'].", 
 		valor = ".$_POST['valor']."		
 		where id = ".$_POST['id'];

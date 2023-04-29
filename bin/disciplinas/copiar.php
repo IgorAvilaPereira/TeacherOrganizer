@@ -18,15 +18,15 @@
 	values 
 		(
 			'".strtoupper($disciplina_base['nome']." - ".date("d/m/Y - H:i:s"))."', 
-			'".trim(pg_escape_string($disciplina_base['ementa']))."', 			
-			'".trim(pg_escape_string($disciplina_base['avaliacao']))."', 
-			'".trim(pg_escape_string($disciplina_base['metodologia']))."', 
-			'".trim(pg_escape_string($disciplina_base['horario_aulas_sincronas']))."', 			
-			'".trim(pg_escape_string($disciplina_base['horario_atendimento']))."', 
-			'".trim(pg_escape_string($disciplina_base['recuperacao_paralela']))."', 
-			'".trim(pg_escape_string($disciplina_base['objetivos']))."', 
-			'".trim(pg_escape_string($disciplina_base['programa']))."',
-			'".trim(pg_escape_string($disciplina_base['bibliografia']))."',
+			'".trim($disciplina_base['ementa'])."', 			
+			'".trim($disciplina_base['avaliacao'])."', 
+			'".trim($disciplina_base['metodologia'])."', 
+			'".trim($disciplina_base['horario_aulas_sincronas'])."', 			
+			'".trim($disciplina_base['horario_atendimento'])."', 
+			'".trim($disciplina_base['recuperacao_paralela'])."', 
+			'".trim($disciplina_base['objetivos'])."', 
+			'".trim($disciplina_base['programa'])."',
+			'".trim($disciplina_base['bibliografia'])."',
 			".$ano.", 
 			".( (!isset($disciplina_base['codigo_ifrs']) || empty($disciplina_base['codigo_ifrs']))  ? 'NULL' : $disciplina_base['codigo_ifrs']).",
 			".( (!isset($disciplina_base['carga_horaria']) || empty($disciplina_base['carga_horaria']))  ? 'NULL' : $disciplina_base['carga_horaria']).",
@@ -70,7 +70,7 @@
 		while ($registro = pg_fetch_array($result)){
 			$query.= "INSERT INTO avaliacoes (titulo, descricao, valor, disciplina_id, bimestre, da_substitutiva) VALUES 
 			(	'".$registro['titulo']."', 
-				'".pg_escape_string($registro['descricao'])."',
+				'".$registro['descricao']."',
 				".$registro['valor'].", 
 				".$nova_disciplina['id'].", 
 				".$registro['bimestre'].",

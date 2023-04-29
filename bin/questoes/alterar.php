@@ -3,8 +3,8 @@
 	
 	// atualizando colunas de questao
 	$sql = "UPDATE questoes SET 
-		questao = '".pg_escape_string($_POST['questao'])."', 
-		resposta = '".pg_escape_string($_POST['resposta'])."' 
+		questao = '".$_POST['questao']."', 
+		resposta = '".$_POST['resposta']."' 
 		WHERE id = ".$_POST['id'];
 	// $result = pg_query($sql);	
 	$result = pg_query_params($conexao, $sql, array()) or die ($sql);

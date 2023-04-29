@@ -22,7 +22,7 @@
 			(
 				".$_POST['id_disciplina'].", 
 				'".$_POST['titulo']."', 
-				'".pg_escape_string($_POST['descricao'])."',
+				'".$_POST['descricao']."',
 				".$_POST['bimestre'].",				
 				".(($_POST['valor'] > 0) ? $_POST['valor'] : 10).",
 				'".($data." ".$hora)."');";
