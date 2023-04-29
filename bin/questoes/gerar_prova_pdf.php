@@ -33,8 +33,8 @@
     	echo $html;
   
     } else {    	
-    	$query = "INSERT INTO provas (nome, exercicios, data_hora) values ('".$_POST['disciplina']."','".$html."', now());";
-    	$result = pg_query_params($conexao, $query, array()) or die ($query);
+    	$query = "INSERT INTO provas (nome, exercicios, data_hora) values ($1, $2, now());";
+    	$result = pg_query_params($conexao, $query, array($_POST['disciplina'], $html)) or die ($query);
     	echo "<h1> Salvo </h1>";
     	
     	//header("Location: ./../provas/index.php");

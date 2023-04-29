@@ -36,7 +36,9 @@
 				while ($registro = pg_fetch_array($result)){ // o aluno "ganha" todas as presencas anteriores
 					$sql = "insert into presencas(data, aluno_id, disciplina_id, resultado, bimestre, creditos)
     VALUES ('".$registro['data']."', ".$aluno_id.", ".$_GET['id'].", 1,".$registro['bimestre'].",".$registro['creditos'].");";
-					$resultPresenca = pg_query($sql) or die(pg_errormessage());
+					// $resultPresenca = pg_query($sql) or die(pg_errormessage());
+					$resultPresenca = pg_query_params($conexao, $sql, array()) or die ($insert);
+
 					//select distinct data from presencas where disciplina_id = 30;
 //INSERT INTO presencas(data, aluno_id, disciplina_id, resultado, bimestre)
   //  VALUES (?, 821, 30, 1, 1); 
@@ -50,7 +52,9 @@
 				while ($avaliacao = pg_fetch_array($resultAvaliacoes)){						
 						$sql = "insert into notas(obtido, avaliacao_id, aluno_id, comentario) 
 						VALUES (0, ".$avaliacao['id'].", ".$aluno_id.", 'Adicionado depois na disciplina');";
-						$resultNota = pg_query($sql) or die(pg_errormessage());
+						// $resultNota = pg_query($sql) or die(pg_errormessage());
+						$resultNota = pg_query_params($conexao, $sql, array()) or die ($sql);
+
 				}				
 			} else {
 				echo "<pre>";
