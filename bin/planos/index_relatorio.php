@@ -15,7 +15,7 @@
 	//pg_set_client_encoding($conexao, "iso-8859-1");
 	$registro = pg_fetch_array($result);	
 	
-	$template->curso = $registro['curso'];
+	$template->curso = utf8_decode($registro['curso']);
 	$template->disciplina = utf8_decode($registro['disciplina']);
 	//$template->id_disciplina = $_GET['id_disciplina'];
 	$template->semestre = $registro['semestre'];

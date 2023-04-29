@@ -22,7 +22,7 @@
 
 	
 	
-	if (pg_affected_rows($result) == 0) die('<h1>Sem disciplina com o id da requisicao</h1> <a href="javascript: onclick(history.go(-1))"> Voltar </a>');
+	if (pg_affected_rows($result) == 0) die('<h1>Nenhuma Atividade Avaliada cadastrada para a Disciplina</h1> <a href="javascript: onclick(history.go(-1))"> Voltar </a>');
 	
 	$cor =  array('AliceBlue', 'LightGray', 'PaleGreen', 'yellow', 'pink');
 	while ($registro = pg_fetch_array($result)){			
