@@ -21,16 +21,16 @@ $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die 
 $sql = "";
 if (pg_affected_rows($result) > 0) {
 	while ($registro = pg_fetch_array($result)) {
-		$sql_x = "select * from presencas where disciplina_id = " . $_GET['id_disciplina'] . " and aluno_id = " . $registro['id'] . " 
-							and data = '" . $data . "' and bimestre in (" . implode(",", $vetBimestre) . ");";
+		$sql_x = "select * from presencas where disciplina_id = $1 and aluno_id = $2 
+		and data = $3 and bimestre in (" . implode(",", $vetBimestre) . ");";
 		// $x = pg_query($sql_x) or die($sql_x);
-		$x = pg_query_params($conexao, $sql_x, array()) or die ($sql_x);
+		$x = pg_query_params($conexao, $sql_x, array($_GET['id_disciplina'], $registro['id'], $data)) or die ($sql_x);
 
 		if (pg_affected_rows($x) == 0) {
 			// PRIMERO MOMENTO: todo mundo recebe AUSENCIA, neste dia, para esta disciplina, neste bimestre
 			$sql = "insert into presencas (disciplina_id, aluno_id, data, resultado , bimestre, creditos) 
-				values (" . $_GET['id_disciplina'] . ", " . $registro['id'] . ", '" . $data . "', 0, " . $bimestre . ", ".( (isset($_POST['creditos']) && !empty($_POST['creditos'])) ? $_POST['creditos'] : "NULL").");";
-			$resultSQL = pg_query_params($conexao, $sql, array()) or die ($sql);	
+				values ($1, $2, $3, 0, $4 , $5);";
+			$resultSQL = pg_query_params($conexao, $sql, array($_GET['id_disciplina'], $registro['id'], $data, $bimestre, ((isset($_POST['creditos']) && !empty($_POST['creditos'])) ? $_POST['creditos'] : NULL))) or die ($sql);	
 		}
 	}
 	
@@ -44,15 +44,15 @@ if (pg_affected_rows($result) > 0) {
 	$sql = "update presencas 
 			set 
 				resultado = 0,
-				creditos = ".$_POST['creditos']."
+				creditos = $1
 			where
-				disciplina_id = " . $_GET['id_disciplina'] . " 
+				disciplina_id = $2
 			and 
-				data = '" . $data . "' 
+				data = $3
 			and 
-				bimestre = " . $bimestre . ";";
+				bimestre = $4";
 	// $result = pg_query($sql) or die($sql);
-	$result = pg_query_params($conexao, $sql, array()) or die ($sql);
+	$result = pg_query_params($conexao, $sql, array($_POST['creditos'], $_GET['id_disciplina'], $data,  $bimestre)) or die ($sql);
 
 
 	// SEGUNDO MOMENTO: depois quem foi selecionado, recebe a atualizacao, ou seja, PRESENCA.
@@ -62,26 +62,26 @@ if (pg_affected_rows($result) > 0) {
 			set 
 				resultado = 1 
 			where
-				disciplina_id = " . $_GET['id_disciplina'] . " 
+				disciplina_id = $1 
 			and 
 				aluno_id in (" . implode(",", $_POST['vetPresenca']) . ")
 			and 
-				data = '" . $data . "' 
+				data = $2
 			and 
-				bimestre = " . $bimestre . ";";
+				bimestre = $3";
 		// $result = pg_query($sql) or die($sql);
-		$result = pg_query_params($conexao, $sql, array()) or die ($sql);
+		$result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'], $data, $bimestre)) or die ($sql);
 	}
 }
 
 	// testa se ja existe um plano, anteriormente, cadastrado	
 	$sql = "SELECT id FROM planos 
 			where  
-				data = '".$data."' and 
-				disciplina_id = ".$_GET['id_disciplina']." and 
-				bimestre = ".$bimestre; 	
+				data = $1 and 
+				disciplina_id = $2 and 
+				bimestre = $3"; 	
 	// $result = pg_query($sql) or die($sql); 
-	$result = pg_query_params($conexao, $sql, array()) or die ($sql);
+	$result = pg_query_params($conexao, $sql, array($data,$_GET['id_disciplina'],$bimestre)) or die ($sql);
 	//  caso exista, pega o id
 	if (pg_affected_rows($result) > 0) {
 		$registro = pg_fetch_array($result); 
@@ -96,13 +96,13 @@ if (pg_affected_rows($result) > 0) {
 			bimestre
 		)
 	    VALUES (
-	    	'".$data."', 
+	    	$1, 
 	    	'-',
-	    	".$_GET['id_disciplina'].", 
-	    	".$bimestre.") 
+	    	$2, 
+	    	$3) 
 	    RETURNING id;";
 	    // $result = pg_query($sql);// or die($sql); 
-		$result = pg_query_params($conexao, $sql, array()) or die ($sql);
+		$result = pg_query_params($conexao, $sql, array($data,$_GET['id_disciplina'], $bimestre)) or die ($sql);
 		$registro = pg_fetch_array($result); 
 		$plano_id = $registro['id'];		
 	}
