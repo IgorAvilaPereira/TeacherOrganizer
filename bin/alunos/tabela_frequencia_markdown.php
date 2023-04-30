@@ -3,9 +3,9 @@ require_once "../../lib/conexao.php";
 require_once "../../lib/TextTable.php";
 
 // informacoes basicas da disciplina
-$query = "select disciplinas.nome, ano, semestre, eh_semestral, cursos.nome as n, creditos, creditos_por_dia from disciplinas inner join cursos on (cursos.id = disciplinas.curso_id) where disciplinas.id = " . $_GET['id_disciplina'];
+$query = "select disciplinas.nome, ano, semestre, eh_semestral, cursos.nome as n, creditos, creditos_por_dia from disciplinas inner join cursos on (cursos.id = disciplinas.curso_id) where disciplinas.id = $1";
 // $result = pg_query($query);
-$result = pg_query_params($conexao, $query, array()) or die ($query);
+$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 $registro = pg_fetch_array($result);
 $disciplina = utf8_decode($registro['nome']);
 $ano = $registro['ano'];
@@ -17,9 +17,9 @@ $creditos = (($registro['creditos'] > 0) ? $registro['creditos'] : 1);
 $creditos_por_dia = $registro['creditos_por_dia'];
 
 // datas das aulas
-$query = "select distinct data, bimestre from presencas where disciplina_id = " . $_GET['id_disciplina'] . " order by bimestre, data;";
+$query = "select distinct data, bimestre from presencas where disciplina_id = $1 order by bimestre, data;";
 // $result = pg_query($query);
-$result = pg_query_params($conexao, $query, array()) or die ($query);
+$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 $vetData = array();
 while ($registro = pg_fetch_array($result)) {
     $data = explode("-", $registro['data']);
@@ -29,9 +29,9 @@ while ($registro = pg_fetch_array($result)) {
 // total de aula por bimestre
 $aulas = array();
 for ($bimestre = 1; $bimestre <= $total; $bimestre++) {
-    $sql = "SELECT id, disciplina_id, nr_creditos, dia_semana  FROM creditos WHERE disciplina_id = " . $_GET['id_disciplina'];
+    $sql = "SELECT id, disciplina_id, nr_creditos, dia_semana  FROM creditos WHERE disciplina_id = $1";
     // $resultado = pg_query($sql);
-    $resultado = pg_query_params($conexao, $sql, array()) or die ($sql);
+    $resultado = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
     if (pg_affected_rows($resultado) > 0) {
         $sql = "select distinct data, creditos from presencas
 					where
