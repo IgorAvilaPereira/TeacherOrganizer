@@ -49,14 +49,14 @@
 
 	// ajustando a nova distribuicao de creditos por semana
 	if (isset($_POST['vetDiaSemana'])){
-		$query = "DELETE FROM creditos WHERE disciplina_id = ".$_POST['id'].";";
-		$result = pg_query_params($conexao, $query, array()) or die ($query);
+		$query = "DELETE FROM creditos WHERE disciplina_id = $1";
+		$result = pg_query_params($conexao, $query, array($_POST['id'])) or die ($query);
 
 		foreach ($_POST['vetDiaSemana'] as $dia_semana => $nr_creditos){
 			if ($nr_creditos > 0){
 				$query = "INSERT INTO creditos (disciplina_id, nr_creditos, dia_semana) 
-					VALUES (".$_POST['id'].", ".$nr_creditos.", ".$dia_semana.");";	
-						$result = pg_query_params($conexao, $query, array()) or die ($query);
+					VALUES ($1, $2, $3);";	
+						$result = pg_query_params($conexao, $query, array($_POST['id'], $nr_creditos, $dia_semana)) or die ($query);
 		
 			}		
 		}

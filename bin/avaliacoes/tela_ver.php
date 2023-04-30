@@ -5,9 +5,9 @@
 	
 	$template = new Template("../../view/avaliacoes/tela_ver.html");
 	
-	$query = "select * from avaliacoes inner join disciplinas on (disciplinas.id = avaliacoes.disciplina_id) where avaliacoes.id = ".$_GET['id_avaliacao'];
+	$query = "select * from avaliacoes inner join disciplinas on (disciplinas.id = avaliacoes.disciplina_id) where avaliacoes.id = $1";
 	// $result = pg_query($sql);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_avaliacao'])) or die ($query);
 
 	$registro = pg_fetch_array($result);
 	

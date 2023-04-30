@@ -71,8 +71,8 @@
 	// exame
 	$query = "INSERT INTO avaliacoes (
             titulo, valor, disciplina_id, bimestre)
-    VALUES ('Exame', 10, ".$registro['id'].", 0);";		
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+    VALUES ('Exame', 10, $1, 0);";		
+	$result = pg_query_params($conexao, $query, array($registro['id'])) or die ($query);
 
 	$total = (($_POST['eh_semestral'] == 'true') ? 2 : 4);	
 		
@@ -83,8 +83,8 @@
 		$nome = "Atividade Presencial (".$bimestre." bim.)";
 		$query = "INSERT INTO avaliacoes (
             titulo, valor, disciplina_id, bimestre)
-    	VALUES ('".$nome."', 10, ".$registro['id'].", ".$bimestre.");";		
-			$result = pg_query_params($conexao, $query, array()) or die ($query);
+    	VALUES ($1, 10, $2, $3);";		
+			$result = pg_query_params($conexao, $query, array($nome, $registro['id'], $bimestre)) or die ($query);
 
 	}	
 	// ou funciona tudo - ou nao funciona nada

@@ -5,9 +5,9 @@
 	
 	$template = new Template("../../view/disciplinas/index.html");
 
-	$query = "select * from cursos where id = ".(!isset($_GET['id']) ? 2 : $_GET['id']);
+	$query = "select * from cursos where id = $1";
 	// $result = pg_query($query);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array((!isset($_GET['id']) ? 2 : $_GET['id']))) or die ($query);
 
 	$curso  =  pg_fetch_array($result);
 	$template->curso = $curso['nome'];
@@ -30,9 +30,9 @@
 		$semestre =  (((int)$data[1] <= 6) ? 1 : 2);
 	//}
 		
-	$query = "select * from disciplinas where curso_id=".(!isset($_GET['id']) ? 2: $_GET['id'])." order by ano desc, semestre desc, nome";
+	$query = "select * from disciplinas where curso_id = $1 order by ano desc, semestre desc, nome";
 	// $result = pg_query($query);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array((!isset($_GET['id']) ? 2: $_GET['id']))) or die ($query);
 	if (pg_affected_rows($result) > 0 ){	
 		while($registro = pg_fetch_array($result)) {
 			$template->id_disciplina = $registro['id'];

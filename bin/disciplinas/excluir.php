@@ -2,9 +2,9 @@
     require_once "../../lib/conexao.php";
     
     //  listar todos os trabalhos/avaliacoes da disciplina correspondente
-    $sql_notas_arquivo = "select arquivo from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where arquivo is not null and disciplina_id = ".$_GET['id_disciplina'].";";
+    $sql_notas_arquivo = "select arquivo from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where arquivo is not null and disciplina_id = $1";
     // $result = pg_query($sql_notas_arquivo) or die($sql_notas_arquivo);
-    $result = pg_query_params($conexao, $sql_notas_arquivo, array()) or die ($sql_notas_arquivo);
+    $result = pg_query_params($conexao, $sql_notas_arquivo, array($_GET['id_disciplina'])) or die ($sql_notas_arquivo);
 
     $vetArquivo = [];
     if (pg_affected_rows($result)>0) {
@@ -15,22 +15,29 @@
         }
     }
 
-    $sql = "delete from presencas where disciplina_id = ".$_GET['id_disciplina'].";";
-    $result = pg_query_params($conexao, $sql, array()) or die ($sql);
-    $sql = "delete from anotacoes where disciplina_id = ".$_GET['id_disciplina'].";";
-    $result = pg_query_params($conexao, $sql, array()) or die ($sql);
-    $sql = "delete from creditos where disciplina_id = ".$_GET['id_disciplina'].";";
-    $result = pg_query_params($conexao, $sql, array()) or die ($sql);
-    $sql = "delete from planos where disciplina_id = ".$_GET['id_disciplina'].";";
-    $result = pg_query_params($conexao, $sql, array()) or die ($sql);
-    $sql = "delete from notas where aluno_id in (select id from alunos where disciplina_id = ".$_GET['id_disciplina'].");";
-    $result = pg_query_params($conexao, $sql, array()) or die ($sql);
-    $sql = "delete from avaliacoes where disciplina_id = ".$_GET['id_disciplina'].";";
-    $result = pg_query_params($conexao, $sql, array()) or die ($sql);
-    $sql = "delete from alunos where disciplina_id = ".$_GET['id_disciplina'].";";
-    $result = pg_query_params($conexao, $sql, array()) or die ($sql);
-    $sql = "delete from disciplinas where id = ".$_GET['id_disciplina'].";";
-    $result = pg_query_params($conexao, $sql, array()) or die ($sql);
+    $sql = "delete from presencas where disciplina_id = $1";
+    $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
+
+    $sql = "delete from anotacoes where disciplina_id = $1";
+    $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
+
+    $sql = "delete from creditos where disciplina_id = $1";
+    $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
+
+    $sql = "delete from planos where disciplina_id = $1";
+    $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
+
+    $sql = "delete from notas where aluno_id in (select id from alunos where disciplina_id = $1);";
+    $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
+    
+    $sql = "delete from avaliacoes where disciplina_id = $1";
+    $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
+    
+    $sql = "delete from alunos where disciplina_id = $1";
+    $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
+
+    $sql = "delete from disciplinas where id = $1";
+    $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
     // $sql.= "begin;".$sql."commit;";
     // $result = pg_query($sql) or die($sql);
     
