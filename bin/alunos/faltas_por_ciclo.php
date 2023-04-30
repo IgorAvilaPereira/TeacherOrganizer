@@ -3,9 +3,9 @@
     require_once "../../lib/TextTable.php";
 
     $id_disciplina = $_GET['id_disciplina'];  
-    $query = "select * from disciplinas where id = ".$id_disciplina;
+    $query = "select * from disciplinas where id = $1";
     // $result = pg_query($query);
-    $result = pg_query_params($conexao, $query, array()) or die ($query);
+    $result = pg_query_params($conexao, $query, array($id_disciplina)) or die ($query);
 
     $registro = pg_fetch_array($result);
     $total = (($registro['eh_semestral'] == 't') ? 2 : 4);

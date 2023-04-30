@@ -7,16 +7,16 @@
 	$template = new Template("../../view/alunos/index.html");
 	
 	
-	$query = "select * from disciplinas where id = ".$_GET['disciplina_id'];
+	$query = "select * from disciplinas where id = $1";
 	// $result = pg_query($query);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['disciplina_id'])) or die ($query);
 	$disciplina = pg_fetch_array($result);
 	$template->disciplina = $disciplina['nome'];
 	$template->id_disciplina = $_GET['disciplina_id'];
 	
-	$query = "select * from alunos where disciplina_id = ".$_GET['disciplina_id']." order by matricula";
+	$query = "select * from alunos where disciplina_id = $1 order by matricula";
 	// $result = pg_query($query);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['disciplina_id'])) or die ($query);
 	$template->total = ((pg_affected_rows($result) > 0) ? "- ".pg_affected_rows($result)." Alunos" : "") ;
 	
 	while ($aluno = pg_fetch_array($result)) {

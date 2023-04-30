@@ -7,9 +7,9 @@
 
     $template = new Template("../../view/alunos/minhas_presencas.html");
 
-    $query = "select * from disciplinas where id = " . $_GET['id_disciplina'];
+    $query = "select * from disciplinas where id = $1";
     // $result = pg_query($query);
-    $result = pg_query_params($conexao, $query, array()) or die ($query);
+    $result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
     $registro = pg_fetch_array($result);
     $disciplina = utf8_decode($registro['nome']);
     $creditos_por_dia = $registro['creditos_por_dia'];
@@ -58,9 +58,9 @@
         on
             (alunos.disciplina_id =  disciplinas.id)
         where
-            disciplinas.id = " . $_GET['id_disciplina'] . " and alunos.id = " . $_GET['id_aluno'] . ";";
+            disciplinas.id = $1 and alunos.id = $2";
     // $result = pg_query($sql);
-    $result = pg_query_params($conexao, $sql, array()) or die ($sql);
+    $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'], $_GET['id_aluno'])) or die ($sql);
 
     $registro = pg_fetch_array($result);
     $template->curso = $registro['curso'];
@@ -88,41 +88,11 @@
                     on
                         (avaliacoes.id = notas.avaliacao_id)
                     where
-                        avaliacao_id in (select id from avaliacoes where disciplina_id = " . $_GET['id_disciplina'] . " )
-                        and aluno_id =" . $_GET['id_aluno'] . " and avaliacoes.bimestre = " . $bimestre . " order
+                        avaliacao_id in (select id from avaliacoes where disciplina_id = $1)
+                        and aluno_id = $2 and avaliacoes.bimestre = $3 order
                         by avaliacoes.bimestre, avaliacoes.titulo, avaliacoes.id;";  
-                   
-        // agora soh lista/computa avaliacoes avaliadas ateh o momento
-        // $sql = "
-        // select 
-        //     bimestre, 
-        //     titulo, 
-        //     valor, 
-        //     obtido 
-        // from 
-        //     notas inner join avaliacoes on (avaliacoes.id = notas.avaliacao_id) 
-        // where 
-        //     avaliacao_id in (
-        //         select distinct avaliacoes.id from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) 
-        //             where 
-        //                 disciplina_id = " . $_GET['id_disciplina'] . "
-        //         except
-        //             select distinct avaliacoes.id from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) 
-        //         where 
-        //             disciplina_id = " . $_GET['id_disciplina'] . " 
-        //         and 
-        //             comentario = '<br>' and obtido = 0
-        //     )        
-        // and 
-        //     aluno_id =" . $_GET['id_aluno'] . "
-        // and 
-        //     avaliacoes.bimestre = " . $bimestre . "
-        // order by 
-        //     avaliacoes.bimestre, 
-        //     avaliacoes.titulo, 
-        //     avaliacoes.id;";
-        // $result = pg_query($sql);
-        $result = pg_query_params($conexao, $sql, array()) or die ($sql);
+
+        $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'], $_GET['id_aluno'], $bimestre)) or die ($sql);
         $i = 1;
         $nota = 0;
         if (pg_affected_rows($result) > 0) {
@@ -151,18 +121,18 @@
     }
 
     // aulas datas
-    $query = "select * from disciplinas where id = " . $_GET['id_disciplina'];
+    $query = "select * from disciplinas where id = $1";
     // $result = pg_query($query);
-    $result = pg_query_params($conexao, $query, array()) or die ($query);
+    $result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
     $registro = pg_fetch_array($result);
     $disciplina = $registro['nome'];
     $eh_semestral = (($registro['eh_semestral'] == 't') ? true : false);
     $total = (($eh_semestral == 't') ? 2 : 4);
 
-    $query = "select distinct data from presencas where disciplina_id = " . $_GET['id_disciplina'];
+    $query = "select distinct data from presencas where disciplina_id = $1";
     // $result = pg_query($query);
-    $result = pg_query_params($conexao, $query, array()) or die ($query);
+    $result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
     $creditos = (($registro['creditos'] > 0) ? $registro['creditos'] : 1);
     //$creditos_por_dia = (($registro['creditos_por_dia'] > 0)? $registro['creditos_por_dia']: $registro['creditos']);
     $creditos_por_dia = $registro['creditos_por_dia'];
@@ -179,16 +149,16 @@
     // total de aula por bimestre
     $aulas = array();
     for ($bimestre = 1; $bimestre <= $total; $bimestre++) {
-        $sql = "SELECT id, disciplina_id, nr_creditos, dia_semana  FROM creditos WHERE disciplina_id = " . $_GET['id_disciplina'];
+        $sql = "SELECT id, disciplina_id, nr_creditos, dia_semana  FROM creditos WHERE disciplina_id = $1";
         // $resultado = pg_query($sql);
-        $resultado = pg_query_params($conexao, $sql, array()) or die ($sql);
+        $resultado = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
         if (pg_affected_rows($resultado) > 0) {
             $sql = "select distinct data, creditos from presencas
                         where
-                        aluno_id in (select id from alunos where disciplina_id = " . $_GET['id_disciplina'] . " limit 1) and
-                        disciplina_id = " . $_GET['id_disciplina'] . " and bimestre = " . $bimestre;
+                        aluno_id in (select id from alunos where disciplina_id = $1 limit 1) and
+                        disciplina_id = $2 and bimestre = $3";
             // $resultado = pg_query($sql);
-            $resultado = pg_query_params($conexao, $sql, array()) or die ($sql);
+            $resultado = pg_query_params($conexao, $sql, array($_GET['id_disciplina'],  $_GET['id_disciplina'], $bimestre)) or die ($sql);
             $aulasX = 0;
             while ($x = pg_fetch_array($resultado)) {
                 $aulasX += $x['creditos'];
@@ -196,25 +166,25 @@
             $aulas[$bimestre] = $aulasX;
         } else {
             $query = "select distinct data from presencas
-                    where disciplina_id = " . $_GET['id_disciplina'] . " and bimestre = " . $bimestre;
+                    where disciplina_id = $1 and bimestre = $2";
             // $result = pg_query($query);
-            $result = pg_query_params($conexao, $query, array()) or die ($query);
+            $result = pg_query_params($conexao, $query, array($_GET['id_disciplina'], $bimestre)) or die ($query);
             $aulas[$bimestre] = round(pg_affected_rows($result) * $creditos_por_dia); //pg_affected_rows($result);
         }
     }
     $template->aulas_dadas = array_sum($aulas);
 
-    $sql = "select * from alunos where disciplina_id = " . $_GET['id_disciplina'] . " and id = " . $_GET['id_aluno'];
+    $sql = "select * from alunos where disciplina_id = $1 and id = $2";
     // $result = pg_query($sql);
-    $result = pg_query_params($conexao, $sql, array()) or die ($sql);
+    $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'],$_GET['id_aluno'])) or die ($sql);
     while ($registro = pg_fetch_array($result)) {
         $nome = explode(" ", $registro['nome']);
         $matriz[$registro['matricula']]['Nome'] = $nome[0];
         $matricula = $registro['matricula'];
         for ($bimestre = 1; $bimestre <= $total; $bimestre++) {
-            $sql2 = "select * from presencas where aluno_id = " . $registro['id'] . " and bimestre = " . $bimestre . " order by data";
+            $sql2 = "select * from presencas where aluno_id = $1 and bimestre = $2 order by data";
             // $result2 = pg_query($sql2);
-            $result2 = pg_query_params($conexao, $sql2, array()) or die ($sql2);
+            $result2 = pg_query_params($conexao, $sql2, array($registro['id'], $bimestre)) or die ($sql2);
 
             if (pg_affected_rows($result2) > 0) {
                 while ($registro2 = pg_fetch_array($result2)) {
@@ -228,10 +198,10 @@
             }
             $sqlPresenca = "select * from presencas
                 where
-                    aluno_id = " . $registro['id'] . " and
-                    disciplina_id = " . $_GET['id_disciplina'] . " and resultado = 1 and bimestre = " . $bimestre;
+                    aluno_id = $1 and
+                    disciplina_id = $2 and resultado = 1 and bimestre = $3";
             // $resultadoPresenca = pg_query($sqlPresenca);
-            $resultadoPresenca = pg_query_params($conexao, $sqlPresenca, array()) or die ($sqlPresenca);
+            $resultadoPresenca = pg_query_params($conexao, $sqlPresenca, array($registro['id'], $_GET['id_disciplina'], $bimestre)) or die ($sqlPresenca);
             $presencas = 0;
             $faltas = 0;
             while ($xPresenca = pg_fetch_array($resultadoPresenca)) {

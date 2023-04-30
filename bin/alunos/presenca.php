@@ -4,9 +4,9 @@ require_once "../../lib/conexao.php";
 $data = $_POST['data'];
 $bimestre = ((empty($_POST['bimestre'])) ? 1 : $_POST['bimestre']);
 
-$sql = "select * from disciplinas where id = " . $_GET['id_disciplina'];
+$sql = "select * from disciplinas where id = $1";
 // $result = pg_query($sql);
-$result = pg_query_params($conexao, $sql, array()) or die ($sql);
+$result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
 $disciplina = pg_fetch_array($result);
 $total = (($disciplina['eh_semestral'] == 't') ? 2 : 4);
 $vetBimestre = array();
@@ -15,9 +15,9 @@ for ($i = 1; $i <= $total; $i++) {
 }
 
 // presencas
-$sql = "select id from alunos where disciplina_id = " . $_GET['id_disciplina'];
+$sql = "select id from alunos where disciplina_id = $1";
 // $result = pg_query($sql);
-$result = pg_query_params($conexao, $sql, array()) or die ($sql);
+$result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
 $sql = "";
 if (pg_affected_rows($result) > 0) {
 	while ($registro = pg_fetch_array($result)) {
