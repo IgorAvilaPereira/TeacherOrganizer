@@ -16,9 +16,9 @@
 	$template->total = $a['total'];	
 
 	// Avaliacoes	
-	$query = "select * from avaliacoes where disciplina_id=".$_GET['id_disciplina']." order by bimestre, data_hora";
+	$query = "select * from avaliacoes where disciplina_id = $1 order by bimestre, data_hora";
 	// $result = pg_query($query);	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 	
 	
@@ -40,9 +40,9 @@
 		} else {
 			$template->data_hora = "";
 		}			 
-		$sql = "select * from notas where avaliacao_id=".$registro['id'];
+		$sql = "select * from notas where avaliacao_id = $1";
 		// $x = pg_query($sql);
-		$x = pg_query_params($conexao, $sql, array()) or die ($sql);
+		$x = pg_query_params($conexao, $sql, array($registro['id'])) or die ($sql);
 
 		$linhas = pg_affected_rows($x);
 		if ($linhas == 0){
@@ -67,8 +67,8 @@
 
 
 	$dia = array('Domingo', 'Segunda', 'Ter&ccedil;a', 'Quarta', 'Quinta', 'Sexta', 'S&aacute;bado');	
-	$query = "select * from disciplinas where id=".$_GET['id_disciplina'];	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$query = "select * from disciplinas where id = $1";	
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 	$registro = pg_fetch_array($result);
 	
 	//$template->curso_id = $registro['curso_id'];
@@ -83,8 +83,8 @@
 		$template->creditos_por_dia = $registro['creditos_por_dia'];	
 		$creditos_por_dia = (($registro['creditos_por_dia'] > 0)? $registro['creditos_por_dia']: $registro['creditos']);
 	} /*else {		*/
-		$queryCreditosPorDia = "select * from creditos where disciplina_id=".$_GET['id_disciplina'];	
-		$resultCreditosPorDia =  pg_query_params($conexao, $queryCreditosPorDia, array()) or die ($queryCreditosPorDia);
+		$queryCreditosPorDia = "select * from creditos where disciplina_id = $1";	
+		$resultCreditosPorDia =  pg_query_params($conexao, $queryCreditosPorDia, array($_GET['id_disciplina'])) or die ($queryCreditosPorDia);
 		$str = "<br>";
 		$totalCreditos = 0;
 		while ($registroCreditosPorDia = pg_fetch_array($resultCreditosPorDia)){

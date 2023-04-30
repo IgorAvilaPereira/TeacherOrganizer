@@ -6,9 +6,9 @@
 	
 	$template = new Template("../../view/avaliacoes/tela_alterar.html");
 	
-	$query = "select * from avaliacoes where id = ".$_GET['id_avaliacao'];
+	$query = "select * from avaliacoes where id = $1";
 	// $result = pg_query($sql);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_avaliacao'])) or die ($query);
 	$registro = pg_fetch_array($result);
 		
 	$template->id = $registro['id'];
@@ -31,9 +31,9 @@
 	}
 	$template->id_disciplina = $registro['disciplina_id'];
 		
-	$query = "select * from disciplinas where id  = ".$registro['disciplina_id'];
+	$query = "select * from disciplinas where id  =  $1";
 	// $result = pg_query($query);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($registro['disciplina_id'])) or die ($query);
 
 	$disciplina =  pg_fetch_array($result);		
 	$template->disciplina_nome = $disciplina['nome'];
