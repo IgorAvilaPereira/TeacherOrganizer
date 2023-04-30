@@ -6,9 +6,9 @@
 	
 	$template = new Template("../../view/anotacoes/tela_alterar.html");
 	
-	$query = "select * from anotacoes where id = ".$_GET['id_anotacao'];
+	$query = "select * from anotacoes where id = $1";
 	// $result = pg_query($sql);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_anotacao'])) or die ($query);
 	$registro = pg_fetch_array($result);
 		
 	$template->id = $registro['id'];

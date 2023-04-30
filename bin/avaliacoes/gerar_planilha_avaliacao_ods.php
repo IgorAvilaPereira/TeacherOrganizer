@@ -24,9 +24,9 @@
         $alfabeto[] = $letra;
     }
     
-    $query = "select * from avaliacoes where id = ".$avaliacao_id;
+    $query = "select * from avaliacoes where id = $1";
     // $result = pg_query($query);
-    $result = pg_query_params($conexao, $query, array()) or die ($query);
+    $result = pg_query_params($conexao, $query, array($avaliacao_id)) or die ($query);
 
     $registro = pg_fetch_array($result);
     $titulo_nome_planilha = strtr(strtolower(str_replace("-", "_", str_replace(" ","_",$registro['titulo']))), $caracteres_sem_acento);    
@@ -38,9 +38,9 @@
     $ods  = new ods();
     $table1 = new odsTable('Alunos');    
 
-    $query = "select * from alunos where disciplina_id = ".$disciplina_id." order by matricula";
+    $query = "select * from alunos where disciplina_id = $1 order by matricula";
     // $result = pg_query($query);
-    $result = pg_query_params($conexao, $query, array()) or die ($query);
+    $result = pg_query_params($conexao, $query, array($disciplina_id)) or die ($query);
     
     // primeira planilha
 

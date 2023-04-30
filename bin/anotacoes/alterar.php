@@ -1,9 +1,9 @@
 <?php
 	require_once "../../lib/conexao.php";
 	
-	$query = "update anotacoes set anotacao = '".$_POST['anotacao']."' where id = ".$_POST['id'];
+	$query = "update anotacoes set anotacao = $1 where id = $2";
 	// $result = pg_query($sql) or die($sql); 	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_POST['anotacao'], $_POST['id'])) or die ($query);
 
 	header("Location: ../disciplinas/ver.php?id_disciplina=".$_POST['id_disciplina']);
 ?>	
