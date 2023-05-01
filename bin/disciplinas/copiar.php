@@ -77,7 +77,7 @@
 		$semestre, 
 		$disciplina_base['creditos'], 
 		((!isset($disciplina_base['creditos_por_dia']) || empty($disciplina_base['creditos_por_dia']))  ? NULL : $disciplina_base['creditos_por_dia']),
-		(($eh_semestral == 1) ? 'TRUE' : 'FALSE'),
+		(($eh_semestral == 1) ? TRUE : FALSE),
 		$disciplina_base['email'], 
 		$disciplina_base['curso_id'])) or die ($query);
 
