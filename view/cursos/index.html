@@ -29,7 +29,7 @@
 			}
 		}
 		function zipar_docente(){
-			alert('Feito!!');
+			alert('Zipando....!!');
 			// Exemplo de requisição GET
 			var ajax = new XMLHttpRequest();
 			// Seta tipo de requisição e URL com os parâmetros
@@ -41,13 +41,13 @@
 			// Caso o state seja 4 e o http.status for 200, é porque a requisiçõe deu certo.
 				if (ajax.readyState == 4 && ajax.status == 200) {
 					var data = ajax.responseText;	
-					// alert(data.responseText);				
+					alert("Feito! Arquivo gerado na pasta /zip");				
 					// Retorno do Ajax
 					//console.log(data);
 				}
 			}
 		}
-
+		
 		function zipar_docente_local(){
 			alert('Feito!!');
 			// Exemplo de requisição GET

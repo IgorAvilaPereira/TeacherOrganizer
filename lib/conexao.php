@@ -17,7 +17,7 @@ session_start();
 // ==================================================================
 define("URL", "http://localhost:8081/");
 // define("DIR", "/home/iapereira/git/TeacherOrganizer/");
-define("DIR", str_replace("lib", "", shell_exec("pwd")));
+define("DIR", trim(str_replace("lib", "", shell_exec("pwd"))));
 // ==================================================================
 // Permitir somente Minha Placa de Rede
 // $resultado = shell_exec("ip -brief link");
