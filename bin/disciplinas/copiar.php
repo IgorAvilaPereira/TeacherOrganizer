@@ -6,9 +6,9 @@
 	$semestre = ((date("m") <= 6) ? 1 : 2);	
 
 	// obtendo a disciplina que sera usada como base
-	$query = "select * from disciplinas WHERE id = ".$_POST['id'];
+	$query = "select * from disciplinas WHERE id = $1";
 	// $result = pg_query($query);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_POST['id'])) or die ($query);
 
 	$disciplina_base = pg_fetch_array($result);
 	$eh_semestral = (($disciplina_base['eh_semestral'] == 't') ? 1: 0);
@@ -115,7 +115,7 @@
 				$registro['valor'], 
 				$nova_disciplina['id'], 
 				$registro['bimestre'],
-				(($registro['da_substitutiva'] == 't') ? 'TRUE': 'FALSE'))) or die ($query);
+				(($registro['da_substitutiva'] == 't') ? TRUE: FALSE))) or die ($query);
 		}		
 		
 	}
