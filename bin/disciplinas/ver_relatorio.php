@@ -236,9 +236,9 @@
 			} 
 		
 			// bloco de notas - com exame
-			$sql = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = ".$registro['id']." and bimestre = ".$bimestre; 
+			$sql = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = $1 and bimestre = $2"; 
 			// $resultadoX =  pg_query($sql) or die($sql);
-			$resultadoX = pg_query_params($conexao, $sql, array()) or die ($sql);
+			$resultadoX = pg_query_params($conexao, $sql, array($registro['id'], $bimestre)) or die ($sql);
 
 			$x = pg_fetch_array($resultadoX);
 			$template->bimestre = (($bimestre > 0) ? $bimestre : "Exame");						
@@ -262,18 +262,18 @@
 			$porcentagem = 0;
 		}				
 		// situacao - aprovado ou reprovado??
-		$sql = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = ".$registro['id']." and bimestre > 0"; 
+		$sql = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = $1 and bimestre > 0"; 
 		// $resultadoX =  pg_query($sql) or die($sql);
-		$resultadoX = pg_query_params($conexao, $sql, array()) or die ($sql);
+		$resultadoX = pg_query_params($conexao, $sql, array($registro['id'])) or die ($sql);
 
 		$x = pg_fetch_array($resultadoX);		
 		//$template->soma = "Soma:".$x['nota'];
 		//$template->soma = "";  		
 		if (/*$x['nota'] >= 28 && */strcmp($eh_semestral, 'Anual') == 0){
 			// considerando o exame
-			$sqlz = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = ".$registro['id']." and bimestre >= 0"; 
+			$sqlz = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = $1 and bimestre >= 0"; 
 			// $resultadoz =  pg_query($sqlz) or die($sqlz);
-			$resultadoz = pg_query_params($conexao, $sqlz, array()) or die ($sqlz);
+			$resultadoz = pg_query_params($conexao, $sqlz, array($registro['id'])) or die ($sqlz);
 
 			if (pg_affected_rows($resultadoz)>0){
 				$z = pg_fetch_array($resultadoz);
@@ -293,9 +293,9 @@
 			$template->situacao = "Aprovado";
 		} else if (strcmp($eh_semestral, 'Semestral') == 0){
 			// considerando o exame
-			$sqlz = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = ".$registro['id']." and bimestre >= 0"; 
+			$sqlz = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = $1 and bimestre >= 0"; 
 			// $resultadoz =  pg_query($sqlz) or die($sqlz);
-			$resultadoz = pg_query_params($conexao, $sqlz, array()) or die ($sqlz);
+			$resultadoz = pg_query_params($conexao, $sqlz, array($registro['id'])) or die ($sqlz);
 
 			if (pg_affected_rows($resultadoz)>0){
 				$z = pg_fetch_array($resultadoz);
