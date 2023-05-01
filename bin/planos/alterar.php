@@ -14,7 +14,7 @@ if (!isset($_POST['creditos']) || $_POST['creditos'] <= 0) {
 		where
 			id = $3";
 	// $result = pg_query() or die($sql);
-	$result = pg_query_params($conexao, $sql, array(trim($_POST['texto'], $_POST['bimestre'], $_POST['plano_id']))) or die ($sql);
+	$result = pg_query_params($conexao, $sql, array(trim($_POST['texto']), $_POST['bimestre'], $_POST['plano_id'])) or die ($sql);
 
 
 	// 2º) dah falta para todos naquele dia com os novos valores de bim. e creditos
