@@ -8,9 +8,9 @@
 	$template = new Template("../../view/avaliacoes/relatorio.html");
 	
 	// qtde de alunos
-	$query = "select count(*) as total from alunos where disciplina_id=".$_GET['id_disciplina'];
+	$query = "select count(*) as total from alunos where disciplina_i = $1";
 	// $result = pg_query($query) or die("erro");	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 	$a = pg_fetch_array($result);
 	$template->total = $a['total'];	

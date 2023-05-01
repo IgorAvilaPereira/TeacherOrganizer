@@ -7,12 +7,7 @@
 	$avaliacao = pg_fetch_array($result);
 	$bimestre = $avaliacao['bimestre'];
 
-    // echo "<pre>";
-    //     print_r(var_dump($avaliacao));
-    // echo "</pre>";
-    // die();
-
-	$query = "UPDATE avaliacoes 
+ 	$query = "UPDATE avaliacoes 
             SET 
                 corrigida = $1
 			WHERE 

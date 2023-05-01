@@ -1,7 +1,7 @@
 <?php
 	require_once "../../lib/conexao.php";
 	
-	$data =(!isset($_POST['data']) || empty($_POST['data']) ? NULL : $_POST['data']);
+	$data = (!isset($_POST['data']) || empty($_POST['data']) ? NULL : $_POST['data']);
 	$hora = (!isset($_POST['hora']) || empty($_POST['hora']) ? NULL:  $_POST['hora']);
 	
 	if ($data != NULL) {
