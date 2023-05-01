@@ -151,7 +151,7 @@
 	}					
 	
 	for ($bimestre = 1; $bimestre <= $total; $bimestre++) {	
-		$sql = "SELECT id, disciplina_id, nr_creditos, dia_semana  FROM creditos WHERE disciplina_id = $1";
+		$sql = "SELECT id, disciplina_id, nr_creditos, dia_semana FROM creditos WHERE disciplina_id = $1";
 		// $resultado  = pg_query($sql);
 		$resultado = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
 
@@ -159,9 +159,9 @@
 			$sql = "select distinct data, creditos from presencas 
 					where 
 					aluno_id in (select id from alunos where disciplina_id = $1 limit 1) and 
-					disciplina_id = $2 and bimestre = ".$bimestre;					
+					disciplina_id = $2 and bimestre = $3";					
 				// $resultado =  pg_query($sql);
-				$resultado = pg_query_params($conexao, $sql, array($_GET['id_disciplina'], $_GET['id_disciplina'])) or die ($sql);
+				$resultado = pg_query_params($conexao, $sql, array($_GET['id_disciplina'], $_GET['id_disciplina'], $bimestre)) or die ($sql);
 
 				$aulasX = 0;
 				while($x = pg_fetch_array($resultado)){						
@@ -197,9 +197,9 @@
 
 
 	// Listagem de alunos
-	$query = "select alunos.id, alunos.nome, alunos.matricula, alunos.observacao from disciplinas inner join alunos on(alunos.disciplina_id = disciplinas.id) where disciplinas.id=".$_GET['id_disciplina']." order by ".((isset($_GET['order'])) ? $_GET['order']: "matricula");
+	$query = "select alunos.id, alunos.nome, alunos.matricula, alunos.observacao from disciplinas inner join alunos on(alunos.disciplina_id = disciplinas.id) where disciplinas.id = $1 order by ".((isset($_GET['order'])) ? $_GET['order']: "matricula");
 	// $result = pg_query($query);	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 	$template->totalAlunos = pg_affected_rows($result);	
 	$i = 1;	
@@ -239,10 +239,10 @@
 				if ($bimestre > 0) { 						
 				$sql = "select count(*) as presencas from presencas 
 					where 
-						aluno_id = ".$registro['id']." and 
-						disciplina_id = ".$_GET['id_disciplina']." and resultado = 1 and bimestre = ".$bimestre;
+						aluno_id = $1 and 
+						disciplina_id = $2 and resultado = 1 and bimestre = $3";
 				// $resultadoX =  pg_query($sql);
-				$resultadoX = pg_query_params($conexao, $sql, array()) or die ($sql);
+				$resultadoX = pg_query_params($conexao, $sql, array($registro['id'], $_GET['id_disciplina'], $bimestre)) or die ($sql);
 
 				$x = pg_fetch_array($resultadoX);
 				
@@ -251,9 +251,9 @@
 				//$template->bimestre_nome = (($bimestre > 0) ? $bimestre : "Exame");
 				
 				// DISCIPLINAS QUE POSSUEM CREDITOS DIFERENTES....				
-				$sqlCreditos = "SELECT id, disciplina_id, nr_creditos, dia_semana  FROM creditos WHERE disciplina_id = ".$_GET['id_disciplina'];
+				$sqlCreditos = "SELECT id, disciplina_id, nr_creditos, dia_semana  FROM creditos WHERE disciplina_id = $1";
 				// $resultadoCreditos = pg_query($sqlCreditos);
-				$resultadoCreditos = pg_query_params($conexao, $sqlCreditos, array()) or die ($sqlCreditos);
+				$resultadoCreditos = pg_query_params($conexao, $sqlCreditos, array($_GET['id_disciplina'])) or die ($sqlCreditos);
 
 				if (pg_affected_rows($resultadoCreditos) == 0){	
 					$template->presencas = round((($x['presencas'] > 0) ? $x['presencas'] : 0) * $creditos_por_dia);
@@ -265,19 +265,19 @@
 					$template->alerta = (($porcentagem < 75)? "" : "");
 					
 					$sql = "select count(*) as faltas from presencas 
-						where aluno_id = ".$registro['id']." and disciplina_id = ".$_GET['id_disciplina']." and resultado = 0 and bimestre = ".$bimestre;
+						where aluno_id = $1 and disciplina_id = $2 and resultado = 0 and bimestre = $3";
 					// $resultadoX =  pg_query($sql);
-					$resultadoX = pg_query_params($conexao, $sql, array()) or die ($sql);
+					$resultadoX = pg_query_params($conexao, $sql, array($registro['id'], $_GET['id_disciplina'], $bimestre)) or die ($sql);
 					$x = pg_fetch_array($resultadoX);			
 					$template->faltas = round((($x['faltas'] > 0) ? $x['faltas'] : 0) * $creditos_por_dia);
 					$totalFaltas += 	round((($x['faltas'] > 0) ? $x['faltas'] : 0) * $creditos_por_dia);
 				} else {						
 					$sqlPresenca = "select * from presencas 
 					where 
-						aluno_id = ".$registro['id']." and 
-						disciplina_id = ".$_GET['id_disciplina']." and resultado = 1 and bimestre = ".$bimestre;
+						aluno_id = $1 and 
+						disciplina_id = $2 and resultado = 1 and bimestre = $3";
 					// $resultadoPresenca =  pg_query($sqlPresenca);	
-					$resultadoPresenca = pg_query_params($conexao, $sqlPresenca, array()) or die ($sqlPresenca);				
+					$resultadoPresenca = pg_query_params($conexao, $sqlPresenca, array($registro['id'], $_GET['id_disciplina'], $bimestre)) or die ($sqlPresenca);				
 					$presencas = 0;
 					$faltas = 0;
 					while($xPresenca = pg_fetch_array($resultadoPresenca)){
@@ -300,9 +300,9 @@
 			} 
 		
 			// bloco de notas - com exame
-			$sql = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = ".$registro['id']." and bimestre = ".$bimestre; 
+			$sql = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = $1 and bimestre = $2"; 
 			// $resultadoX =  pg_query($sql) or die($sql);
-			$resultadoX = pg_query_params($conexao, $sql, array()) or die ($sql);
+			$resultadoX = pg_query_params($conexao, $sql, array($registro['id'], $bimestre )) or die ($sql);
 
 			$x = pg_fetch_array($resultadoX);
 			$template->bimestre = (($bimestre > 0) ? $bimestre : "Exame");
@@ -310,9 +310,9 @@
 			if ($x['nota'] > 0) {
 				$template->nota = number_format($x['nota'],1);				
 			} else if ($bimestre == 0){
-				$query_nota_exame =  "select * from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where bimestre = 0 and aluno_id =".$registro['id']." and disciplina_id = ".$_GET['id_disciplina'];
+				$query_nota_exame =  "select * from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where bimestre = 0 and aluno_id = $1 and disciplina_id = $2";
 				// $result_query_nota_exame = pg_query($query_nota_exame);
-				$result_query_nota_exame = pg_query_params($conexao, $query_nota_exame, array()) or die ($query_nota_exame);
+				$result_query_nota_exame = pg_query_params($conexao, $query_nota_exame, array($registro['id'],$_GET['id_disciplina'] )) or die ($query_nota_exame);
 
 				if (pg_affected_rows($result_query_nota_exame) > 0){
 					$registro_nota_exame = pg_fetch_array($result_query_nota_exame);
@@ -336,9 +336,9 @@
 			$porcentagem = 0;
 		}				
 		// situacao - aprovado ou reprovado??
-		$sql = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = ".$registro['id']." and bimestre > 0"; 
+		$sql = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = $1 and bimestre > 0"; 
 		// $resultadoX =  pg_query($sql) or die($sql);
-		$resultadoX = pg_query_params($conexao, $sql, array()) or die ($sql);
+		$resultadoX = pg_query_params($conexao, $sql, array($registro['id'])) or die ($sql);
 
 		$x = pg_fetch_array($resultadoX);		
 		if (strcmp($eh_semestral, 'Anual') == 0){
