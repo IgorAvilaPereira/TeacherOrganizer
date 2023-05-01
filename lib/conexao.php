@@ -43,7 +43,7 @@ define("DIR", "/home/iapereira/git/TeacherOrganizer/");
 //     die("ACESSO NÃO PERMITIDO - NÃO É UM COMPUTADOR PERMITIDO.");
 // }
 // ==================================================================
-// Permitir Somente Acesso Local/Com o usuario iapereira
+// Permitir Somente Acesso Local
 // $resultado = shell_exec("whoami");
 // if (strcmp(explode("/", DIR)[2], trim($resultado)) !== 0 || strcmp($_SERVER["REMOTE_ADDR"], "127.0.0.1") != 0 || !(strpos($_SERVER["SCRIPT_FILENAME"], trim($resultado)) !== false) || !(strpos($_SERVER["DOCUMENT_ROOT"], trim($resultado)) !== false)) {
 //     die("ACESSO NÃO PERMITIDO - NÃO É UMA CONTA LOCAL.");
@@ -92,87 +92,4 @@ function dump() {
     //shell_exec("rm -rf ".$path_back."*");
     //email();
 }
-
-
-
-// Funcao que realiza o dump do banco - tentando
-/*
-function dump() {
-    global $banco, $senha, $porta, $HOST, $usuario;    
-    $notebook_atual = shell_exec("hostname");
-    $notebook_ultimo_dump = shell_exec("cat ./../dumps/log.txt");
-    $path_back = DIR."dumps/";   
-    //  funcionando mas preferi retirar - apagando todos os dumps anteriores
-    // shell_exec("rm ".$path_back."*");
-    $link = $path_back . $banco . date("dmY") . ".sql";
-    // removendo dumps velhos (Mantem somente os ultimos)
-    $vetArquivo = explode("\n",shell_exec("cd ".$path_back." && ls -alt | grep \"docente*\" | awk '{print $(NF)}'"));
-    //  são diferentes
-    if (strcmp($notebook_atual, $notebook_ultimo_dump) !== 0) {
-        echo "Recuperando o dump:".$vetArquivo[0]." de ".$notebook_ultimo_dump."<br>";
-        shell_exec("PGPASSWORD=postgres psql -h localhost -U postgres -c 'ALTER DATABASE docente RENAME TO docente'".date("dmY")."'");
-        shell_exec("PGPASSWORD=".$senha." psql -h ".$HOST." -U ".$usuario." -d ".$banco. " < ".$path_back.$vetArquivo[0]);
-        shell_exec("hostname > ./../dumps/log.txt");
-    }
-    $cmd = "PGPASSWORD=" . $senha . " pg_dump --host " . $HOST . " --port " . $porta . " --username " . $usuario . " --format plain --create --clean --inserts --verbose --file " . $link . " " . $banco;
-    $vetArquivo = explode("\n",shell_exec("cd ".$path_back." && ls -alt | grep \"docente*\" | awk '{print $(NF)}'"));
-    // criando um novo dump atualizado => Executa o comando pg_dump que esta na variável cmd
-    shell_exec($cmd);
-    $x = 7;
-    if (count($vetArquivo) > $x){
-        for ($i=$x; $i < count($vetArquivo); $i++) { 
-            if (strlen($vetArquivo[$i]) > 0){
-                unlink($path_back.trim($vetArquivo[$i]));
-            }
-        }
-    }
-    // Compacta o arquivo gerado pelo camando para tar.gz
-    // shell_exec("tar -zcf ".$path_back.$banco.date("Ymd").".sql ".$path_back."*");
-    // As linhas abaixo forçam o download do arquivo
-    //header ("Content-Disposition: attachment; filename=".$banco.date("dmY").".sql");
-    //header ("Content-Type: application/octet-stream");
-    //header ("Content-Length: ".filesize($link));
-    //readfile($link);
-    // Apaga o arquivo gerado
-    //shell_exec("rm -rf ".$path_back."*");
-    //email();
-}*/
-
-
-// ==================================================================
-// nao testada
-// function diaDaSemana($dia) {
-// 	//$dia="22/03/2010";
-// 	$diaa = substr($dia, 0, 2) . "-";
-// 	$mes = substr($dia, 3, 2) . "-";
-// 	$ano = substr($dia, 6, 4);
-// 	$diasemana = date("w", mktime(0, 0, 0, $mes, $diaa, $ano));
-// 	return $diasemana;
-// }
-// function zipar_docente($nome){
-//     // Dropbox => FUNCIONANDO
-//     // shell_exec("zip -r  ".DIR_DROPBOX."ifrs/docente-backups/docente". date("dmY_Hi").".zip ".DIR);
-//     // Mega => FUNCIONANDO
-//     // shell_exec("zip -r  ".DIR_MEGA."ifrs/docente-backups/docente". date("dmY_Hi").".zip ".DIR);
-//     // Google Drive => FUNCIONANDO
-//     $path_back = DIR_GDRIVE."ifrs/docente-backups/";
-//     shell_exec("zip -r  ".$path_back.$nome.".zip ".DIR);
-//     // removendo dumps velhos (Mantem somente os ultimos)
-//     $vetArquivo = explode("\n", shell_exec("cd ".$path_back." && ls -alt | grep \"docente*\" | awk '{print $(NF)}'"));
-//     $x = 15;
-//     if (count($vetArquivo) > $x) {
-//         for ($i=$x; $i < count($vetArquivo); $i++) {
-//             if (strlen($vetArquivo[$i]) > 0) {
-//                 // try {
-//                 unlink(DIR_GDRIVE_WITHOUT_FORMAT."ifrs/docente-backups/".trim($vetArquivo[$i]));
-//                 // } catch(Exception $e) {
-//                 // echo "nops!!! <br>";
-//             // }
-//             }
-//         }
-//     }
-//     echo "ok";
-// }
-
-
 ?>
