@@ -14,6 +14,14 @@ Sistema de Gerenciamento para Professores: controle de presenças, controle de a
 
 ## Instalação:
 
+0) Dar permissão ao diretório zip: 
+
+No terminal:
+```sh
+sudo chmod 777 -R zip/
+```
+
+
 1) Restaurar ***dump*** no PostgreSQL:
 
 No terminal:
