@@ -2,9 +2,9 @@
 	require_once "../../lib/conexao.php";
 	require_once "../../lib/TextTable.php";
 
-	$query = "select * from disciplinas where id = ".$_GET['id_disciplina'];	
+	$query = "select * from disciplinas where id = $1";	
 	// $result = pg_query($query);	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 	$registro = pg_fetch_array($result);
 	
@@ -13,9 +13,9 @@
 	$disciplina = $registro['nome'];
 	$ano_semestre = $registro['ano']."/".$registro['semestre'];
 
-	$sql = "select *, planos.id as id from planos inner join disciplinas on (disciplinas.id = planos.disciplina_id) where disciplina_id = ".$_GET['id_disciplina']." ORDER BY data";
+	$sql = "select *, planos.id as id from planos inner join disciplinas on (disciplinas.id = planos.disciplina_id) where disciplina_id = $1 ORDER BY data";
 	// $result = pg_query($sql);		
-	$result = pg_query_params($conexao, $sql, array()) or die ($sql);
+	$result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
 
 	
 	$aulas = 0;

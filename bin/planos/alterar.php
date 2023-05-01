@@ -9,25 +9,24 @@ if (!isset($_POST['creditos']) || $_POST['creditos'] <= 0) {
 } else {
 	// 1º) altera a tupla dos planos
 	$sql = "update planos set
-			texto = '" . trim($_POST['texto']) . "',
-			bimestre = " . $_POST['bimestre'] . "
+			texto = $1,
+			bimestre = $2
 		where
-			id = " . $_POST['plano_id'] . ";";
+			id = $3";
 	// $result = pg_query() or die($sql);
-	$result = pg_query_params($conexao, $sql, array()) or die ($sql);
+	$result = pg_query_params($conexao, $sql, array(trim($_POST['texto'], $_POST['bimestre'], $_POST['plano_id']))) or die ($sql);
 
 
 	// 2º) dah falta para todos naquele dia com os novos valores de bim. e creditos
 	$sql = "UPDATE presencas SET
 					resultado = 0,
-					bimestre = " . $_POST['bimestre'] . " ,
-					creditos = " . $_POST['creditos'] . "					
+					bimestre = $1,
+					creditos = $2				
 				WHERE
-					data = '" . trim($_POST['data_hidden']) . "'
-					AND disciplina_id = " . $_POST['id_disciplina'] . ";";
+					data = $3 AND disciplina_id = $4";
 //    die($sql);
 	// $result = pg_query("BEGIN;" . $sql . "COMMIT;") or die($sql);
-	$result = pg_query_params($conexao, $sql, array()) or die ($sql);
+	$result = pg_query_params($conexao, $sql, array($_POST['bimestre'], $_POST['creditos'], trim($_POST['data_hidden']), $_POST['id_disciplina'])) or die ($sql);
 
 	// 3º) se algum aluno tiver presença...
 	if (isset($_POST['vetPresenca'])) {

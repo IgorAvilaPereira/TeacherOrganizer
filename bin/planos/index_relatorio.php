@@ -8,9 +8,9 @@
 
 	$template = new Template("../../view/planos/index_relatorio.html");
 	
-	$query = "select *, cursos.nome as curso, disciplinas.nome as disciplina from disciplinas inner join cursos on (disciplinas.curso_id = cursos.id) where disciplinas.id = ".$_GET['id_disciplina'];
+	$query = "select *, cursos.nome as curso, disciplinas.nome as disciplina from disciplinas inner join cursos on (disciplinas.curso_id = cursos.id) where disciplinas.id = $1";
 	// $result = pg_query($sql);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 	//pg_set_client_encoding($conexao, "iso-8859-1");
 	$registro = pg_fetch_array($result);	
@@ -21,9 +21,9 @@
 	$template->semestre = $registro['semestre'];
 	$template->ano = $registro['ano'];
 	
-	$sql = "select *, planos.id as id from planos inner join disciplinas on (disciplinas.id = planos.disciplina_id) where disciplina_id = ".$_GET['id_disciplina']." ORDER BY data desc";
+	$sql = "select *, planos.id as id from planos inner join disciplinas on (disciplinas.id = planos.disciplina_id) where disciplina_id = $1 ORDER BY data desc";
 	// $result = pg_query($sql);	
-	$result = pg_query_params($conexao, $sql, array()) or die ($sql);
+	$result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
 
 	while ($registro = pg_fetch_array($result)){
 		$template->texto = nl2br(utf8_decode($registro['texto']));
@@ -33,9 +33,9 @@
 		
 	//	$template->id = $registro['id'];
 
-		$sqlCreditos = "SELECT creditos FROM presencas WHERE data = '".$registro['data']."' and disciplina_id = ".$_GET['id_disciplina']." limit 1;";
+		$sqlCreditos = "SELECT creditos FROM presencas WHERE data = $1 and disciplina_id = $2 limit 1;";
 		// $resultadoCreditos = pg_query($sqlCreditos);
-		$resultadoCreditos = pg_query_params($conexao, $sqlCreditos, array()) or die ($sqlCreditos);
+		$resultadoCreditos = pg_query_params($conexao, $sqlCreditos, array($registro['data'], $_GET['id_disciplina'])) or die ($sqlCreditos);
 
 		$registroCreditos = pg_fetch_array($resultadoCreditos);
 		$template->creditos = $registroCreditos['creditos'];

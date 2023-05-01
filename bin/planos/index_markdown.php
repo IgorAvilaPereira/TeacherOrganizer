@@ -2,9 +2,9 @@
 	require_once "../../lib/conexao.php";
 	require_once "../../lib/TextTable.php";
 
-	$query = "select * from disciplinas where id = ".$_GET['id_disciplina'];	
+	$query = "select * from disciplinas where id = $1";	
 	// $result = pg_query($query);	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 	$registro = pg_fetch_array($result);
 	
@@ -13,9 +13,9 @@
 	$disciplina = $registro['nome'];
 	$ano_semestre = $registro['ano']."/".$registro['semestre'];
 
-	$sql = "select *, planos.id as id from planos inner join disciplinas on (disciplinas.id = planos.disciplina_id) where disciplina_id = ".$_GET['id_disciplina']." ORDER BY data";
+	$sql = "select *, planos.id as id from planos inner join disciplinas on (disciplinas.id = planos.disciplina_id) where disciplina_id = $1 ORDER BY data";
 	// $result = pg_query($sql);	
-	$result = pg_query_params($conexao, $sql, array()) or die ($sql);
+	$result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
 	
 	
 	$aulas = 0;
@@ -32,9 +32,9 @@
 		}
 
 		
-		$sqlCreditos = "SELECT creditos FROM presencas WHERE data = '".$registro['data']."' and disciplina_id = ".$_GET['id_disciplina']." limit 1;";
+		$sqlCreditos = "SELECT creditos FROM presencas WHERE data = $1 and disciplina_id = $2 limit 1;";
 		// $resultadoCreditos = pg_query($sqlCreditos);
-		$resultadoCreditos = pg_query_params($conexao, $sqlCreditos, array()) or die ($sqlCreditos);
+		$resultadoCreditos = pg_query_params($conexao, $sqlCreditos, array($registro['data'], $_GET['id_disciplina'])) or die ($sqlCreditos);
 
 		$registroCreditos = pg_fetch_array($resultadoCreditos);		
 		// qtde de linhas - 1 que devem ser replicadas
