@@ -7,7 +7,6 @@
 	$template = new Template("../../view/alunos/lista_optativa.html");
 
 	$query = "select * from disciplinas where id = $1";
-	// $resultado = pg_query($query);
 	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 	//pg_set_client_encoding($conexao, "iso-8859-1");
 
@@ -34,7 +33,6 @@
 			$template->bim2 = "2 bim";			
 			
 			$query = "select * from avaliacoes where da_substitutiva = TRUE AND disciplina_id = $1 and bimestre = 1";
-			// $result =  pg_query($query);
 			$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 			if (pg_affected_rows($result) > 0 ){
 				$registro = pg_fetch_array($result);
@@ -45,7 +43,6 @@
 
 
 			$query = "select * from avaliacoes where da_substitutiva = TRUE AND disciplina_id = $1 and bimestre = 2";
-			// $result =  pg_query($query);
 			$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 			if (pg_affected_rows($result) > 0 ){
 				$registro = pg_fetch_array($result);
@@ -55,7 +52,6 @@
 			}				
 		} else {
 			$query = "select * from avaliacoes where da_substitutiva = TRUE AND disciplina_id = $1 and bimestre = 3";
-			// $result =  pg_query($query);
 			$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 			if (pg_affected_rows($result) > 0 ){
 				$registro = pg_fetch_array($result);
@@ -65,7 +61,6 @@
 			}
 
 			$query = "select * from avaliacoes where da_substitutiva = TRUE AND disciplina_id = $1 and bimestre = 4";
-			// $result =  pg_query($query);
 			$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 			if (pg_affected_rows($result) > 0 ){
 				$registro = pg_fetch_array($result);
@@ -78,9 +73,8 @@
 			$template->bim2 = "4 bim";	
 		}
 	} else {
-		$query = "select * from avaliacoes where da_substitutiva = TRUE AND disciplina_id = $1 and bimestre = 1";
-			// $result =  pg_query($query);
-			$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
+		$query = "select * from avaliacoes where da_substitutiva = TRUE AND disciplina_id = $1 and bimestre = 1";			
+		$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 			if (pg_affected_rows($result) > 0 ){
 				$registro = pg_fetch_array($result);
 				$template->valor1 = $registro['valor'];
@@ -89,7 +83,6 @@
 			}
 
 			$query = "select * from avaliacoes where da_substitutiva = TRUE AND disciplina_id = $1 and bimestre = 2";
-			// $result =  pg_query($query);
 			$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 			if (pg_affected_rows($result) > 0 ){
 				$registro = pg_fetch_array($result);
@@ -105,7 +98,6 @@
 	//$template->valor2 = "";
 
 	$query = "select * from alunos where disciplina_id = $1";
-			// $result =  pg_query($query);
 			$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 	while ($aluno = pg_fetch_array($result)){
 		$template->matricula = $aluno['matricula'];

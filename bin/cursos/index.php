@@ -57,7 +57,6 @@ ORDER BY semestre desc, curso limit 6; -- AND semestre = 2";
 		WHERE ano = 2017 /*and semestre = $semestre*/
 	group by cursos.nome, disciplinas.id, disciplinas.nome, disciplinas.semestre, disciplinas.ano, disciplinas.curso_id
 	having disciplinas.id = 69";
-	// $result = pg_query($query) or die ($query);
 	$result = pg_query_params($conexao, $query, array()) or die ($query);
 
 
@@ -77,7 +76,6 @@ ORDER BY semestre desc, curso limit 6; -- AND semestre = 2";
 
 
 	$query = "select * from cursos order by nome";
-	// $result = pg_query($query);
 	$result = pg_query_params($conexao, $query, array()) or die ($query);
 
 

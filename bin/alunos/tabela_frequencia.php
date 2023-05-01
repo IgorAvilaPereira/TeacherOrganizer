@@ -4,7 +4,6 @@ require_once "../../lib/conexao.php";
 
 // informacoes basicas da disciplina
 $query = "select disciplinas.nome, ano, semestre, eh_semestral, cursos.nome as n, creditos, creditos_por_dia from disciplinas inner join cursos on (cursos.id = disciplinas.curso_id) where disciplinas.id = $1";
-// $result = pg_query($query);
 $result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 $registro = pg_fetch_array($result);

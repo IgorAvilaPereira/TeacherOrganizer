@@ -150,14 +150,12 @@
     $aulas = array();
     for ($bimestre = 1; $bimestre <= $total; $bimestre++) {
         $sql = "SELECT id, disciplina_id, nr_creditos, dia_semana  FROM creditos WHERE disciplina_id = $1";
-        // $resultado = pg_query($sql);
         $resultado = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
         if (pg_affected_rows($resultado) > 0) {
             $sql = "select distinct data, creditos from presencas
                         where
                         aluno_id in (select id from alunos where disciplina_id = $1 limit 1) and
                         disciplina_id = $2 and bimestre = $3";
-            // $resultado = pg_query($sql);
             $resultado = pg_query_params($conexao, $sql, array($_GET['id_disciplina'],  $_GET['id_disciplina'], $bimestre)) or die ($sql);
             $aulasX = 0;
             while ($x = pg_fetch_array($resultado)) {
@@ -167,7 +165,6 @@
         } else {
             $query = "select distinct data from presencas
                     where disciplina_id = $1 and bimestre = $2";
-            // $result = pg_query($query);
             $result = pg_query_params($conexao, $query, array($_GET['id_disciplina'], $bimestre)) or die ($query);
             $aulas[$bimestre] = round(pg_affected_rows($result) * $creditos_por_dia); //pg_affected_rows($result);
         }
@@ -183,7 +180,6 @@
         $matricula = $registro['matricula'];
         for ($bimestre = 1; $bimestre <= $total; $bimestre++) {
             $sql2 = "select * from presencas where aluno_id = $1 and bimestre = $2 order by data";
-            // $result2 = pg_query($sql2);
             $result2 = pg_query_params($conexao, $sql2, array($registro['id'], $bimestre)) or die ($sql2);
 
             if (pg_affected_rows($result2) > 0) {
@@ -200,7 +196,6 @@
                 where
                     aluno_id = $1 and
                     disciplina_id = $2 and resultado = 1 and bimestre = $3";
-            // $resultadoPresenca = pg_query($sqlPresenca);
             $resultadoPresenca = pg_query_params($conexao, $sqlPresenca, array($registro['id'], $_GET['id_disciplina'], $bimestre)) or die ($sqlPresenca);
             $presencas = 0;
             $faltas = 0;

@@ -5,7 +5,6 @@ $data = $_POST['data'];
 $bimestre = ((empty($_POST['bimestre'])) ? 1 : $_POST['bimestre']);
 
 $sql = "select * from disciplinas where id = $1";
-// $result = pg_query($sql);
 $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
 $disciplina = pg_fetch_array($result);
 $total = (($disciplina['eh_semestral'] == 't') ? 2 : 4);
@@ -16,14 +15,12 @@ for ($i = 1; $i <= $total; $i++) {
 
 // presencas
 $sql = "select id from alunos where disciplina_id = $1";
-// $result = pg_query($sql);
 $result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
 $sql = "";
 if (pg_affected_rows($result) > 0) {
 	while ($registro = pg_fetch_array($result)) {
 		$sql_x = "select * from presencas where disciplina_id = $1 and aluno_id = $2 
 		and data = $3 and bimestre in (" . implode(",", $vetBimestre) . ");";
-		// $x = pg_query($sql_x) or die($sql_x);
 		$x = pg_query_params($conexao, $sql_x, array($_GET['id_disciplina'], $registro['id'], $data)) or die ($sql_x);
 
 		if (pg_affected_rows($x) == 0) {
@@ -51,7 +48,6 @@ if (pg_affected_rows($result) > 0) {
 				data = $3
 			and 
 				bimestre = $4";
-	// $result = pg_query($sql) or die($sql);
 	$result = pg_query_params($conexao, $sql, array($_POST['creditos'], $_GET['id_disciplina'], $data,  $bimestre)) or die ($sql);
 
 
@@ -69,7 +65,6 @@ if (pg_affected_rows($result) > 0) {
 				data = $2
 			and 
 				bimestre = $3";
-		// $result = pg_query($sql) or die($sql);
 		$result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'], $data, $bimestre)) or die ($sql);
 	}
 }
@@ -80,7 +75,6 @@ if (pg_affected_rows($result) > 0) {
 				data = $1 and 
 				disciplina_id = $2 and 
 				bimestre = $3"; 	
-	// $result = pg_query($sql) or die($sql); 
 	$result = pg_query_params($conexao, $sql, array($data,$_GET['id_disciplina'],$bimestre)) or die ($sql);
 	//  caso exista, pega o id
 	if (pg_affected_rows($result) > 0) {
@@ -101,7 +95,6 @@ if (pg_affected_rows($result) > 0) {
 	    	$2, 
 	    	$3) 
 	    RETURNING id;";
-	    // $result = pg_query($sql);// or die($sql); 
 		$result = pg_query_params($conexao, $sql, array($data,$_GET['id_disciplina'], $bimestre)) or die ($sql);
 		$registro = pg_fetch_array($result); 
 		$plano_id = $registro['id'];		

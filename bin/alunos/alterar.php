@@ -27,7 +27,6 @@
 	}
 
 	$query = "update alunos set nome = $1, matricula = $2, observacao = $3 where id = $4";		
-	// $result = pg_query("begin;".$query."commit;") or die("Problemas em alterar...");
 	$result = pg_query_params($conexao, $query, array(strtoupper($_POST['nome']), trim($_POST['matricula']), trim($_POST['observacao']), $_POST['id'])) or die ($query);
 
 		
