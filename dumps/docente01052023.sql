@@ -5,7 +5,7 @@
 -- Dumped from database version 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1)
 -- Dumped by pg_dump version 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1)
 
--- Started on 2023-05-01 12:18:07 -03
+-- Started on 2023-05-01 15:45:49 -03
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -981,7 +981,7 @@ INSERT INTO public.notas VALUES (5534, 0, 914, 1250, '<br>', NULL);
 -- Data for Name: planos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.planos VALUES (904, '2023-04-29', '- vcxvxc', 123, 1);
+INSERT INTO public.planos VALUES (904, '2023-04-29', '- vcxvxc SDFSADFSD', 123, 1);
 
 
 --
@@ -991,7 +991,7 @@ INSERT INTO public.planos VALUES (904, '2023-04-29', '- vcxvxc', 123, 1);
 --
 
 INSERT INTO public.presencas VALUES (14385, '2023-04-29', 1239, 123, 0, 1, 4);
-INSERT INTO public.presencas VALUES (14384, '2023-04-29', 1240, 123, 1, 1, 4);
+INSERT INTO public.presencas VALUES (14384, '2023-04-29', 1240, 123, 0, 1, 4);
 
 
 --
@@ -1802,7 +1802,7 @@ ALTER TABLE ONLY public.questoes_tags
     ADD CONSTRAINT tag_fk FOREIGN KEY (tag_id) REFERENCES public.tags(id);
 
 
--- Completed on 2023-05-01 12:18:07 -03
+-- Completed on 2023-05-01 15:45:49 -03
 
 --
 -- PostgreSQL database dump complete
