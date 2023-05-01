@@ -7,7 +7,6 @@
 	$template = new Template("../../view/anotacoes/tela_ver.html");
 	
 	$query = "select * from anotacoes inner join disciplinas on (disciplinas.id = anotacoes.disciplina_id) where anotacoes.id = $1";
-	// $result = pg_query($sql);
 	$result = pg_query_params($conexao, $query, array($_GET['id_anotacao'])) or die ($query);
 	$registro = pg_fetch_array($result);
 	

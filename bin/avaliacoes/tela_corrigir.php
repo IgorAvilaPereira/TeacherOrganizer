@@ -155,9 +155,9 @@
 				//$template->bimestre_nome = (($bimestre > 0) ? $bimestre : "Exame");
 				
 				// DISCIPLINAS QUE POSSUEM CREDITOS DIFERENTES....				
-				$sqlCreditos = "SELECT id, disciplina_id, nr_creditos, dia_semana  FROM creditos WHERE disciplina_id = ".$_GET['id_disciplina'];
+				$sqlCreditos = "SELECT id, disciplina_id, nr_creditos, dia_semana  FROM creditos WHERE disciplina_id = $1";
 				// $resultadoCreditos = pg_query($sqlCreditos);
-				$resultadoCreditos = pg_query_params($conexao, $sqlCreditos, array()) or die ($sqlCreditos);
+				$resultadoCreditos = pg_query_params($conexao, $sqlCreditos, array($_GET['id_disciplina'])) or die ($sqlCreditos);
 
 
 				if (pg_affected_rows($resultadoCreditos) == 0){	
@@ -170,9 +170,9 @@
 					//$template->alerta = (($porcentagem < 75)? "" : "");
 					
 					$sql = "select count(*) as faltas from presencas 
-						where aluno_id = ".$registro['id']." and disciplina_id = ".$_GET['id_disciplina']." and resultado = 0 and bimestre = ".$bimestre;
+						where aluno_id = ".$registro['id']." and disciplina_id = $1 and resultado = 0 and bimestre = $2";
 					// $resultadoX =  pg_query($sql);
-					$resultadoX = pg_query_params($conexao, $sql, array()) or die ($sql);
+					$resultadoX = pg_query_params($conexao, $sql, array($_GET['id_disciplina'], $bimestre)) or die ($sql);
 
 					$x = pg_fetch_array($resultadoX);			
 					//$template->faltas = round((($x['faltas'] > 0) ? $x['faltas'] : 0) * $creditos_por_dia);
@@ -207,9 +207,9 @@
 			} 
 		
 			// bloco de notas - com exame
-			$sql = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = ".$registro['id']." and bimestre = ".$bimestre; 
+			$sql = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = $1 and bimestre = $2"; 
 			// $resultadoX =  pg_query($sql) or die($sql);
-			$resultadoX = pg_query_params($conexao, $sql, array()) or die ($sql);
+			$resultadoX = pg_query_params($conexao, $sql, array($registro['id'], $bimestre)) or die ($sql);
 
 			$x = pg_fetch_array($resultadoX);
 			//$template->bimestre = (($bimestre > 0) ? $bimestre : "Exame");						

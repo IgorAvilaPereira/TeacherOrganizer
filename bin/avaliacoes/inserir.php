@@ -20,14 +20,21 @@
 			) 
 			values 
 			(
-				".$_POST['id_disciplina'].", 
-				'".$_POST['titulo']."', 
-				'".$_POST['descricao']."',
-				".$_POST['bimestre'].",				
-				".(($_POST['valor'] > 0) ? $_POST['valor'] : 10).",
-				'".($data." ".$hora)."');";
-						
-	// $result = pg_query($sql) or die($sql);
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+				$1,
+				$2,
+				$3,
+				$4,
+				$5,
+				$6);";
+
+	$result = pg_query_params($conexao, $query, array(
+		$_POST['id_disciplina'], 
+		$_POST['titulo'], 
+		$_POST['descricao'],
+		$_POST['bimestre'],				
+		(($_POST['valor'] > 0) ? $_POST['valor'] : 10),
+		$data." ".$hora
+	)) or die ($query);
+	
 	header("Location: ../disciplinas/ver.php?id_disciplina=".$_POST['id_disciplina']);	
 ?>

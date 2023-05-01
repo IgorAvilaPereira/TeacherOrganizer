@@ -5,22 +5,23 @@
 	$hora = (!isset($_POST['hora']) || empty($_POST['hora']) ? NULL:  $_POST['hora']);
 	
 	if ($data != NULL) {
+
 		$query = "update avaliacoes set 
-		titulo = '".$_POST['titulo']."', 
-		descricao = '".$_POST['descricao']."',
-		bimestre = ".$_POST['bimestre'].", 
-		valor = ".$_POST['valor'].",
-		data_hora = '".$data." ".$hora."' 
-		where id = ".$_POST['id'];
+		titulo = $1, 
+		descricao = $2,
+		bimestre = $3, 
+		valor = $4,
+		data_hora = $5 
+		where id = $6";
+		$result = pg_query_params($conexao, $query, array($_POST['titulo'], $_POST['descricao'], $_POST['bimestre'], $_POST['valor'], $data." ".$hora, $_POST['id'])) or die ($query);
 	} else {
 		$query = "update avaliacoes set 
-		titulo = '".$_POST['titulo']."', 
-		descricao = '".$_POST['descricao']."',
-		bimestre = ".$_POST['bimestre'].", 
-		valor = ".$_POST['valor']."		
-		where id = ".$_POST['id'];
+		titulo = $1, 
+		descricao = $2,
+		bimestre = $3, 
+		valor = $4		
+		where id = $5";
+		$result = pg_query_params($conexao, $query, array($_POST['titulo'], $_POST['descricao'], $_POST['bimestre'], $_POST['valor'], $_POST['id'])) or die ($query);
 	}
-	// $result = pg_query($sql) or die($sql); 	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
 	header("Location: ../disciplinas/ver.php?id_disciplina=".$_POST['id_disciplina']);
 ?>	

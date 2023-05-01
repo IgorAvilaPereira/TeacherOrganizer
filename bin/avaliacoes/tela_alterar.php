@@ -31,7 +31,7 @@
 	}
 	$template->id_disciplina = $registro['disciplina_id'];
 		
-	$query = "select * from disciplinas where id  =  $1";
+	$query = "select * from disciplinas where id = $1";
 	// $result = pg_query($query);
 	$result = pg_query_params($conexao, $query, array($registro['disciplina_id'])) or die ($query);
 

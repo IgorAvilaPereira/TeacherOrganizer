@@ -18,7 +18,7 @@
 				($1, $2, $3);";
                 pg_query_params($conexao, $sql, array($_GET['id_avaliacao'], $registro['id'], 0));
             } catch(Exception $erro){*/
-                $sql = "DELETE FROM notas WHERE avaliacao_id = $1 and aluno_id = $2;";
+                $sql = "DELETE FROM notas WHERE avaliacao_id = $1 and aluno_id = $2";
                 pg_query_params($conexao, $sql, array($_GET['id_avaliacao'], $registro['id'])) or die ($sql);
 
                 $sql = "insert into notas 
@@ -59,8 +59,6 @@
 					arquivo = $3
 				where 
 					aluno_id = $4 and avaliacao_id = $5";
-                // $result = pg_query($sql) or die('erro');
-                // $result = pg_query_params($conexao, $sql, array()) or die ($sql);
                 pg_query_params($conexao, $sql, array($nota,$_POST['vetComentario'][$aluno_id], $novo_nome, $aluno_id, $_GET['id_avaliacao'])) or die ($sql);
 
             } else {
@@ -69,9 +67,8 @@
 						obtido = $1,
 						comentario = $2
 					where 
-						aluno_id = $3 and avaliacao_id = $4";
-                // $result = pg_query($sql) or die('erro');
-                pg_query_params($conexao, $sql, array($nota,$_POST['vetComentario'][$aluno_id], $aluno_id, $_GET['id_avaliacao'])) or die ($sql);
+						aluno_id = $3 and avaliacao_id = $4";                
+                pg_query_params($conexao, $sql, array($nota, $_POST['vetComentario'][$aluno_id], $aluno_id, $_GET['id_avaliacao'])) or die ($sql);
             }
         }
     }

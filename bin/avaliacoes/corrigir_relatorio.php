@@ -7,8 +7,7 @@
 	
 	$template = new Template("../../view/avaliacoes/corrigir_relatorio.html");
 	
-	$query = "select * from avaliacoes where id = $1";
-	// $result = pg_query($query);	
+	$query = "select * from avaliacoes where id = $1";		
 	$result = pg_query_params($conexao, $query, array($_GET['id_avaliacao'])) or die ($query);
 	$registro = pg_fetch_array($result);
 		//$template->id_avaliacao = $registro['id'];
@@ -19,8 +18,7 @@
 		//$template->block("avaliacoes");
 	//}	
 	
-	$query = "select disciplinas.id, disciplinas.nome, disciplinas.ano, disciplinas.semestre, disciplinas.eh_semestral from disciplinas inner join avaliacoes on (disciplinas.id = avaliacoes.disciplina_id) where avaliacoes.id = $1";	
-	// $result = pg_query($query) or die ($query);	
+	$query = "select disciplinas.id, disciplinas.nome, disciplinas.ano, disciplinas.semestre, disciplinas.eh_semestral from disciplinas inner join avaliacoes on (disciplinas.id = avaliacoes.disciplina_id) where avaliacoes.id = $1";		
 	$result = pg_query_params($conexao, $query, array($_GET['id_avaliacao'])) or die ($query);
 	$registro = pg_fetch_array($result);
 	//$template->id_disciplina = $registro['id'];

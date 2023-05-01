@@ -15,7 +15,6 @@ $registro = pg_fetch_array($result);
 $template->curso = $registro['nome'];
 
 $query = "select * from avaliacoes where id = $1";
-// $result = pg_query($query);
 $result = pg_query_params($conexao, $query, array($_GET['id_avaliacao'])) or die ($query);
 
 // pg_set_client_encoding($conexao, "iso-8859-1");
@@ -29,7 +28,6 @@ $bimestre = $registro['bimestre'];
 
 
 $query = "select disciplinas.id, disciplinas.nome, disciplinas.ano, disciplinas.semestre, disciplinas.eh_semestral from disciplinas inner join avaliacoes on (disciplinas.id = avaliacoes.disciplina_id) where avaliacoes.id = $1";
-// $result = pg_query($query) or die($query);
 $result = pg_query_params($conexao, $query, array($_GET['id_avaliacao'])) or die ($query);
 
 $registro = pg_fetch_array($result);
@@ -44,14 +42,12 @@ if ($registro['eh_semestral'] === true  || $registro['eh_semestral'] == 't') {
 }
 
 $query = "select alunos.id, alunos.nome, alunos.matricula from disciplinas inner join alunos on(alunos.disciplina_id = disciplinas.id) where disciplinas.id = $1 ORDER BY matricula";
-// $result = pg_query($query) or die($query);
 $result = pg_query_params($conexao, $query, array($registro['id'])) or die ($query);
 
 while ($registro = pg_fetch_array($result)) {
 	$template -> matricula = $registro['matricula'];
 
-	$sql = "select obtido, comentario from notas where aluno_id = $1 and avaliacao_id = $2";
-	// $resultadoX = pg_query($sql);
+	$sql = "select obtido, comentario from notas where aluno_id = $1 and avaliacao_id = $2";	
 	$resultadoX = pg_query_params($conexao, $sql, array($registro['id'], $_GET['id_avaliacao'])) or die ($sql);
 
 	if (pg_affected_rows($resultadoX) > 0) {
@@ -65,7 +61,6 @@ while ($registro = pg_fetch_array($result)) {
 	// se for exame
 	if ($bimestre == 0) {
 		$sqly = "select sum(obtido) as soma from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = $1 and bimestre > 0 ";
-		// $resultadoy = pg_query($sqly);
 		$result = pg_query_params($conexao, $sqly, array($registro['id'])) or die ($sqly);
 
 		$y = pg_fetch_array($resultadoy);
