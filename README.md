@@ -10,33 +10,33 @@ Sistema de Gerenciamento para Professores: controle de presenças, controle de a
 * [Templates](https://raelcunha.com/template/)
 * Bootstrap
 * jQuery
-* Ajustar o php.ini para receber arquivos via upload
+* Ajustar o __php.ini__ para receber arquivos via upload
 
 ## Instalação:
 
-0) Dar permissão ao diretório zip: 
+Dar permissão ao diretório zip: 
 
 No terminal:
 ```sh
 sudo chmod 777 -R zip/
 ```
 
-
-1) Restaurar ***dump*** no PostgreSQL:
+Restaurar ***dump*** no PostgreSQL:
 
 No terminal:
 ```sh
 psql -h localhost -U postgres
 \i dumps/docente22122022.sql
 ```
-2) Iniciar o Teacher Organizer:
+
+Iniciar o Teacher Organizer:
 
 No terminal:
 ```sh
 ./start.sh
 ```
 
-3) Acessar http://localhost:8081
+Acessar http://localhost:8081
 
 ## Setup:
 
