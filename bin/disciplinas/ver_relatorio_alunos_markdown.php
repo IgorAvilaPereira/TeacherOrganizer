@@ -3,9 +3,9 @@
 	require_once "../../lib/TextTable.php";
 
 	//https://gist.github.com/dapepe/9956717
-	$query = "select * from disciplinas where id = ".$_GET['id_disciplina'];	
+	$query = "select * from disciplinas where id = $1";	
 	// $result = pg_query($query);	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 	if (pg_affected_rows($result) == 0) die("<h2> Disciplina inexistente </h2>");
 	$registro = pg_fetch_array($result);
@@ -37,14 +37,13 @@
 		FROM alunos 
 			INNER JOIN avaliacoes 
 				ON (alunos.disciplina_id = avaliacoes.disciplina_id) 
-			WHERE alunos.disciplina_id = ".$_GET['id_disciplina']."
-		GROUP BY 
+			WHERE alunos.disciplina_id = $1 GROUP BY 
 			alunos.matricula, avaliacoes.bimestre
 		ORDER BY 
 			alunos.matricula;";
 
 	// $result = pg_query($query);	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 	$rows = [];
 	if (pg_affected_rows($result) > 0){
@@ -63,13 +62,12 @@
 		INNER JOIN avaliacoes ON (avaliacoes.id = notas.avaliacao_id)
 		INNER JOIN alunos ON (notas.aluno_id = alunos.id)
 	WHERE 
-		avaliacoes.disciplina_id = ".$_GET['id_disciplina']."
-	GROUP BY 
+		avaliacoes.disciplina_id = $1 GROUP BY 
 		alunos.matricula, 
 		avaliacoes.bimestre";
 
 	// $result = pg_query($query);	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 	if (pg_affected_rows($result) > 0){
 		while($registro = pg_fetch_array($result)){
@@ -112,10 +110,10 @@
 
      $query = "select  distinct(titulo), avaliacoes.id, avaliacoes.bimestre, avaliacoes.data_hora, valor from avaliacoes inner join disciplinas on (disciplinas.id = avaliacoes.disciplina_id) 
      	inner join notas on (avaliacoes.id = notas.avaliacao_id)
-     	where disciplinas.id = ".$_GET['id_disciplina']." order by avaliacoes.bimestre desc, avaliacoes.data_hora desc";
+     	where disciplinas.id = $1 order by avaliacoes.bimestre desc, avaliacoes.data_hora desc";
     // die($query);
 	// $result = pg_query($query);	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 
 	if (pg_affected_rows($result) > 0){
@@ -129,10 +127,10 @@
 		while($registro = pg_fetch_array($result)){
 
 			$sql = "select (select count(*) as t from notas 
-			where avaliacao_id = ".$registro['id']." and comentario = '<br>' and obtido = 0),
-			(select count(*) as v from notas where avaliacao_id = ".$registro['id'].")";
+			where avaliacao_id = $1 and comentario = '<br>' and obtido = 0),
+			(select count(*) as v from notas where avaliacao_id = $1)";
 			// $x = pg_query($sql);
-			$x = pg_query_params($conexao, $sql, array()) or die ($sql);
+			$x = pg_query_params($conexao, $sql, array($registro['id'], $registro['id'])) or die ($sql);
 
 			$linhas = pg_fetch_array($x);
             if ($linhas['t'] != $linhas['v']) {
