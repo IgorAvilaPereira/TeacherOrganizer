@@ -31,9 +31,9 @@
 		$template->block("avaliacoes");
 	}	
  */	
-	$query = "select * from disciplinas where id=".$_GET['id_disciplina'];	
+	$query = "select * from disciplinas where id = $1";	
 	// $result = pg_query($query);	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 	$registro = pg_fetch_array($result);
 	
@@ -61,9 +61,9 @@
 	
 	for ($bimestre = 1; $bimestre <= $total; $bimestre++) {			
 		$query = "select distinct data from presencas 
-					where disciplina_id = ".$_GET['id_disciplina']." and bimestre = ".$bimestre;
+					where disciplina_id = $1 and bimestre = $2";
 		// $result = pg_query($query);
-		$result = pg_query_params($conexao, $query, array()) or die ($query);
+		$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'], $bimestre)) or die ($query);
 
 		$aulas[$bimestre] = pg_affected_rows($result);	
 		//$template->aulas = pg_affected_rows($result)*$creditos_por_dia;
@@ -72,17 +72,17 @@
 		//$template->block("aulasDadas");	
 	}
 	$query = "select max(bimestre) as bimestre from presencas 
-					where disciplina_id = ".$_GET['id_disciplina'];
+					where disciplina_id = $1";
 		// $result = pg_query($query);
-		$result = pg_query_params($conexao, $query, array()) or die ($query);
+		$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 		$max_bimestre =  pg_fetch_array($result);
 		//$template->max_bimestre = (($max_bimestre['bimestre'] > 0) ? $max_bimestre['bimestre'] : 1) ;		
 	 		
 	
-	$query = "select alunos.id, alunos.nome, alunos.matricula from disciplinas inner join alunos on(alunos.disciplina_id = disciplinas.id) where disciplinas.id=".$_GET['id_disciplina']." order by alunos.matricula";
+	$query = "select alunos.id, alunos.nome, alunos.matricula from disciplinas inner join alunos on(alunos.disciplina_id = disciplinas.id) where disciplinas.id = $1 order by alunos.matricula";
 	// $result = pg_query($query);	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 	$i = 1;	
 	while ($registro = pg_fetch_array($result)){
@@ -99,10 +99,10 @@
 				if ($bimestre > 0) { 						
 				$sql = "select count(*) as presencas from presencas 
 					where 
-						aluno_id = ".$registro['id']." and 
-						disciplina_id = ".$_GET['id_disciplina']." and resultado = 1 and bimestre = ".$bimestre;
+						aluno_id = $1 and 
+						disciplina_id = $2 and resultado = 1 and bimestre = $3";
 				// $resultadoX =  pg_query($sql);
-				$resultadoX = pg_query_params($conexao, $sql, array()) or die ($sql);
+				$resultadoX = pg_query_params($conexao, $sql, array($registro['id'], $_GET['id_disciplina'], $bimestre)) or die ($sql);
 
 				$x = pg_fetch_array($resultadoX);
 				
@@ -123,9 +123,9 @@
 			} 
 		
 			// bloco de notas - com exame
-			$sql = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = ".$registro['id']." and bimestre = ".$bimestre; 
+			$sql = "select sum(obtido) as nota from notas inner join avaliacoes on (notas.avaliacao_id = avaliacoes.id) where aluno_id = $1 and bimestre = $2"; 
 			// $resultadoX =  pg_query($sql) or die($sql);
-			$resultadoX = pg_query_params($conexao, $sql, array()) or die ($sql);
+			$resultadoX = pg_query_params($conexao, $sql, array($registro['id'], $bimestre)) or die ($sql);
 
 			$x = pg_fetch_array($resultadoX);
 
@@ -182,9 +182,9 @@
 
 	 $query = "select distinct(titulo), avaliacoes.id, avaliacoes.bimestre, avaliacoes.data_hora, valor from avaliacoes inner join disciplinas on (disciplinas.id = avaliacoes.disciplina_id) 
      	inner join notas on (avaliacoes.id = notas.avaliacao_id)
-     	where disciplinas.id = ".$_GET['id_disciplina']." order by avaliacoes.bimestre desc, avaliacoes.data_hora desc";
+     	where disciplinas.id = $1 order by avaliacoes.bimestre desc, avaliacoes.data_hora desc";
     // $result = pg_query($query);	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 
 
 	if (pg_affected_rows($result) > 0){
@@ -194,10 +194,10 @@
 		while($registro = pg_fetch_array($result)){
 
 			$sql = "select (select count(*) as t from notas 
-			where avaliacao_id = ".$registro['id']." and comentario = '<br>' and obtido = 0),
-			(select count(*) as v from notas where avaliacao_id = ".$registro['id'].")";
+			where avaliacao_id = $1 and comentario = '<br>' and obtido = 0),
+			(select count(*) as v from notas where avaliacao_id = $2)";
 			// $x = pg_query($sql);
-			$x = pg_query_params($conexao, $sql, array()) or die ($sql);
+			$x = pg_query_params($conexao, $sql, array($registro['id'],  $registro['id'])) or die ($sql);
 
 			$linhas = pg_fetch_array($x);
             if ($linhas['t'] != $linhas['v']) {

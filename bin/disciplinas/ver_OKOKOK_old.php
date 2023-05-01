@@ -7,7 +7,7 @@
 	
 	$template = new Template("../../view/disciplinas/ver.html");
 	
-	$query = "select * from avaliacoes where disciplina_id=".$_GET['id_disciplina']." order by bimestre";
+	$query = "select * from avaliacoes where disciplina_id = ".$_GET['id_disciplina']." order by bimestre";
 	$result = pg_query($query);	
 	$cor =  array('AliceBlue', 'LightGray', 'PaleGreen', 'yellow', 'pink');
 	while ($registro = pg_fetch_array($result)){			
