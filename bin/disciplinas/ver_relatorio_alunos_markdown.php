@@ -128,7 +128,7 @@
 
 			$sql = "select (select count(*) as t from notas 
 			where avaliacao_id = $1 and comentario = '<br>' and obtido = 0),
-			(select count(*) as v from notas where avaliacao_id = $1)";
+			(select count(*) as v from notas where avaliacao_id = $2)";
 			// $x = pg_query($sql);
 			$x = pg_query_params($conexao, $sql, array($registro['id'], $registro['id'])) or die ($sql);
 
