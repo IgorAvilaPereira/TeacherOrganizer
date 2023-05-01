@@ -16,7 +16,8 @@ session_start();
 // upload_max_filesize
 // ==================================================================
 define("URL", "http://localhost:8081/");
-define("DIR", "/home/iapereira/git/TeacherOrganizer/");
+// define("DIR", "/home/iapereira/git/TeacherOrganizer/");
+define("DIR", str_replace("lib", "", shell_exec("pwd")));
 // ==================================================================
 // Permitir somente Minha Placa de Rede
 // $resultado = shell_exec("ip -brief link");
