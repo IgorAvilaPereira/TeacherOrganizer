@@ -154,4 +154,5 @@ foreach ($vetDiaSemana as $chave => $valor) {
 }
 
 $template->show();
+
 ?>
