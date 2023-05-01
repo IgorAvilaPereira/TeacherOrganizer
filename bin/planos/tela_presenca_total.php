@@ -7,9 +7,9 @@
    $template->disciplina_id = $_GET['disciplina_id'];
    // $query = "select * from planos where disciplina_id = ".$_GET['disciplina_id']." order by data desc;";
    // die($query);
-   $query = "select distinct planos.data, planos.texto, presencas.creditos from planos inner join presencas on (planos.data = presencas.data) where planos.disciplina_id = ".$_GET['disciplina_id']." order by planos.data desc;";
+   $query = "select distinct planos.data, planos.texto, presencas.creditos from planos inner join presencas on (planos.data = presencas.data) where planos.disciplina_id = $1 order by planos.data desc;";
    // $result = pg_query($query);
-   $result = pg_query_params($conexao, $query, array()) or die ($query);
+   $result = pg_query_params($conexao, $query, array($_GET['disciplina_id'])) or die ($query);
 	
    while ($registro = pg_fetch_array($result)) {      
       $template->data_formatada = explode("-",$registro['data'])[2]."/".explode("-",$registro['data'])[1]."/".explode("-",$registro['data'])[0];
@@ -17,9 +17,9 @@
       $template->texto = $registro['texto'];
       $template->creditos = $registro['creditos'];
      
-      $query = "SELECT alunos.id, alunos.matricula, alunos.nome, presencas.resultado FROM alunos inner join presencas on (presencas.aluno_id = alunos.id) WHERE presencas.data = '".$registro['data']."' and alunos.disciplina_id = ".$_GET['disciplina_id']." order by alunos.matricula";
+      $query = "SELECT alunos.id, alunos.matricula, alunos.nome, presencas.resultado FROM alunos inner join presencas on (presencas.aluno_id = alunos.id) WHERE presencas.data = '".$registro['data']."' and alunos.disciplina_id = $1 order by alunos.matricula";
       // $result_alunos = pg_query($query);	
-      $result_alunos = pg_query_params($conexao, $query, array()) or die ($query);
+      $result_alunos = pg_query_params($conexao, $query, array($_GET['disciplina_id'])) or die ($query);
 
 
 
