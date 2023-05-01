@@ -198,9 +198,9 @@
 					$template->alerta = (($porcentagem < 75)? "red" : "green");
 					
 					$sql = "select count(*) as faltas from presencas 
-						where aluno_id = ".$registro['id']." and disciplina_id = ".$_GET['id_disciplina']." and resultado = 0 and bimestre = ".$bimestre;
+						where aluno_id = $1 and disciplina_id = $2 and resultado = 0 and bimestre = $3";
 					// $resultadoX =  pg_query($sql);
-					$resultadoX = pg_query_params($conexao, $sql, array()) or die ($sql);
+					$resultadoX = pg_query_params($conexao, $sql, array($registro['id'], $_GET['id_disciplina'], $bimestre)) or die ($sql);
 
 					$x = pg_fetch_array($resultadoX);			
 					$template->faltas = round((($x['faltas'] > 0) ? $x['faltas'] : 0) * $creditos_por_dia);
@@ -208,10 +208,9 @@
 				} else {						
 					$sqlPresenca = "select * from presencas 
 					where 
-						aluno_id = ".$registro['id']." and 
-						disciplina_id = ".$_GET['id_disciplina']." and resultado = 1 and bimestre = ".$bimestre;
+						aluno_id = $1 and disciplina_id = $2 and resultado = 1 and bimestre = $3";
 					// $resultadoPresenca =  pg_query($sqlPresenca);					
-					$resultadoPresenca = pg_query_params($conexao, $sqlPresenca, array()) or die ($sqlPresenca);
+					$resultadoPresenca = pg_query_params($conexao, $sqlPresenca, array($registro['id'], $_GET['id_disciplina'],  $bimestre)) or die ($sqlPresenca);
 
 					$presencas = 0;
 					$faltas = 0;
