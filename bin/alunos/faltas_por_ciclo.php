@@ -18,11 +18,11 @@
     for ($bimestre = 1; $bimestre <= $total; $bimestre++) {     
         $query = "select presencas.bimestre, alunos.matricula, alunos.nome, sum(presencas.creditos) - sum(presencas.creditos * presencas.resultado) as faltas from alunos inner join presencas 
         on (presencas.aluno_id = alunos.id)
-    where alunos.disciplina_id = $id_disciplina and presencas.bimestre = $bimestre
+    where alunos.disciplina_id = $1 and presencas.bimestre = $2
     group by presencas.bimestre, alunos.matricula, alunos.nome, alunos.id
     order by presencas.bimestre, alunos.id";
         // $result = pg_query($query);
-        $result = pg_query_params($conexao, $query, array()) or die ($query);
+        $result = pg_query_params($conexao, $query, array($id_disciplina, $bimestre)) or die ($query);
 
     
         $html .= "## " . $bimestre . "º Ciclo <br><br>";      

@@ -35,10 +35,10 @@ for ($bimestre = 1; $bimestre <= $total; $bimestre++) {
     if (pg_affected_rows($resultado) > 0) {
         $sql = "select distinct data, creditos from presencas
 					where
-					aluno_id in (select id from alunos where disciplina_id = " . $_GET['id_disciplina'] . " limit 1) and
-					disciplina_id = " . $_GET['id_disciplina'] . " and bimestre = " . $bimestre;
+					aluno_id in (select id from alunos where disciplina_id = $1 limit 1) and
+					disciplina_id = $2 and bimestre = $3";
         // $resultado = pg_query($sql);
-        $resultado = pg_query_params($conexao, $sql, array()) or die ($sql);
+        $resultado = pg_query_params($conexao, $sql, array($_GET['id_disciplina'], $_GET['id_disciplina'],  $bimestre)) or die ($sql);
         $aulasX = 0;
         while ($x = pg_fetch_array($resultado)) {
             $aulasX += $x['creditos'];
@@ -46,25 +46,25 @@ for ($bimestre = 1; $bimestre <= $total; $bimestre++) {
         $aulas[$bimestre] = $aulasX;
     } else {
         $query = "select distinct data from presencas
-				where disciplina_id = " . $_GET['id_disciplina'] . " and bimestre = " . $bimestre;
+				where disciplina_id = $1 and bimestre = $2";
         // $result = pg_query($query);
-        $result = pg_query_params($conexao, $query, array()) or die ($query);
+        $result = pg_query_params($conexao, $query, array($_GET['id_disciplina'],  $bimestre)) or die ($query);
         $aulas[$bimestre] = round(pg_affected_rows($result) * $creditos_por_dia); //pg_affected_rows($result);
     }
 }
 
-$sql = "select * from alunos where disciplina_id = " . $_GET['id_disciplina'] . " order by matricula";
+$sql = "select * from alunos where disciplina_id = $1 order by matricula";
 // $result = pg_query($sql);
-$result = pg_query_params($conexao, $sql, array()) or die ($sql);
+$result = pg_query_params($conexao, $sql, array($_GET['id_disciplina'])) or die ($sql);
 while ($registro = pg_fetch_array($result)) {
     $nome = explode(" ", $registro['nome']);
     $matriz[$registro['matricula']]['Nome'] = $nome[0];
     $matricula = $registro['matricula'];
 
     for ($bimestre = 1; $bimestre <= $total; $bimestre++) {
-        $sql2 = "select * from presencas where aluno_id = " . $registro['id'] . " and bimestre = " . $bimestre . " order by data";
+        $sql2 = "select * from presencas where aluno_id = $1 and bimestre = $2 order by data";
         // $result2 = pg_query($sql2);
-        $result2 = pg_query_params($conexao, $sql2, array()) or die ($sql2);
+        $result2 = pg_query_params($conexao, $sql2, array($registro['id'], $bimestre)) or die ($sql2);
 
         if (pg_affected_rows($result2) > 0) {
             while ($registro2 = pg_fetch_array($result2)) {
@@ -77,10 +77,10 @@ while ($registro = pg_fetch_array($result)) {
         }
         $sqlPresenca = "select * from presencas
 					where
-						aluno_id = " . $registro['id'] . " and
-						disciplina_id = " . $_GET['id_disciplina'] . " and resultado = 1 and bimestre = " . $bimestre;
+						aluno_id = $1 and
+						disciplina_id = $2 and resultado = 1 and bimestre = $3" ;
         // $resultadoPresenca = pg_query($sqlPresenca);
-        $resultadoPresenca = pg_query_params($conexao, $sqlPresenca, array()) or die ($sqlPresenca);
+        $resultadoPresenca = pg_query_params($conexao, $sqlPresenca, array($registro['id'], $_GET['id_disciplina'], $bimestre)) or die ($sqlPresenca);
 
         $presencas = 0;
         $faltas = 0;
@@ -106,9 +106,9 @@ $html .= "**Atualiza&ccedil;&atilde;o:** " . date("d/m/Y - H:i:s") . "<br><br>";
     $html .= "Cr&eacute;ditos por Aula/Encontro: " . $creditos_por_dia . "<br>";
 } else {*/
     $dia = array('Domingo', 'Segunda', 'Ter&ccedil;a', 'Quarta', 'Quinta', 'Sexta', 'S&aacute;bado');
-    $queryCreditosPorDia = "select * from creditos where disciplina_id = " . $_GET['id_disciplina'];
+    $queryCreditosPorDia = "select * from creditos where disciplina_id = $1";
     // $resultCreditosPorDia = pg_query($queryCreditosPorDia);
-    $resultCreditosPorDia = pg_query_params($conexao, $queryCreditosPorDia, array()) or die ($queryCreditosPorDia);
+    $resultCreditosPorDia = pg_query_params($conexao, $queryCreditosPorDia, array($_GET['id_disciplina'])) or die ($queryCreditosPorDia);
 
     $str = "<br>";
     $totalCreditos = 0;
@@ -149,10 +149,9 @@ $html .= "### Aulas Registradas (até o momento): <br><br>";
 
 for ($bimestre = 1; $bimestre <= $total; $bimestre++) {
     $query = "select * from planos
-            where disciplina_id = " . $_GET['id_disciplina'] . "
-            and bimestre = " . $bimestre . " order by data";
+            where disciplina_id = $1 and bimestre = $2 order by data";
     // $result = pg_query($query);
-    $result = pg_query_params($conexao, $query, array()) or die ($query);
+    $result = pg_query_params($conexao, $query, array($_GET['id_disciplina'], $bimestre)) or die ($query);
 
     if (pg_affected_rows($result) > 0) {
         $html .= "### " . $bimestre . "º Ciclo <br><br>";
