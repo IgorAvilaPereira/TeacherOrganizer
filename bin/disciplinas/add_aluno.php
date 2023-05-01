@@ -2,9 +2,9 @@
 	define('DELIMITADOR',';');
 	require_once "../../lib/conexao.php";	
 	
-	$query = "select * from disciplinas where id=".$_GET['id'];	
+	$query = "select * from disciplinas where id = $1";	
 	// $result = pg_query($query);	
-	$result = pg_query_params($conexao, $query, array()) or die ($query);
+	$result = pg_query_params($conexao, $query, array($_GET['id'])) or die ($query);
 
 	$registro = pg_fetch_array($result);	
 
@@ -18,10 +18,10 @@
 				$nome = trim($x[1]);
 				
 				// insere novo aluno
-				$insert = "insert into alunos (nome, matricula, disciplina_id) values ('".strtoupper($nome)."','".$matricula."',".$_GET['id'].") 
+				$insert = "insert into alunos (nome, matricula, disciplina_id) values ($1, $2, $3) 
 				returning id;";
 				// $result = pg_query($insert);
-				$result = pg_query_params($conexao, $insert, array()) or die ($insert);
+				$result = pg_query_params($conexao, $insert, array(strtoupper($nome), $matricula, $_GET['id'])) or die ($insert);
 
 								
 				// obtem o id				
@@ -29,15 +29,15 @@
 				$aluno_id =  $aluno_id['id'];
 				
 				// CORRIGIR por causa dos creditos... registra as faltas - caso a disciplina ja esteja ocorrendo... e adicionei um aluno novo que nao havia adicionado
-				$presencas = "select distinct data, bimestre, creditos from presencas where disciplina_id = ".$_GET['id']." order by data;";
+				$presencas = "select distinct data, bimestre, creditos from presencas where disciplina_id = $1 order by data;";
 				// $result = pg_query($presencas);
-				$result = pg_query_params($conexao, $presencas, array()) or die ($presencas);
+				$result = pg_query_params($conexao, $presencas, array($_GET['id'])) or die ($presencas);
 
 				while ($registro = pg_fetch_array($result)){ // o aluno "ganha" todas as presencas anteriores
 					$sql = "insert into presencas(data, aluno_id, disciplina_id, resultado, bimestre, creditos)
-    VALUES ('".$registro['data']."', ".$aluno_id.", ".$_GET['id'].", 1,".$registro['bimestre'].",".$registro['creditos'].");";
+    VALUES ($1, $2, $3, 1, $4, $5);";
 					// $resultPresenca = pg_query($sql) or die(pg_errormessage());
-					$resultPresenca = pg_query_params($conexao, $sql, array()) or die ($insert);
+					$resultPresenca = pg_query_params($conexao, $sql, array($registro['data'], $aluno_id, $_GET['id'], $registro['bimestre'], $registro['creditos'])) or die ($insert);
 
 					//select distinct data from presencas where disciplina_id = 30;
 //INSERT INTO presencas(data, aluno_id, disciplina_id, resultado, bimestre)
@@ -45,15 +45,15 @@
 				}		
 				// atribui zero para todas as avaliacoes anteriormente realizadas (antes da adicao do novo aluno)
 				$avaliacoes = " select distinct avaliacoes.id from avaliacoes 
- inner join notas on (notas.avaliacao_id = avaliacoes.id) where disciplina_id = ".$_GET['id']." order by avaliacoes.id;"; 
+ inner join notas on (notas.avaliacao_id = avaliacoes.id) where disciplina_id = $1 order by avaliacoes.id;"; 
 				// $resultAvaliacoes = pg_query($avaliacoes);
-				$resultAvaliacoes = pg_query_params($conexao, $avaliacoes, array()) or die ($avaliacoes);
+				$resultAvaliacoes = pg_query_params($conexao, $avaliacoes, array($_GET['id'])) or die ($avaliacoes);
 
 				while ($avaliacao = pg_fetch_array($resultAvaliacoes)){						
 						$sql = "insert into notas(obtido, avaliacao_id, aluno_id, comentario) 
-						VALUES (0, ".$avaliacao['id'].", ".$aluno_id.", 'Adicionado depois na disciplina');";
+						VALUES (0, $1, $2, 'Adicionado depois na disciplina');";
 						// $resultNota = pg_query($sql) or die(pg_errormessage());
-						$resultNota = pg_query_params($conexao, $sql, array()) or die ($sql);
+						$resultNota = pg_query_params($conexao, $sql, array($avaliacao['id'], $aluno_id)) or die ($sql);
 
 				}				
 			} else {
