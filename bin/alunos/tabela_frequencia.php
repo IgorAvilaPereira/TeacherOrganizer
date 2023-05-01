@@ -84,9 +84,7 @@ while ($registro = pg_fetch_array($result)) {
             $matriz[$registro['matricula']][$bimestre]['data'] = array();
         }
         $sqlPresenca = "select * from presencas
-			where
-				aluno_id = $1 and
-				disciplina_id = $2 and resultado = 1 and bimestre = $3" ;
+			where aluno_id = $1 and disciplina_id = $2 and resultado = 1 and bimestre = $3" ;
         // $resultadoPresenca = pg_query($sqlPresenca);
         $resultadoPresenca = pg_query_params($conexao, $sqlPresenca, array($registro['id'], $_GET['id_disciplina'], $bimestre)) or die ($sqlPresenca);
 
