@@ -8,8 +8,8 @@
 	$template = new Template("../../view/disciplinas/ver_relatorio2.html");
 	
 	
-	$query = "select ano, semestre, cursos.nome as curso, disciplinas.nome as disciplina from disciplinas inner join cursos on(cursos.id = disciplinas.curso_id) where disciplinas.id=".$_GET['id_disciplina'];
-	$result = pg_query($query);
+	$query = "select ano, semestre, cursos.nome as curso, disciplinas.nome as disciplina from disciplinas inner join cursos on(cursos.id = disciplinas.curso_id) where disciplinas.id = $1";
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);	
 	$registro = pg_fetch_array($result);	
 	$disciplina = utf8_decode($registro['disciplina']);
 	$template->disciplina = utf8_decode($disciplina);
@@ -39,8 +39,9 @@
 		$template->block("avaliacoes");
 	}*/	
 	
-	$query = "select * from disciplinas where id=".$_GET['id_disciplina'];	
-	$result = pg_query($query);	
+	$query = "select * from disciplinas where id = $1";	
+	// $result = pg_query($query);	
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 	$registro = pg_fetch_array($result);
 	/*
 	$template->id_disciplina = $registro['id'];
@@ -65,16 +66,18 @@
 	
 	for ($bimestre = 1; $bimestre <= $total; $bimestre++) {			
 		$query = "select distinct data from presencas 
-					where disciplina_id = ".$_GET['id_disciplina']." and bimestre = ".$bimestre;
-		$result = pg_query($query);
+					where disciplina_id = $1 and bimestre = $2";
+		// $result = pg_query($query);
+		$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'], $bimestre)) or die ($query);
 		$aulas[$bimestre] = pg_affected_rows($result);	
 		//$template->aulas = pg_affected_rows($result)*$creditos_por_dia;
 		//$template->bimestre = $bimestre;
 		//$template->block("aulasDadas");	
 	} 		
 	
-	$query = "select alunos.id, alunos.nome, alunos.matricula from disciplinas inner join alunos on(alunos.disciplina_id = disciplinas.id) where disciplinas.id=".$_GET['id_disciplina']." order by matricula";
-	$result = pg_query($query);	
+	$query = "select alunos.id, alunos.nome, alunos.matricula from disciplinas inner join alunos on(alunos.disciplina_id = disciplinas.id) where disciplinas.id = $1 order by matricula";
+	// $result = pg_query($query);	
+	$result = pg_query_params($conexao, $query, array($_GET['id_disciplina'])) or die ($query);
 	$i = 1;	
 	while ($registro = pg_fetch_array($result)){
 		//$template->id = $registro['id'];
@@ -90,9 +93,10 @@
 		for ($bimestre = 1; $bimestre <= $total; $bimestre++) {						
 			$sql = "select count(*) as presencas from presencas 
 				where 
-					aluno_id = ".$registro['id']." and 
-					disciplina_id = ".$_GET['id_disciplina']." and resultado = 1 and bimestre = ".$bimestre;
-			$resultadoX =  pg_query($sql);
+					aluno_id = $1 and 
+					disciplina_id = $2 and resultado = 1 and bimestre = $3";
+			// $resultadoX =  pg_query($sql);
+			$resultadoX = pg_query_params($conexao, $query, array($registro['id'], $_GET['id_disciplina'], $bimestre)) or die ($query);
 			$x = pg_fetch_array($resultadoX);
 			
 			$template->bimestre = $bimestre;
