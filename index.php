@@ -1,5 +1,5 @@
 <?php
-	require_once "lib/conexao.php";
+	require_once "lib/conexao.php";	
 
 	if (!isset($_SESSION['dump'])){
 		$_SESSION['dump'] = 1;

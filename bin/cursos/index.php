@@ -4,6 +4,8 @@
 	require_once "../../lib/Template.php";
 	use raelgc\view\Template;
 
+	// dump();
+
 	$template = new Template("../../view/cursos/index.html");
 
 

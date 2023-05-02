@@ -65,15 +65,16 @@ $conexao = pg_connect($connection_string) or die("Falha em conectar - Banco de D
 
 function dump() {
     global $banco, $senha, $porta, $HOST, $usuario;
-    $path_back = DIR."dumps/";
+    $path_back = DIR."/dumps/";
     //  funcionando mas preferi retirar - apagando todos os dumps anteriores
-    $link = $path_back . $banco . date("dmY") . ".sql";
+    $link = $path_back . $banco . date("dmY") . ".sql";    
     $cmd = "PGPASSWORD=" . $senha . " pg_dump --host " . $HOST . " --port " . $porta . " --username " . $usuario . " --format plain --create --clean --inserts --verbose --file " . $link . " " . $banco;
+    // die($cmd);
     // criando um novo dump atualizado => Executa o comando pg_dump que esta na variável cmd
     shell_exec($cmd);
     
     // removendo dumps velhos (Mantem somente os ultimos)
-    $vetArquivo = explode("\n",shell_exec("cd ".$path_back." && ls -alt | grep \"docente*\" | awk '{print $(NF)}'"));
+    $vetArquivo = explode("\n",shell_exec("cd ".$path_back." && ls -alt | grep \"docente*\" | awk '{print $(NF)}'") ?? '');
     $x = 7;
     if (count($vetArquivo) > $x){
         for ($i=$x; $i < count($vetArquivo); $i++) { 
