@@ -35,5 +35,6 @@
 		
 
 	}
-	header("Location: ./../../view/questoes/pagination.html");
+	header("Location: index.php");
+
 ?>
