@@ -11,7 +11,7 @@
 
 	$registro = pg_fetch_array($result);
 	$template->questao = $registro['questao'];
-	$template->resposta = nl2br($registro['resposta']);
+	$template->resposta = ($registro['resposta']);
 	$template->id = $registro['id'];
 
 	$sql = "select tag_id FROM questoes_tags WHERE questao_id = $1";

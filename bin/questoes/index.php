@@ -29,8 +29,8 @@
 	$result = pg_query_params($conexao, $sql, array()) or die ($sql);
 
 	while ($registro = pg_fetch_array($result)){
-		$template->questao = nl2br(substr(strip_tags($registro['questao']), 0, 100))."...";
-		$template->resposta = nl2br($registro['resposta']);
+		$template->questao = (substr(strip_tags($registro['questao']), 0, 100))."...";
+		$template->resposta = ($registro['resposta']);
 		$template->id = $registro['id'];
 		$template->block("questoes");
 	}	

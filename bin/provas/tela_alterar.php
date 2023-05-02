@@ -5,8 +5,7 @@
 	
 	$template = new Template("../../view/provas/tela_alterar.html");
 	
-	$query = "SELECT * FROM provas WHERE provas.id = $1";
-	// $result = pg_query($sql);
+	$query = "SELECT * FROM provas WHERE id = $1";	
 	$result = pg_query_params($conexao, $query, array($_GET['id'])) or die ($query);
 	
 	$registro = pg_fetch_array($result);

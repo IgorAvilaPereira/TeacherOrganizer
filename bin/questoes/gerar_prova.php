@@ -21,7 +21,7 @@
 					// array_push($vetQuestao,pg_fetch_all($result));
 					while ($registro = pg_fetch_array($result)) {
 						if (strlen($registro['questao']) > 5) {
-							$vetQuestao[] = nl2br($registro['questao']);
+							$vetQuestao[] = ($registro['questao']);
 						}
 					}
     } /*else {
@@ -37,7 +37,7 @@
         // array_push($vetQuestao, pg_fetch_all($result));
         while ($registro = pg_fetch_array($result)) {
             if (strlen($registro['questao']) > 5) {
-                $vetQuestao[] = nl2br($registro['questao']);
+                $vetQuestao[] = ($registro['questao']);
             }
         }
     }
