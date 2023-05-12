@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1)
--- Dumped by pg_dump version 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1)
+-- Dumped from database version 15.2 (Ubuntu 15.2-1.pgdg22.04+1)
+-- Dumped by pg_dump version 15.2 (Ubuntu 15.2-1.pgdg22.04+1)
 
--- Started on 2023-05-01 21:34:35 -03
+-- Started on 2023-05-12 14:21:28 -03
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -20,11 +20,11 @@ SET row_security = off;
 
 DROP DATABASE docente;
 --
--- TOC entry 3527 (class 1262 OID 60311)
+-- TOC entry 3539 (class 1262 OID 24634)
 -- Name: docente; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE docente WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.UTF-8';
+CREATE DATABASE docente WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'en_US.UTF-8';
 
 
 ALTER DATABASE docente OWNER TO postgres;
@@ -47,7 +47,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 209 (class 1259 OID 60312)
+-- TOC entry 214 (class 1259 OID 24635)
 -- Name: alternativas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -62,7 +62,7 @@ CREATE TABLE public.alternativas (
 ALTER TABLE public.alternativas OWNER TO postgres;
 
 --
--- TOC entry 210 (class 1259 OID 60317)
+-- TOC entry 215 (class 1259 OID 24640)
 -- Name: alternativas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -77,8 +77,8 @@ CREATE SEQUENCE public.alternativas_id_seq
 ALTER TABLE public.alternativas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3528 (class 0 OID 0)
--- Dependencies: 210
+-- TOC entry 3540 (class 0 OID 0)
+-- Dependencies: 215
 -- Name: alternativas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -86,7 +86,7 @@ ALTER SEQUENCE public.alternativas_id_seq OWNED BY public.alternativas.id;
 
 
 --
--- TOC entry 211 (class 1259 OID 60318)
+-- TOC entry 216 (class 1259 OID 24641)
 -- Name: alunos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -102,7 +102,7 @@ CREATE TABLE public.alunos (
 ALTER TABLE public.alunos OWNER TO postgres;
 
 --
--- TOC entry 212 (class 1259 OID 60323)
+-- TOC entry 217 (class 1259 OID 24646)
 -- Name: alunos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -117,8 +117,8 @@ CREATE SEQUENCE public.alunos_id_seq
 ALTER TABLE public.alunos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3529 (class 0 OID 0)
--- Dependencies: 212
+-- TOC entry 3541 (class 0 OID 0)
+-- Dependencies: 217
 -- Name: alunos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -126,7 +126,7 @@ ALTER SEQUENCE public.alunos_id_seq OWNED BY public.alunos.id;
 
 
 --
--- TOC entry 213 (class 1259 OID 60324)
+-- TOC entry 218 (class 1259 OID 24647)
 -- Name: anotacoes; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -140,7 +140,7 @@ CREATE TABLE public.anotacoes (
 ALTER TABLE public.anotacoes OWNER TO postgres;
 
 --
--- TOC entry 214 (class 1259 OID 60329)
+-- TOC entry 219 (class 1259 OID 24652)
 -- Name: anotacoes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -155,8 +155,8 @@ CREATE SEQUENCE public.anotacoes_id_seq
 ALTER TABLE public.anotacoes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3530 (class 0 OID 0)
--- Dependencies: 214
+-- TOC entry 3542 (class 0 OID 0)
+-- Dependencies: 219
 -- Name: anotacoes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -164,7 +164,7 @@ ALTER SEQUENCE public.anotacoes_id_seq OWNED BY public.anotacoes.id;
 
 
 --
--- TOC entry 215 (class 1259 OID 60330)
+-- TOC entry 220 (class 1259 OID 24653)
 -- Name: avaliacoes; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -184,8 +184,8 @@ CREATE TABLE public.avaliacoes (
 ALTER TABLE public.avaliacoes OWNER TO postgres;
 
 --
--- TOC entry 3531 (class 0 OID 0)
--- Dependencies: 215
+-- TOC entry 3543 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: COLUMN avaliacoes.da_substitutiva; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -193,7 +193,7 @@ COMMENT ON COLUMN public.avaliacoes.da_substitutiva IS 'a avaliacao utilizada pr
 
 
 --
--- TOC entry 216 (class 1259 OID 60337)
+-- TOC entry 221 (class 1259 OID 24660)
 -- Name: avaliacoes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -208,8 +208,8 @@ CREATE SEQUENCE public.avaliacoes_id_seq
 ALTER TABLE public.avaliacoes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3532 (class 0 OID 0)
--- Dependencies: 216
+-- TOC entry 3544 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: avaliacoes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -217,7 +217,7 @@ ALTER SEQUENCE public.avaliacoes_id_seq OWNED BY public.avaliacoes.id;
 
 
 --
--- TOC entry 217 (class 1259 OID 60338)
+-- TOC entry 222 (class 1259 OID 24661)
 -- Name: creditos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -232,8 +232,8 @@ CREATE TABLE public.creditos (
 ALTER TABLE public.creditos OWNER TO postgres;
 
 --
--- TOC entry 3533 (class 0 OID 0)
--- Dependencies: 217
+-- TOC entry 3545 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: COLUMN creditos.dia_semana; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -241,7 +241,7 @@ COMMENT ON COLUMN public.creditos.dia_semana IS '0 = > Domingo 1 => Segunda 2 =>
 
 
 --
--- TOC entry 218 (class 1259 OID 60341)
+-- TOC entry 223 (class 1259 OID 24664)
 -- Name: creditos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -256,8 +256,8 @@ CREATE SEQUENCE public.creditos_id_seq
 ALTER TABLE public.creditos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3534 (class 0 OID 0)
--- Dependencies: 218
+-- TOC entry 3546 (class 0 OID 0)
+-- Dependencies: 223
 -- Name: creditos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -265,7 +265,7 @@ ALTER SEQUENCE public.creditos_id_seq OWNED BY public.creditos.id;
 
 
 --
--- TOC entry 219 (class 1259 OID 60342)
+-- TOC entry 224 (class 1259 OID 24665)
 -- Name: cursos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -278,7 +278,7 @@ CREATE TABLE public.cursos (
 ALTER TABLE public.cursos OWNER TO postgres;
 
 --
--- TOC entry 220 (class 1259 OID 60347)
+-- TOC entry 225 (class 1259 OID 24670)
 -- Name: cursos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -293,8 +293,8 @@ CREATE SEQUENCE public.cursos_id_seq
 ALTER TABLE public.cursos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3535 (class 0 OID 0)
--- Dependencies: 220
+-- TOC entry 3547 (class 0 OID 0)
+-- Dependencies: 225
 -- Name: cursos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -302,7 +302,7 @@ ALTER SEQUENCE public.cursos_id_seq OWNED BY public.cursos.id;
 
 
 --
--- TOC entry 221 (class 1259 OID 60348)
+-- TOC entry 226 (class 1259 OID 24671)
 -- Name: disciplinas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -335,7 +335,7 @@ CREATE TABLE public.disciplinas (
 ALTER TABLE public.disciplinas OWNER TO postgres;
 
 --
--- TOC entry 222 (class 1259 OID 60354)
+-- TOC entry 227 (class 1259 OID 24677)
 -- Name: disciplinas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -350,8 +350,8 @@ CREATE SEQUENCE public.disciplinas_id_seq
 ALTER TABLE public.disciplinas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3536 (class 0 OID 0)
--- Dependencies: 222
+-- TOC entry 3548 (class 0 OID 0)
+-- Dependencies: 227
 -- Name: disciplinas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -359,7 +359,7 @@ ALTER SEQUENCE public.disciplinas_id_seq OWNED BY public.disciplinas.id;
 
 
 --
--- TOC entry 223 (class 1259 OID 60355)
+-- TOC entry 228 (class 1259 OID 24678)
 -- Name: tabela_nota_exame; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -374,7 +374,7 @@ CREATE TABLE public.tabela_nota_exame (
 ALTER TABLE public.tabela_nota_exame OWNER TO postgres;
 
 --
--- TOC entry 224 (class 1259 OID 60360)
+-- TOC entry 229 (class 1259 OID 24683)
 -- Name: nota_exame2_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -389,8 +389,8 @@ CREATE SEQUENCE public.nota_exame2_id_seq
 ALTER TABLE public.nota_exame2_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3537 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 3549 (class 0 OID 0)
+-- Dependencies: 229
 -- Name: nota_exame2_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -398,7 +398,7 @@ ALTER SEQUENCE public.nota_exame2_id_seq OWNED BY public.tabela_nota_exame.id;
 
 
 --
--- TOC entry 225 (class 1259 OID 60361)
+-- TOC entry 230 (class 1259 OID 24684)
 -- Name: notas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -415,7 +415,7 @@ CREATE TABLE public.notas (
 ALTER TABLE public.notas OWNER TO postgres;
 
 --
--- TOC entry 226 (class 1259 OID 60366)
+-- TOC entry 231 (class 1259 OID 24689)
 -- Name: notas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -430,8 +430,8 @@ CREATE SEQUENCE public.notas_id_seq
 ALTER TABLE public.notas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3538 (class 0 OID 0)
--- Dependencies: 226
+-- TOC entry 3550 (class 0 OID 0)
+-- Dependencies: 231
 -- Name: notas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -439,7 +439,7 @@ ALTER SEQUENCE public.notas_id_seq OWNED BY public.notas.id;
 
 
 --
--- TOC entry 227 (class 1259 OID 60367)
+-- TOC entry 232 (class 1259 OID 24690)
 -- Name: planos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -455,7 +455,7 @@ CREATE TABLE public.planos (
 ALTER TABLE public.planos OWNER TO postgres;
 
 --
--- TOC entry 228 (class 1259 OID 60373)
+-- TOC entry 233 (class 1259 OID 24696)
 -- Name: planos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -470,8 +470,8 @@ CREATE SEQUENCE public.planos_id_seq
 ALTER TABLE public.planos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3539 (class 0 OID 0)
--- Dependencies: 228
+-- TOC entry 3551 (class 0 OID 0)
+-- Dependencies: 233
 -- Name: planos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -479,7 +479,7 @@ ALTER SEQUENCE public.planos_id_seq OWNED BY public.planos.id;
 
 
 --
--- TOC entry 229 (class 1259 OID 60374)
+-- TOC entry 234 (class 1259 OID 24697)
 -- Name: presencas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -497,7 +497,7 @@ CREATE TABLE public.presencas (
 ALTER TABLE public.presencas OWNER TO postgres;
 
 --
--- TOC entry 230 (class 1259 OID 60378)
+-- TOC entry 235 (class 1259 OID 24701)
 -- Name: presencas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -512,8 +512,8 @@ CREATE SEQUENCE public.presencas_id_seq
 ALTER TABLE public.presencas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3540 (class 0 OID 0)
--- Dependencies: 230
+-- TOC entry 3552 (class 0 OID 0)
+-- Dependencies: 235
 -- Name: presencas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -521,7 +521,7 @@ ALTER SEQUENCE public.presencas_id_seq OWNED BY public.presencas.id;
 
 
 --
--- TOC entry 231 (class 1259 OID 60379)
+-- TOC entry 236 (class 1259 OID 24702)
 -- Name: provas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -537,8 +537,8 @@ CREATE TABLE public.provas (
 ALTER TABLE public.provas OWNER TO postgres;
 
 --
--- TOC entry 3541 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 3553 (class 0 OID 0)
+-- Dependencies: 236
 -- Name: COLUMN provas.data_hora; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -546,7 +546,7 @@ COMMENT ON COLUMN public.provas.data_hora IS 'Data';
 
 
 --
--- TOC entry 232 (class 1259 OID 60384)
+-- TOC entry 237 (class 1259 OID 24707)
 -- Name: provas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -561,8 +561,8 @@ CREATE SEQUENCE public.provas_id_seq
 ALTER TABLE public.provas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3542 (class 0 OID 0)
--- Dependencies: 232
+-- TOC entry 3554 (class 0 OID 0)
+-- Dependencies: 237
 -- Name: provas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -570,7 +570,7 @@ ALTER SEQUENCE public.provas_id_seq OWNED BY public.provas.id;
 
 
 --
--- TOC entry 233 (class 1259 OID 60385)
+-- TOC entry 238 (class 1259 OID 24708)
 -- Name: questoes; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -584,7 +584,7 @@ CREATE TABLE public.questoes (
 ALTER TABLE public.questoes OWNER TO postgres;
 
 --
--- TOC entry 234 (class 1259 OID 60390)
+-- TOC entry 239 (class 1259 OID 24713)
 -- Name: questoes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -599,8 +599,8 @@ CREATE SEQUENCE public.questoes_id_seq
 ALTER TABLE public.questoes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3543 (class 0 OID 0)
--- Dependencies: 234
+-- TOC entry 3555 (class 0 OID 0)
+-- Dependencies: 239
 -- Name: questoes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -608,7 +608,7 @@ ALTER SEQUENCE public.questoes_id_seq OWNED BY public.questoes.id;
 
 
 --
--- TOC entry 235 (class 1259 OID 60391)
+-- TOC entry 240 (class 1259 OID 24714)
 -- Name: questoes_tags; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -622,7 +622,7 @@ CREATE TABLE public.questoes_tags (
 ALTER TABLE public.questoes_tags OWNER TO postgres;
 
 --
--- TOC entry 236 (class 1259 OID 60394)
+-- TOC entry 241 (class 1259 OID 24717)
 -- Name: tags; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -635,7 +635,7 @@ CREATE TABLE public.tags (
 ALTER TABLE public.tags OWNER TO postgres;
 
 --
--- TOC entry 237 (class 1259 OID 60399)
+-- TOC entry 242 (class 1259 OID 24722)
 -- Name: questoes_tags_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -650,8 +650,8 @@ CREATE SEQUENCE public.questoes_tags_id_seq
 ALTER TABLE public.questoes_tags_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3544 (class 0 OID 0)
--- Dependencies: 237
+-- TOC entry 3556 (class 0 OID 0)
+-- Dependencies: 242
 -- Name: questoes_tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -659,7 +659,7 @@ ALTER SEQUENCE public.questoes_tags_id_seq OWNED BY public.tags.id;
 
 
 --
--- TOC entry 238 (class 1259 OID 60400)
+-- TOC entry 243 (class 1259 OID 24723)
 -- Name: questoes_tags_id_seq1; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -674,8 +674,8 @@ CREATE SEQUENCE public.questoes_tags_id_seq1
 ALTER TABLE public.questoes_tags_id_seq1 OWNER TO postgres;
 
 --
--- TOC entry 3545 (class 0 OID 0)
--- Dependencies: 238
+-- TOC entry 3557 (class 0 OID 0)
+-- Dependencies: 243
 -- Name: questoes_tags_id_seq1; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -683,7 +683,7 @@ ALTER SEQUENCE public.questoes_tags_id_seq1 OWNED BY public.questoes_tags.id;
 
 
 --
--- TOC entry 3277 (class 2604 OID 60401)
+-- TOC entry 3286 (class 2604 OID 24724)
 -- Name: alternativas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -691,7 +691,7 @@ ALTER TABLE ONLY public.alternativas ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
--- TOC entry 3278 (class 2604 OID 60402)
+-- TOC entry 3287 (class 2604 OID 24725)
 -- Name: alunos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -699,7 +699,7 @@ ALTER TABLE ONLY public.alunos ALTER COLUMN id SET DEFAULT nextval('public.aluno
 
 
 --
--- TOC entry 3279 (class 2604 OID 60403)
+-- TOC entry 3288 (class 2604 OID 24726)
 -- Name: anotacoes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -707,7 +707,7 @@ ALTER TABLE ONLY public.anotacoes ALTER COLUMN id SET DEFAULT nextval('public.an
 
 
 --
--- TOC entry 3282 (class 2604 OID 60404)
+-- TOC entry 3289 (class 2604 OID 24727)
 -- Name: avaliacoes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -715,7 +715,7 @@ ALTER TABLE ONLY public.avaliacoes ALTER COLUMN id SET DEFAULT nextval('public.a
 
 
 --
--- TOC entry 3283 (class 2604 OID 60405)
+-- TOC entry 3292 (class 2604 OID 24728)
 -- Name: creditos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -723,7 +723,7 @@ ALTER TABLE ONLY public.creditos ALTER COLUMN id SET DEFAULT nextval('public.cre
 
 
 --
--- TOC entry 3284 (class 2604 OID 60406)
+-- TOC entry 3293 (class 2604 OID 24729)
 -- Name: cursos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -731,7 +731,7 @@ ALTER TABLE ONLY public.cursos ALTER COLUMN id SET DEFAULT nextval('public.curso
 
 
 --
--- TOC entry 3286 (class 2604 OID 60407)
+-- TOC entry 3294 (class 2604 OID 24730)
 -- Name: disciplinas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -739,7 +739,7 @@ ALTER TABLE ONLY public.disciplinas ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3288 (class 2604 OID 60408)
+-- TOC entry 3297 (class 2604 OID 24731)
 -- Name: notas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -747,7 +747,7 @@ ALTER TABLE ONLY public.notas ALTER COLUMN id SET DEFAULT nextval('public.notas_
 
 
 --
--- TOC entry 3290 (class 2604 OID 60409)
+-- TOC entry 3298 (class 2604 OID 24732)
 -- Name: planos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -755,7 +755,7 @@ ALTER TABLE ONLY public.planos ALTER COLUMN id SET DEFAULT nextval('public.plano
 
 
 --
--- TOC entry 3292 (class 2604 OID 60410)
+-- TOC entry 3300 (class 2604 OID 24733)
 -- Name: presencas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -763,7 +763,7 @@ ALTER TABLE ONLY public.presencas ALTER COLUMN id SET DEFAULT nextval('public.pr
 
 
 --
--- TOC entry 3293 (class 2604 OID 60411)
+-- TOC entry 3302 (class 2604 OID 24734)
 -- Name: provas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -771,7 +771,7 @@ ALTER TABLE ONLY public.provas ALTER COLUMN id SET DEFAULT nextval('public.prova
 
 
 --
--- TOC entry 3294 (class 2604 OID 60412)
+-- TOC entry 3303 (class 2604 OID 24735)
 -- Name: questoes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -779,7 +779,7 @@ ALTER TABLE ONLY public.questoes ALTER COLUMN id SET DEFAULT nextval('public.que
 
 
 --
--- TOC entry 3295 (class 2604 OID 60413)
+-- TOC entry 3304 (class 2604 OID 24736)
 -- Name: questoes_tags id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -787,7 +787,7 @@ ALTER TABLE ONLY public.questoes_tags ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 3287 (class 2604 OID 60414)
+-- TOC entry 3296 (class 2604 OID 24737)
 -- Name: tabela_nota_exame id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -795,7 +795,7 @@ ALTER TABLE ONLY public.tabela_nota_exame ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 3296 (class 2604 OID 60415)
+-- TOC entry 3305 (class 2604 OID 24738)
 -- Name: tags id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -803,16 +803,16 @@ ALTER TABLE ONLY public.tags ALTER COLUMN id SET DEFAULT nextval('public.questoe
 
 
 --
--- TOC entry 3492 (class 0 OID 60312)
--- Dependencies: 209
+-- TOC entry 3504 (class 0 OID 24635)
+-- Dependencies: 214
 -- Data for Name: alternativas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 3494 (class 0 OID 60318)
--- Dependencies: 211
+-- TOC entry 3506 (class 0 OID 24641)
+-- Dependencies: 216
 -- Data for Name: alunos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1170,8 +1170,8 @@ INSERT INTO public.alunos VALUES (1304, 'GERALDO OTAVIO DA COSTA SANTOS JR', '20
 
 
 --
--- TOC entry 3496 (class 0 OID 60324)
--- Dependencies: 213
+-- TOC entry 3508 (class 0 OID 24647)
+-- Dependencies: 218
 -- Data for Name: anotacoes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1242,8 +1242,8 @@ Obs:
 
 
 --
--- TOC entry 3498 (class 0 OID 60330)
--- Dependencies: 215
+-- TOC entry 3510 (class 0 OID 24653)
+-- Dependencies: 220
 -- Data for Name: avaliacoes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2262,8 +2262,8 @@ INSERT INTO public.avaliacoes VALUES (902, 'Trabalho 8 - Proxy', '<br>', 1, 122,
 
 
 --
--- TOC entry 3500 (class 0 OID 60338)
--- Dependencies: 217
+-- TOC entry 3512 (class 0 OID 24661)
+-- Dependencies: 222
 -- Data for Name: creditos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2307,8 +2307,8 @@ INSERT INTO public.creditos VALUES (185, 121, 2, 1);
 
 
 --
--- TOC entry 3502 (class 0 OID 60342)
--- Dependencies: 219
+-- TOC entry 3514 (class 0 OID 24665)
+-- Dependencies: 224
 -- Data for Name: cursos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2317,8 +2317,8 @@ INSERT INTO public.cursos VALUES (1, 'Integrado');
 
 
 --
--- TOC entry 3504 (class 0 OID 60348)
--- Dependencies: 221
+-- TOC entry 3516 (class 0 OID 24671)
+-- Dependencies: 226
 -- Data for Name: disciplinas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -4634,8 +4634,8 @@ Pesos aproximados: 60% atividade presencial, 40% atividades extra-classe (trabal
 
 
 --
--- TOC entry 3508 (class 0 OID 60361)
--- Dependencies: 225
+-- TOC entry 3520 (class 0 OID 24684)
+-- Dependencies: 230
 -- Data for Name: notas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -9204,8 +9204,8 @@ INSERT INTO public.notas VALUES (5345, 3.1, 873, 1275, '<div>===================
 
 
 --
--- TOC entry 3510 (class 0 OID 60367)
--- Dependencies: 227
+-- TOC entry 3522 (class 0 OID 24690)
+-- Dependencies: 232
 -- Data for Name: planos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -10455,8 +10455,8 @@ INSERT INTO public.planos VALUES (881, '2022-06-28', '- Divulgação das Notas',
 
 
 --
--- TOC entry 3512 (class 0 OID 60374)
--- Dependencies: 229
+-- TOC entry 3524 (class 0 OID 24697)
+-- Dependencies: 234
 -- Data for Name: presencas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -16981,8 +16981,8 @@ INSERT INTO public.presencas VALUES (14383, '2021-09-13', 1308, 69, 1, 1, 1);
 
 
 --
--- TOC entry 3514 (class 0 OID 60379)
--- Dependencies: 231
+-- TOC entry 3526 (class 0 OID 24702)
+-- Dependencies: 236
 -- Data for Name: provas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -17023,8 +17023,8 @@ INSERT INTO public.provas VALUES (13, '
 
 
 --
--- TOC entry 3516 (class 0 OID 60385)
--- Dependencies: 233
+-- TOC entry 3528 (class 0 OID 24708)
+-- Dependencies: 238
 -- Data for Name: questoes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -17146,11 +17146,16 @@ INSERT INTO public.questoes VALUES (57, '<p style="margin-bottom: 16px; color: r
 INSERT INTO public.questoes VALUES (58, '<p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;"><br class="Apple-interchange-newline">Desenvolva um sistem de vendas de ingressos de um cinema com uma única sala, utilizando Python/Flask com PostgreSQL.</p><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;"><span style="font-weight: 600;">Observações</span>:</p><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">Esta sala tem 10 lugares.</p><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">Não é possível vender dois ingressos para o mesmo lugar em uma mesma sessão.</p><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">Durante um dia, é possível que um mesmo filme seja exibido mais de uma vez (em horários diferentes).</p><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">Durante a venda, só é possível vender ingressos em sessões de filmes disponíveis para exibição (dentro do período de exibição).</p><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">Deve ser possível reportar a quantidade de ingressos já vendidos por cada sessão (e se já esgotou).</p><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">O cliente deve, no momento da compra, identificar as sessões e os vendidos e ainda disponíveis.</p><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">Uma Sessão tem:</p><ul style="padding-left: 2em; margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;"><li>data/hora da sessão</li><li style="margin-top: 0.25em;">filme</li></ul><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">Um Ingresso tem:</p><ul style="padding-left: 2em; margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;"><li>nome do cliente</li><li style="margin-top: 0.25em;">lugar (cadeira)</li><li style="margin-top: 0.25em;">sessão</li></ul><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">Um Filme tem:</p><ul style="padding-left: 2em; margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;"><li><p style="margin-top: 16px; margin-bottom: 16px;">título</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">sinopse</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">gênero</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">período de exibição</p><ul style="padding-left: 2em;"><li><p style="margin-top: 16px; margin-bottom: 16px;">data de início</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">data de fim</p></li></ul></li></ul><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;"><span style="font-weight: 600;">Exigências:</span></p><ul style="padding-left: 2em; margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;"><li>CRUD de sessão</li><li style="margin-top: 0.25em;">CRUD de ingressos</li><li style="margin-top: 0.25em;">CRUD de filmes</li><li style="margin-top: 0.25em;">Venda de ingressos</li><li style="margin-top: 0.25em;">Cancelamento de pedidos de ingressos</li><li style="margin-top: 0.25em;">Verificação de não ser possível vender mais de ingresso para a mesma cadeira em uma mesma sessão</li><li style="margin-top: 0.25em;">Utilizar uma biblioteca css (ex: bootstrap ou materialize). É obrigatório utilizar pelo menos 10 recursos DIFERENTES de estilo em cada página.</li><li style="margin-top: 0.25em;">validar os formulários por js</li><li style="margin-top: 0.25em;">tanto arquivos js como css devem ser externos aos arquivos html</li><li style="margin-top: 0.25em;">desenvolver o sistema em 3 camadas: apresentação (html), modelo (classes lógicas) e persistência (dao).</li><li></li></ul> ', ' ');
 INSERT INTO public.questoes VALUES (59, '<p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">Desenvolva uma galeria de fotos.</p><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">Uma foto pertence exclusivamente a uma galeria. Uma galeria possui n fotos.</p><ul style="padding-left: 2em; margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;"><li><p style="margin-top: 16px; margin-bottom: 16px;">Uma galeria tem: título, descrição e suas fotos</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Uma foto tem: legenda.</p></li></ul><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">Somente usuários previamente autorizados podem acessar a parte administrativa, ou seja, modificar galerias e as respectivas fotos.</p><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">Além disso, é preciso armazenar no banco de dados todas as url de acesso e todos os usuários. Motivo: segurança.</p><p style="margin-bottom: 16px; color: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;"><span style="background-color: transparent;">Utilize interceptadores, sessão e todo o aparato do vRaptor de upload e de download de arquivos.</span></p> ', ' ');
 INSERT INTO public.questoes VALUES (50, '<div><ul><li>Desenvolver um sistema web para uma Garagem Coletiva<span style="background-color: transparent;">.</span></li></ul></div><div><br></div><div><b><u>Classes do Sistema:</u></b></div><div><span style="background-color: transparent;"><br></span></div><div><span style="background-color: transparent;"><b>Carro</b></span></div><div><div><ul><li><span style="background-color: transparent;">placa (String)</span></li><li><span style="background-color: transparent;">modelo (String)</span></li><li><span style="background-color: transparent;">ano (inteiro)</span></li><li><span style="background-color: transparent;">marca (String)</span></li></ul></div><div><b>Locação</b></div><div><ul><li><span style="background-color: transparent;">Box (objeto do tipo Box)</span></li><li><span style="background-color: transparent;">Carro (objeto do tipo Carro)</span></li><li><span style="background-color: transparent;">datahora_inicio (timestamp, calendar e etc)</span></li><li><span style="background-color: transparent;">datahora_fim (timestamp, calendar e etc)</span></li><li><span style="background-color: transparent;">valor (double) (por segundo, por hora, por dia)</span></li></ul></div><div><b>Box</b></div><div><ul><li><span style="background-color: transparent;">numero (inteiro)</span></li><li><span style="background-color: transparent;">ocupado? (booleano)</span></li></ul><div><br></div></div><div><b>Dica:</b> Construa as tabelas no SGBD e as classes de modelo.</div><div><br></div><div><b><u>Funcionalidades</u></b>:</div><div><br></div><div><ol><li>Cadastrar(0.2)/Excluir(0.2)/Alterar(0.2)/Listar Carros(0.2)&nbsp;</li><li>Cadastrar(0.2)/Excluir(0.2)/Alterar(0.2)/Listar Boxes(0.2)&nbsp;</li><li>Cadastrar(0.2)/Excluir(0.2)/Alterar(0.2)/Listar Locações(0.2)&nbsp;</li><li>Definir o valor total de uma locação (0.3)</li><li>Listar as Locações correntes (locações que estão em trâmite no momento) (0.3)</li></ol><div><div><b><u>Obervações</u></b>:</div></div></div><div><ul><li>Lembre que para excluir qualquer carro é preciso, anteriormente, excluir todas as locações do mesmo.</li></ul></div><div><ul><li>Lembre que para excluir qualquer box é preciso, anteriormente, excluir todas as locações do mesmo.</li></ul></div><div><br></div><div><b>Valor Total:</b> 3 pontos</div><div><b>Individual</b></div><div><b>É permitido consultar material próprio</b></div></div> ', '   ');
+INSERT INTO public.questoes VALUES (60, '<h1 style="font-size: 2em; margin-top: 24px; margin-bottom: 16px; font-weight: var(--base-text-weight-semibold, 600); line-height: 1.25; padding-bottom: 0.3em; border-bottom: 1px solid var(--color-border-muted); color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;;">Trabalho 1</h1><p style="margin-bottom: 16px; color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px;">Desenvolva o Modelo Relacional (0.5) e o script.sql (0.5) para um base de dados de um hospital.</p><ul style="padding-left: 2em; margin-bottom: 16px; color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px;"><li><p style="margin-top: 16px; margin-bottom: 16px;">O hospital tem funcionários (médicos, enfermeiras e etc.) que atendem pacientes;</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Cada funcionário tem um código, um nome, um email e uma senha;</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Um funcionário pode atender diversos pacientes que, por sua vez, pode ser atendimento por diversos funcionários;</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Cada atendimento tem um código, uma data/hora, um funcionário responsável, um paciente e um campo com observações e/ou diagnóstico;</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">um paciente tem id, nome, endereço</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Cada funcionário pode trabalhar em vários setores ao mesmo tempo (cardiologia, traumatologia e etc.);</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Todo setor tem um código e uma descrição;</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Um setor pode ter diversos funcionários;</p></li></ul><h2 style="margin-top: 24px; margin-bottom: 16px; font-size: 1.5em; font-weight: var(--base-text-weight-semibold, 600); line-height: 1.25; padding-bottom: 0.3em; border-bottom: 1px solid var(--color-border-muted); color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;;"><a id="user-content-consultas" class="anchor" aria-hidden="true" href="https://github.com/IgorAvilaPereira/iobd2023_1sem/wiki/Trabalhos#consultas" style="color: var(--color-accent-fg); float: left; padding-right: 4px; margin-left: -20px; line-height: 1;"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a>Consultas</h2><ul style="padding-left: 2em; margin-bottom: 16px; color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px;"><li>Listar os funcionários, seus cargos (sabendo que um funcionário tem 1 cargo) e seus setores (sabendo que 1 funcionário pode trabalhar em vários cargos ao mesmo tempo). obs: Os setores devem estar na mesma linha (0.5)</li></ul><p style="margin-bottom: 16px; color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px;">Ex:</p><div class="snippet-clipboard-content notranslate position-relative overflow-auto" style="color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px; position: relative !important; overflow: auto !important;"><pre class="notranslate" style="font-family: ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace; font-size: 13.6px; margin-bottom: 16px; overflow-wrap: normal; padding: 16px; line-height: 1.45; color: var(--color-fg-default); background-color: var(--color-canvas-subtle); border-radius: 6px;"><code style="font-family: ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace; font-size: 13.6px; margin: 0px; white-space: pre; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-radius: 6px; word-break: normal; border: 0px; display: inline; overflow: visible; line-height: inherit; overflow-wrap: normal;">funcionário.nome, cargo.nome, setores
+Igor, médico, traumatologia;cardiologia;
+William, enfermeiro, pediatria;dermatologia;
+</code></pre></div><ul style="padding-left: 2em; margin-bottom: 16px; color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px;"><li>Atendimentos deste mês e deste ano com data e hora, nomes dos funcionários, nomes dos pacientes (0.5)</li></ul><p style="margin-bottom: 16px; color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px;"><span style="font-weight: var(--base-text-weight-semibold, 600);">Valor:</span>&nbsp;2</p><p style="color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px; margin-bottom: 0px !important;"><span style="font-weight: var(--base-text-weight-semibold, 600);">Prazo:</span>&nbsp;27/04</p> ', ' ');
+INSERT INTO public.questoes VALUES (61, '<h1 style="font-size: 2em; margin-top: 24px; margin-bottom: 16px; font-weight: var(--base-text-weight-semibold, 600); line-height: 1.25; padding-bottom: 0.3em; border-bottom: 1px solid var(--color-border-muted); color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;;">Trabalho 1 - ER + Modelo Relacional</h1><p style="margin-bottom: 16px; color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px;">Desenvolva um Diagrama ER (2.0) e um Modelo Relacional (2.0) para um base de dados de um hospital.</p><ul style="padding-left: 2em; margin-bottom: 16px; color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px;"><li><p style="margin-top: 16px; margin-bottom: 16px;">O hospital tem funcionários (médicos, enfermeiras e etc.) que atendem pacientes;</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Cada funcionário tem um código, um nome, um email e uma senha;</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Um funcionário pode atender diversos pacientes que, por sua vez, pode ser atendimento por diversos funcionários;</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Cada atendimento tem um código, uma data/hora, um funcionário responsável, um paciente e um campo com observações e/ou diagnóstico;</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Cada funcionário é de um setor (cardiologia, traumatologia e etc.);</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Todo setor tem um código e uma descrição;</p></li><li style="margin-top: 0.25em;"><p style="margin-top: 16px; margin-bottom: 16px;">Um setor pode ter diversos funcionários;</p></li></ul><p style="margin-bottom: 16px; color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px;"><span style="font-weight: var(--base-text-weight-semibold, 600);">Valor:</span>&nbsp;4</p><p style="color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px; margin-bottom: 0px !important;"><span style="font-weight: var(--base-text-weight-semibold, 600);">Prazo:</span>&nbsp;25/04</p> ', ' ');
 
 
 --
--- TOC entry 3518 (class 0 OID 60391)
--- Dependencies: 235
+-- TOC entry 3530 (class 0 OID 24714)
+-- Dependencies: 240
 -- Data for Name: questoes_tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -17208,8 +17213,8 @@ INSERT INTO public.questoes_tags VALUES (174, 50, 8);
 
 
 --
--- TOC entry 3506 (class 0 OID 60355)
--- Dependencies: 223
+-- TOC entry 3518 (class 0 OID 24678)
+-- Dependencies: 228
 -- Data for Name: tabela_nota_exame; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -17429,8 +17434,8 @@ INSERT INTO public.tabela_nota_exame VALUES (213, 6.7, 10, 'ANUAL');
 
 
 --
--- TOC entry 3519 (class 0 OID 60394)
--- Dependencies: 236
+-- TOC entry 3531 (class 0 OID 24717)
+-- Dependencies: 241
 -- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -17448,8 +17453,8 @@ INSERT INTO public.tags VALUES (15, 'Ruby');
 
 
 --
--- TOC entry 3546 (class 0 OID 0)
--- Dependencies: 210
+-- TOC entry 3558 (class 0 OID 0)
+-- Dependencies: 215
 -- Name: alternativas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17457,8 +17462,8 @@ SELECT pg_catalog.setval('public.alternativas_id_seq', 1, false);
 
 
 --
--- TOC entry 3547 (class 0 OID 0)
--- Dependencies: 212
+-- TOC entry 3559 (class 0 OID 0)
+-- Dependencies: 217
 -- Name: alunos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17466,8 +17471,8 @@ SELECT pg_catalog.setval('public.alunos_id_seq', 1308, true);
 
 
 --
--- TOC entry 3548 (class 0 OID 0)
--- Dependencies: 214
+-- TOC entry 3560 (class 0 OID 0)
+-- Dependencies: 219
 -- Name: anotacoes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17475,8 +17480,8 @@ SELECT pg_catalog.setval('public.anotacoes_id_seq', 83, true);
 
 
 --
--- TOC entry 3549 (class 0 OID 0)
--- Dependencies: 216
+-- TOC entry 3561 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: avaliacoes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17484,8 +17489,8 @@ SELECT pg_catalog.setval('public.avaliacoes_id_seq', 904, true);
 
 
 --
--- TOC entry 3550 (class 0 OID 0)
--- Dependencies: 218
+-- TOC entry 3562 (class 0 OID 0)
+-- Dependencies: 223
 -- Name: creditos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17493,8 +17498,8 @@ SELECT pg_catalog.setval('public.creditos_id_seq', 185, true);
 
 
 --
--- TOC entry 3551 (class 0 OID 0)
--- Dependencies: 220
+-- TOC entry 3563 (class 0 OID 0)
+-- Dependencies: 225
 -- Name: cursos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17502,8 +17507,8 @@ SELECT pg_catalog.setval('public.cursos_id_seq', 4, true);
 
 
 --
--- TOC entry 3552 (class 0 OID 0)
--- Dependencies: 222
+-- TOC entry 3564 (class 0 OID 0)
+-- Dependencies: 227
 -- Name: disciplinas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17511,8 +17516,8 @@ SELECT pg_catalog.setval('public.disciplinas_id_seq', 124, true);
 
 
 --
--- TOC entry 3553 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 3565 (class 0 OID 0)
+-- Dependencies: 229
 -- Name: nota_exame2_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17520,8 +17525,8 @@ SELECT pg_catalog.setval('public.nota_exame2_id_seq', 213, true);
 
 
 --
--- TOC entry 3554 (class 0 OID 0)
--- Dependencies: 226
+-- TOC entry 3566 (class 0 OID 0)
+-- Dependencies: 231
 -- Name: notas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17529,8 +17534,8 @@ SELECT pg_catalog.setval('public.notas_id_seq', 5526, true);
 
 
 --
--- TOC entry 3555 (class 0 OID 0)
--- Dependencies: 228
+-- TOC entry 3567 (class 0 OID 0)
+-- Dependencies: 233
 -- Name: planos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17538,8 +17543,8 @@ SELECT pg_catalog.setval('public.planos_id_seq', 903, true);
 
 
 --
--- TOC entry 3556 (class 0 OID 0)
--- Dependencies: 230
+-- TOC entry 3568 (class 0 OID 0)
+-- Dependencies: 235
 -- Name: presencas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17547,8 +17552,8 @@ SELECT pg_catalog.setval('public.presencas_id_seq', 14383, true);
 
 
 --
--- TOC entry 3557 (class 0 OID 0)
--- Dependencies: 232
+-- TOC entry 3569 (class 0 OID 0)
+-- Dependencies: 237
 -- Name: provas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17556,17 +17561,17 @@ SELECT pg_catalog.setval('public.provas_id_seq', 13, true);
 
 
 --
--- TOC entry 3558 (class 0 OID 0)
--- Dependencies: 234
+-- TOC entry 3570 (class 0 OID 0)
+-- Dependencies: 239
 -- Name: questoes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.questoes_id_seq', 59, true);
+SELECT pg_catalog.setval('public.questoes_id_seq', 61, true);
 
 
 --
--- TOC entry 3559 (class 0 OID 0)
--- Dependencies: 237
+-- TOC entry 3571 (class 0 OID 0)
+-- Dependencies: 242
 -- Name: questoes_tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17574,8 +17579,8 @@ SELECT pg_catalog.setval('public.questoes_tags_id_seq', 15, true);
 
 
 --
--- TOC entry 3560 (class 0 OID 0)
--- Dependencies: 238
+-- TOC entry 3572 (class 0 OID 0)
+-- Dependencies: 243
 -- Name: questoes_tags_id_seq1; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -17583,7 +17588,7 @@ SELECT pg_catalog.setval('public.questoes_tags_id_seq1', 174, true);
 
 
 --
--- TOC entry 3298 (class 2606 OID 60461)
+-- TOC entry 3307 (class 2606 OID 24786)
 -- Name: alternativas alternativas_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17592,7 +17597,7 @@ ALTER TABLE ONLY public.alternativas
 
 
 --
--- TOC entry 3300 (class 2606 OID 60463)
+-- TOC entry 3309 (class 2606 OID 24788)
 -- Name: alunos alunos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17601,7 +17606,7 @@ ALTER TABLE ONLY public.alunos
 
 
 --
--- TOC entry 3302 (class 2606 OID 60465)
+-- TOC entry 3311 (class 2606 OID 24790)
 -- Name: alunos alunos_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17610,7 +17615,7 @@ ALTER TABLE ONLY public.alunos
 
 
 --
--- TOC entry 3304 (class 2606 OID 60467)
+-- TOC entry 3313 (class 2606 OID 24792)
 -- Name: anotacoes anotacoes_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17619,7 +17624,7 @@ ALTER TABLE ONLY public.anotacoes
 
 
 --
--- TOC entry 3306 (class 2606 OID 60469)
+-- TOC entry 3315 (class 2606 OID 24794)
 -- Name: avaliacoes avaliacoes_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17628,7 +17633,7 @@ ALTER TABLE ONLY public.avaliacoes
 
 
 --
--- TOC entry 3308 (class 2606 OID 60471)
+-- TOC entry 3317 (class 2606 OID 24796)
 -- Name: creditos creditos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17637,7 +17642,7 @@ ALTER TABLE ONLY public.creditos
 
 
 --
--- TOC entry 3312 (class 2606 OID 60473)
+-- TOC entry 3321 (class 2606 OID 24798)
 -- Name: disciplinas disciplina_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17646,7 +17651,7 @@ ALTER TABLE ONLY public.disciplinas
 
 
 --
--- TOC entry 3314 (class 2606 OID 60475)
+-- TOC entry 3323 (class 2606 OID 24800)
 -- Name: disciplinas disciplinas_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17655,7 +17660,7 @@ ALTER TABLE ONLY public.disciplinas
 
 
 --
--- TOC entry 3310 (class 2606 OID 60477)
+-- TOC entry 3319 (class 2606 OID 24802)
 -- Name: cursos id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17664,7 +17669,7 @@ ALTER TABLE ONLY public.cursos
 
 
 --
--- TOC entry 3316 (class 2606 OID 60479)
+-- TOC entry 3325 (class 2606 OID 24804)
 -- Name: tabela_nota_exame nota_exame; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17673,7 +17678,7 @@ ALTER TABLE ONLY public.tabela_nota_exame
 
 
 --
--- TOC entry 3318 (class 2606 OID 60481)
+-- TOC entry 3327 (class 2606 OID 24806)
 -- Name: tabela_nota_exame nota_exame_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17682,7 +17687,7 @@ ALTER TABLE ONLY public.tabela_nota_exame
 
 
 --
--- TOC entry 3321 (class 2606 OID 60483)
+-- TOC entry 3330 (class 2606 OID 24808)
 -- Name: notas notas_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17691,7 +17696,7 @@ ALTER TABLE ONLY public.notas
 
 
 --
--- TOC entry 3323 (class 2606 OID 60485)
+-- TOC entry 3332 (class 2606 OID 24810)
 -- Name: notas notas_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17700,7 +17705,7 @@ ALTER TABLE ONLY public.notas
 
 
 --
--- TOC entry 3325 (class 2606 OID 60487)
+-- TOC entry 3334 (class 2606 OID 24812)
 -- Name: planos plano_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17709,7 +17714,7 @@ ALTER TABLE ONLY public.planos
 
 
 --
--- TOC entry 3327 (class 2606 OID 60489)
+-- TOC entry 3336 (class 2606 OID 24814)
 -- Name: planos planos_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17718,7 +17723,7 @@ ALTER TABLE ONLY public.planos
 
 
 --
--- TOC entry 3330 (class 2606 OID 60491)
+-- TOC entry 3339 (class 2606 OID 24816)
 -- Name: presencas presencas_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17727,7 +17732,7 @@ ALTER TABLE ONLY public.presencas
 
 
 --
--- TOC entry 3332 (class 2606 OID 60493)
+-- TOC entry 3341 (class 2606 OID 24818)
 -- Name: presencas presencas_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17736,7 +17741,7 @@ ALTER TABLE ONLY public.presencas
 
 
 --
--- TOC entry 3334 (class 2606 OID 60495)
+-- TOC entry 3343 (class 2606 OID 24820)
 -- Name: provas provas_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17745,7 +17750,7 @@ ALTER TABLE ONLY public.provas
 
 
 --
--- TOC entry 3338 (class 2606 OID 60497)
+-- TOC entry 3347 (class 2606 OID 24822)
 -- Name: questoes_tags questao_tag_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17754,7 +17759,7 @@ ALTER TABLE ONLY public.questoes_tags
 
 
 --
--- TOC entry 3336 (class 2606 OID 60499)
+-- TOC entry 3345 (class 2606 OID 24824)
 -- Name: questoes questoes_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17763,7 +17768,7 @@ ALTER TABLE ONLY public.questoes
 
 
 --
--- TOC entry 3340 (class 2606 OID 60501)
+-- TOC entry 3349 (class 2606 OID 24826)
 -- Name: tags questoes_tags_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17772,7 +17777,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3319 (class 1259 OID 60502)
+-- TOC entry 3328 (class 1259 OID 24827)
 -- Name: fki_notas_fk1; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -17780,7 +17785,7 @@ CREATE INDEX fki_notas_fk1 ON public.notas USING btree (aluno_id);
 
 
 --
--- TOC entry 3328 (class 1259 OID 60503)
+-- TOC entry 3337 (class 1259 OID 24828)
 -- Name: fki_presenca_pk1; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -17788,7 +17793,7 @@ CREATE INDEX fki_presenca_pk1 ON public.presencas USING btree (disciplina_id);
 
 
 --
--- TOC entry 3341 (class 2606 OID 60504)
+-- TOC entry 3350 (class 2606 OID 24829)
 -- Name: alternativas alternativas_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17797,7 +17802,7 @@ ALTER TABLE ONLY public.alternativas
 
 
 --
--- TOC entry 3342 (class 2606 OID 60509)
+-- TOC entry 3351 (class 2606 OID 24834)
 -- Name: alunos alunos_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17806,7 +17811,7 @@ ALTER TABLE ONLY public.alunos
 
 
 --
--- TOC entry 3343 (class 2606 OID 60514)
+-- TOC entry 3352 (class 2606 OID 24839)
 -- Name: anotacoes anotacoes_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17815,7 +17820,7 @@ ALTER TABLE ONLY public.anotacoes
 
 
 --
--- TOC entry 3344 (class 2606 OID 60519)
+-- TOC entry 3353 (class 2606 OID 24844)
 -- Name: avaliacoes avaliacoes_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17824,7 +17829,7 @@ ALTER TABLE ONLY public.avaliacoes
 
 
 --
--- TOC entry 3345 (class 2606 OID 60524)
+-- TOC entry 3354 (class 2606 OID 24849)
 -- Name: disciplinas curso_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17833,7 +17838,7 @@ ALTER TABLE ONLY public.disciplinas
 
 
 --
--- TOC entry 3346 (class 2606 OID 60529)
+-- TOC entry 3355 (class 2606 OID 24854)
 -- Name: notas notas_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17842,7 +17847,7 @@ ALTER TABLE ONLY public.notas
 
 
 --
--- TOC entry 3347 (class 2606 OID 60534)
+-- TOC entry 3356 (class 2606 OID 24859)
 -- Name: notas notas_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17851,7 +17856,7 @@ ALTER TABLE ONLY public.notas
 
 
 --
--- TOC entry 3348 (class 2606 OID 60539)
+-- TOC entry 3357 (class 2606 OID 24864)
 -- Name: planos plano_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17860,7 +17865,7 @@ ALTER TABLE ONLY public.planos
 
 
 --
--- TOC entry 3349 (class 2606 OID 60544)
+-- TOC entry 3358 (class 2606 OID 24869)
 -- Name: presencas presenca_pk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17869,7 +17874,7 @@ ALTER TABLE ONLY public.presencas
 
 
 --
--- TOC entry 3350 (class 2606 OID 60549)
+-- TOC entry 3359 (class 2606 OID 24874)
 -- Name: presencas presencas_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17878,7 +17883,7 @@ ALTER TABLE ONLY public.presencas
 
 
 --
--- TOC entry 3351 (class 2606 OID 60554)
+-- TOC entry 3360 (class 2606 OID 24879)
 -- Name: questoes_tags questao_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17887,7 +17892,7 @@ ALTER TABLE ONLY public.questoes_tags
 
 
 --
--- TOC entry 3352 (class 2606 OID 60559)
+-- TOC entry 3361 (class 2606 OID 24884)
 -- Name: questoes_tags tag_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -17895,7 +17900,7 @@ ALTER TABLE ONLY public.questoes_tags
     ADD CONSTRAINT tag_fk FOREIGN KEY (tag_id) REFERENCES public.tags(id);
 
 
--- Completed on 2023-05-01 21:34:36 -03
+-- Completed on 2023-05-12 14:21:28 -03
 
 --
 -- PostgreSQL database dump complete
